@@ -11,6 +11,20 @@
   </head>
 
   <body>
+
+  <div> Pentridge Station</div>
+   <% if flash[:notice] %>
+      <div class="">
+        <p class=""><%= notice %></p>
+      </div>
+    <% end%>
+    <% if flash[:alert] %>
+      <div class="">
+        <p class=""><%= alert %></p>
+      </div>
+    <% end%>
+
+
     <%= yield %>
   </body>
 </html>
