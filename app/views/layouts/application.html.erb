@@ -7,11 +7,22 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
+  <header class="flex flex-row">
+    <div class="flex left"> Pentridge Station Logo</div>
+    <nav class="flex right"> 
+    <a href="" class=""> HOME </a>
+    <a href="" class=""> ABOUT </a>
+    <a href="" class=""> CONTACT </a>
+    <a href="" class=""> PRESS </a>
+    <a href="" class=""> PARTNERS </a>
+    <a href="" class=""> RENT SPACE </a>
+    </nav>
+  </header>
   <div> Pentridge Station</div>
    <% if flash[:notice] %>
       <div class="">
