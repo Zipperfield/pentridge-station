@@ -1,1 +1,14 @@
 @import "tailwindcss/components";
+@layer components {
+  .nav-item {
+    @apply py-2 px-4 text-blue-400;
+  }
+  .square-photo {
+    width: 496px;
+    height: 439px;
+    object-fit: cover;
+  }
+  .vertical-lr {
+    writing-mode: vertical-lr;
+  }
+}

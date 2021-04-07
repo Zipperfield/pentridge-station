@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-  <header class="flex flex-row">
-    <div class="flex left"> Pentridge Station Logo</div>
-    <nav class="flex right"> 
-    <a href="" class=""> HOME </a>
-    <a href="" class=""> ABOUT </a>
-    <a href="" class=""> CONTACT </a>
-    <a href="" class=""> PRESS </a>
-    <a href="" class=""> PARTNERS </a>
-    <a href="" class=""> RENT SPACE </a>
-    </nav>
-  </header>
-  <div> Pentridge Station</div>
-   <% if flash[:notice] %>
+    <% if flash[:notice] %>
       <div class="">
         <p class=""><%= notice %></p>
       </div>
@@ -34,8 +20,162 @@
         <p class=""><%= alert %></p>
       </div>
     <% end%>
-
-
+    <%# Grid %>
+    <div class="absolute z-10 w-full">
+      <header class=" flex flex-row justify-between mt-6 mx-10 ">
+        <div class=""> Pentridge Station Logo</div>
+        <nav class="">
+          <a href="" class="nav-item"> HOME </a>
+          <a href="" class="nav-item"> ABOUT </a>
+          <a href="" class="nav-item"> CONTACT </a>
+          <a href="" class="nav-item"> PRESS </a>
+          <a href="" class="nav-item"> PARTNERS </a>
+          <a href="" class="nav-item">
+            <button class="bg-blue-400 text-white px-3 py-2">
+              RENT SPACE 
+            </button>
+          </a>
+        </nav>
+      </header>
+    </div>
+    <div class="w-full">
+      <% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
+      <div class="w-96 ml-24 mt-32 absolute z-10 text-white">
+        <div class="text-7xl font-extrabold">
+          <%= cms_fragment_content(:pageTitle, Comfy::Cms::Page.find_by_full_path('/home'))%>
+        </div>
+        <div class="my-6 w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.</div>
+        <button class="ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
+      </div>
+      <%= image_tag titlePhoto, class: "w-auto relative z-0"%>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 my-8 mx-16 gap-6">
+      <div class="bg-blue-200 flex flex-col justify-between">
+        <div class="font-bold mt-12">OUR STORY</div>
+        <div class="font-semibold text-4xl">Good food, good drinks, and good people</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <button class="bg-blue-400 text-white w-44 py-3 text-xs mb-12">LEARN MORE</button>
+      </div>
+      <%= image_tag cms_fragment_render(:ourStoryPhoto, Comfy::Cms::Page.find_by_full_path('/home')), class: "square-photo"%>
+      <div class="bg-blue-400">
+        <img src="" alt="">
+        <div class="ml-12 mb-6 mt-44">
+          <div>TITLE</div>
+          <div>This is the subtitle</div>
+          <button class="ring-4 ring-blue-600 w-36">ACTION</button>
+        </div>
+      </div>
+      <div class="bg-blue-400">Hello</div>
+    </div>
+    <%# Quote Panel %>
+    <div class="flex flex-col md:flex-row">
+      <div class="w-full md:w-1/2 bg-blue-400 flex justify-center">
+        <div class=" w-96 my-32">
+          <p class="font-black text-7xl text-white absolute left-24">"</p>
+          <p class="text-white text-4xl my-4">Pentridge is the hidden gem of West Philly. Fun for the whole family.</p>
+          <p class="text-white mt-2 left-16">- Julian DeGroot-Lutzner</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <%# <%= image_tag %> %>
+      </div>
+    </div>
+    <%# School Bus Section %>
+    <div class="mt-16 text-white ">
+      <div class="bg-blue-400  w-1/2 absolute right-20 ">
+        <div class="flex flex-col bg-blue-400 p-16 justify-between h-full">
+          <p class="font-bold">
+            RESERVE A TABLE
+          </p>
+          <p class="text-4xl">
+            An <span class="font-bold"> unforgettable dinner experience</span> in a school bus
+          </p>
+          <button class="bg-white text-blue-400 text-xs w-36 py-2">
+            LEARN MORE
+          </button>
+        </div>
+      </div>
+      <div class="bg-blue-300 ml-24 w-1/2 h-72">
+        hi
+      </div>
+    </div>
+    <%# Press Section %>
+    <div class="">
+    </div>
+    <div class="grid grid-cols-12 gap-6 mx-14 my-16">
+      <div class="col-span-1 flex justify-center">
+        <p class="vertical-lr transform rotate-180 font-black text-4xl ">
+          IN THE PRESS</p>
+      </div>
+      <div class="col-span-11 md:col-span-7 bg-blue-600">Hello</div>
+      <div class="col-span-4 bg-blue-400 hidden md:inline"> h</div>
+      <div class="col-span-3 bg-blue-400 h-40 hidden md:inline"></div>
+      <div class="col-span-3 bg-blue-400 h-40 hidden md:inline"></div>
+      <div class="col-span-6 bg-blue-400 h-40 hidden md:inline"></div>
+    </div>
+    <%# Let's Connect %>
+    <div class="w-full bg-blue-400 flex flex-col md:flex-row text-white">
+      <div class="h-64  w-full md:w-1/2 flex flex-col ml-16 my-16">
+        <div class="w-80">
+          <p class="text-7xl font-bold my-6">Let's Connect</p>
+          <div class="flex">
+            <p>email@pentridgestation.com</p>
+          </div>
+          <div class="flex">
+            <p>(215) 123-1234</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue-200 h-64 mr-16 w-full md:w-1/2 my-16 ">
+        <div class="m-10">
+          <div>Name</div>
+          <div>Email</div>
+          <div>Message</div>
+        </div>
+        <div class="flex justify-end mt-20">
+          <button class="bg-white text-blue-200  px-16 py-2 mr-8">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+    <%# footer %>
+    <footer class="w-full">
+      <div class="mx-12">
+        <div class="bg-blue-200 h-12 my-12"></div>
+        <div class="flex flex-col justify-between md:flex-row">
+          <div class="w-52">
+            <div>
+              <p>5116 Pentridge Street</p>
+              <p>Philadelphia, PA</p>
+              <p>United States, 19143</p>
+            </div>
+          </div>
+          <div class="w-52">
+            <p>(215) 123-1234</p>
+            <p>email@pentridgestation.com</p>
+            <div class="flex flex-row">
+            </div>
+          </div>
+          <div class="w-52 text-right">
+            <p>go to <span class="font-bold">top</span></p>
+            <p></p>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>subscribe to our newsletter</p>
+        </div>
+        <div class="flex flex-col md:flex-row font-extralight text-gray-800 justify-between mt-6">
+          <div class="w-96">
+            <p>design by <a href="https://www.zipperfield.com/" class="font-light text-gray-800">Zipperfield</a></p>
+          </div>
+          <div class="w-96 text-right">
+            <p>Copyright @ Pentridge Station 2021</p>
+            <p> Terms of service apply to site use</p>
+          </div>
+        </div>
+      </div>
+    </footer>
     <%= yield %>
   </body>
 </html>
