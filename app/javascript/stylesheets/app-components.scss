@@ -4,9 +4,12 @@
     @apply py-2 px-4 text-blue-400;
   }
   .square-photo {
-    width: 496px;
-    height: 439px;
     object-fit: cover;
+  }
+  .square {
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
   }
   .vertical-lr {
     writing-mode: vertical-lr;

@@ -1,6 +1,6 @@
     <%# Grid %>
 <% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
-<header class="bg-fixed" style="background-image: url(<%= titlePhoto %>)">
+<header class="bg-fixed bg-center" style="background-image: url(<%= titlePhoto %>)">
   <div>
     <div class=" flex flex-row justify-between pt-6 mx-10 ">
       <div class=""> Pentridge Station Logo</div>
@@ -19,31 +19,34 @@
     </nav>
   </div>
 </div>
-<div class="sm:w-96 mt-12 sm:ml-16 md:ml-24 text-white pb-8">
+<div class="mx-3 sm:w-96 mt-12 sm:ml-16 md:ml-24 text-white pb-8">
   <div class="text-4xl sm:text-7xl font-extrabold">
     <%= cms_fragment_content(:pageTitle, Comfy::Cms::Page.find_by_full_path('/home'))%>
   </div>
-  <div class="my-6 w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.</div>
+  <div class="my-6 sm:w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.</div>
   <button class="ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
 </div >
 <%# <%= image_tag titlePhoto, class: "w-auto relative z-0"%>
 </header>
 <div class="grid grid-cols-1 md:grid-cols-2 my-8 mx-3 sm:mx-16 gap-6">
-  <div class="bg-blue-200 flex flex-col justify-between">
-    <div class="font-bold mt-12">OUR STORY</div>
+  <div class="flex flex-col justify-between">
+    <div class="font-bold mt-2">OUR STORY</div>
     <div class="font-semibold text-4xl">Good food, good drinks, and good people</div>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <button class="bg-blue-400 text-white w-44 py-3 text-xs mb-12">LEARN MORE</button>
+    <button class="bg-blue-400 text-white w-44 py-3 text-xs mb-2">LEARN MORE</button>
   </div>
-  <%= image_tag cms_fragment_render(:ourStoryPhoto, Comfy::Cms::Page.find_by_full_path('/home')), class: "square-photo"%>
-  <div class="bg-blue-400">
-    <img src="" alt="">
-    <div class="ml-12 mb-6 mt-44">
-      <div>TITLE</div>
-      <div>This is the subtitle</div>
-      <button class="ring-4 ring-blue-600 w-36">ACTION</button>
+  <div class="flex flex-col justify-center">
+    <% ourStoryPhoto = cms_fragment_render(:ourStoryPhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
+    <div class="square relative bg-local bg-center bg-cover" style="background-image: url(<%= ourStoryPhoto %>)">
+    </div>
+  </div>
+  <div class="square relative bg-local bg-center bg-cover" style="background-image: url(<%= titlePhoto %>)">
+    <div class="absolute top-5 sm:top-16 lg:top-1/2 left-0 ml-12 mb-6 text-white w-8/12 sm:w-96 md:w-9/12">
+      <div class="font-bold my-4">RENT SPACE</div>
+      <div class="text-4xl">An outdoor space for any ocassion</div>
+      <button class="ring-4 ring-blue-600 w-36 text-xs mt-8">BOOK NOW</button>
     </div>
   </div>
   <div class="bg-blue-400">Hello</div>
@@ -94,9 +97,9 @@
 </div>
 <%# Let's Connect %>
 <div class="bg-blue-400 flex flex-col md:flex-row text-white">
-  <div class="h-64 md:w-1/2 flex flex-col md:ml-16 my-3 md:my-16">
-    <div class="w-80">
-      <p class="text-7xl font-bold my-6">Let's Connect</p>
+  <div class="md:w-1/2 flex justify-center md:ml-16 my-3 md:my-16">
+    <div class="md:w-80">
+      <p class="text-4xl sm:text-7xl font-bold my-6">Let's Connect</p>
       <div class="flex">
         <p>email@pentridgestation.com</p>
       </div>
