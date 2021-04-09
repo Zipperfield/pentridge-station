@@ -1,0 +1,5 @@
+<div class="flex flex-col justify-center">
+  <% ourStoryPhoto = cms_fragment_render(:ourStoryPhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
+  <div class="square relative bg-local bg-center bg-cover" style="background-image: url(<%= ourStoryPhoto %>)">
+  </div>
+</div>
