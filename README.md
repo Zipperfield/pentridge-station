@@ -21,4 +21,15 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+
+Layouts
+
+Home Layout 
+{{ cms:text pageTitle, namespace: header}}
+{{ cms:text pageSubtitle, namespace: header}}
+{{ cms:file titlePhoto, namespace: header}}
+{{ cms:file ourStoryPhoto, namespace: grid}}
+
+
+
+
