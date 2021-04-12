@@ -1,0 +1,24 @@
+<%= form_for @contact do |form| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this door from being saved:</h2>
+      <ul>
+        <% @contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label 'Name' %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label 'Email' %>
+    <%= form.text_field :email %>
+  </div>
+  <%= form.hidden_field :entry_process , value: "Newsletter" %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

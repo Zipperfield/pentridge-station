@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
 
     def home
+      @contact = Contact.new
+      
       # @event = Event.new
   
       # @member = Member.new

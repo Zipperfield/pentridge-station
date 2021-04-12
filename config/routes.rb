@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :events, only: %i[create]
   resources :partners, only: %i[create]
+  resources :contacts, only: %i[create]
   
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
