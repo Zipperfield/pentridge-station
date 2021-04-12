@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :contacts
+  end
+
   resources :events, only: %i[create]
   resources :partners, only: %i[create]
   resources :contacts, only: %i[create]
