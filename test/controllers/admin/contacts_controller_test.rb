@@ -1,9 +1,9 @@
 require_relative '../../test_helper'
 
-class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
+class Admin::ContactsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @location = locations(:default)
+    @location = contacts(:default)
   end
 
   # Vanilla CMS has BasicAuth, so we need to send that with each request.
@@ -21,9 +21,9 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_index
-    r :get, admin_locations_path
+    r :get, admin_contacts_path
     assert_response :success
-    assert assigns(:locations)
+    assert assigns(:contacts)
     assert_template :index
   end
 
@@ -38,7 +38,7 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
     r :get, admin_location_path('invalid')
     assert_response :redirect
     assert_redirected_to action: :index
-    assert_equal 'Location not found', flash[:danger]
+    assert_equal 'Contact not found', flash[:danger]
   end
 
   def test_get_new
@@ -46,7 +46,7 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert assigns(:location)
     assert_template :new
-    assert_select "form[action='/admin/locations']"
+    assert_select "form[action='/admin/contacts']"
   end
 
   def test_get_edit
@@ -54,28 +54,28 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert assigns(:location)
     assert_template :edit
-    assert_select "form[action='/admin/locations/#{@location.id}']"
+    assert_select "form[action='/admin/contacts/#{@location.id}']"
   end
 
   def test_creation
-    assert_difference 'Location.count' do
-      r :post, admin_locations_path, params: {location: {
+    assert_difference 'Contact.count' do
+      r :post, admin_contacts_path, params: {location: {
         name: 'test name',
         distance: 'test distance',
       }}
-      location = Location.last
+      location = Contact.last
       assert_response :redirect
       assert_redirected_to action: :show, id: location
-      assert_equal 'Location created', flash[:success]
+      assert_equal 'Contact created', flash[:success]
     end
   end
 
   def test_creation_failure
-    assert_no_difference 'Location.count' do
-      r :post, admin_locations_path, params: {location: { }}
+    assert_no_difference 'Contact.count' do
+      r :post, admin_contacts_path, params: {location: { }}
       assert_response :success
       assert_template :new
-      assert_equal 'Failed to create Location', flash[:danger]
+      assert_equal 'Failed to create Contact', flash[:danger]
     end
   end
 
@@ -85,7 +85,7 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
     }}
     assert_response :redirect
     assert_redirected_to action: :show, id: @location
-    assert_equal 'Location updated', flash[:success]
+    assert_equal 'Contact updated', flash[:success]
     @location.reload
     assert_equal 'Updated', @location.name
   end
@@ -96,17 +96,17 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
     }}
     assert_response :success
     assert_template :edit
-    assert_equal 'Failed to update Location', flash[:danger]
+    assert_equal 'Failed to update Contact', flash[:danger]
     @location.reload
     refute_equal '', @location.name
   end
 
   def test_destroy
-    assert_difference 'Location.count', -1 do
+    assert_difference 'Contact.count', -1 do
       r :delete, admin_location_path(@location)
       assert_response :redirect
       assert_redirected_to action: :index
-      assert_equal 'Location deleted', flash[:success]
+      assert_equal 'Contact deleted', flash[:success]
     end
   end
 end
