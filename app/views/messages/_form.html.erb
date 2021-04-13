@@ -10,21 +10,27 @@
     </div>
   <% end %>
   <%= form.fields_for :contact do |c| %>
-    <div class="field">
+    <div>
       <%= c.label 'Name' %>
-      <%= c.text_field :name %>
     </div>
-    <div class="field">
+    <div>
+      <%= c.text_field :name, class: "bg-blue-200 border-b-2 border-blue-300 w-full"%>
+    </div>
+    <div>
       <%= c.label 'Email' %>
-      <%= c.text_field :email %>
+    </div>
+    <div>
+      <%= c.text_field :email, class: "bg-blue-200 border-b-2 border-blue-300 w-full"%>
     </div>
     <%= c.hidden_field :entry_process , value: "Message" %>
   <% end %>
-  <div class="">
+  <div>
     <%= form.label "Message" %>
-    <%= form.text_field :body %>
   </div>
-  <div class="flex justify-end mt-20">
-    <%= form.submit "SUBMIT", class: "bg-white text-blue-200  px-16 py-2 mr-8 cursor-pointer"%>
+  <div>
+    <%= form.text_area :body, class: "bg-blue-200 h-20 w-full resize-none" %>
+  </div>
+  <div class="flex justify-end">
+    <%= form.submit "SUBMIT", class: "bg-white text-blue-200 font px-8 py-1 text-xs cursor-pointer"%>
   </div>
 <% end %>
