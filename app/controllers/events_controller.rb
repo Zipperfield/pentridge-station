@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :build_contact, only: [:new]
 
     def new
       @event = Event.new
@@ -18,5 +19,9 @@ class EventsController < ApplicationController
 
     def allowed_params
       params.require(:event).permit(:description, :date)
+    end
+
+    def build_contact
+      @contact = Contact.new
     end
   end

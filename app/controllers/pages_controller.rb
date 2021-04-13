@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-
+    before_action :build_contact, only: [:home, :about]
     def home
-      @contact = Contact.new    
+      # @contact = Contact.new    
       @message = Message.new
       @message.build_contact
     
@@ -18,7 +18,7 @@ class PagesController < ApplicationController
 
     private
 
-    def allowed_params
-      params.require(:event).permit(:description, :date)
+    def build_contact
+      @contact = Contact.new
     end
   end
