@@ -6,14 +6,10 @@ class ContactsController < ApplicationController
         redirect_to root_path, notice: 'We added your contact to our mailing list!' 
       else
         @contact
+        @message = Message.new
+        @message.build_contact
         render 'pages/home'
-      end
-
-      
-      # @event = Event.new
-  
-      # @member = Member.new
-  
+      end  
     end
 
 

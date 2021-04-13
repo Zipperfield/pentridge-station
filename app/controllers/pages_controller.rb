@@ -1,12 +1,10 @@
 class PagesController < ApplicationController
 
     def home
-      @contact = Contact.new
-      
-      # @event = Event.new
-  
-      # @member = Member.new
-  
+      @contact = Contact.new    
+      @message = Message.new
+      @message.build_contact
+    
     end
 
   

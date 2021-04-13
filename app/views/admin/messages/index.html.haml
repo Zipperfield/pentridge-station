@@ -1,0 +1,21 @@
+.page-header
+  = link_to 'New Message', new_admin_message_path, class: 'btn btn-secondary float-right'
+  %h2= 'Messages'
+
+= paginate @messages, theme: 'comfy'
+
+%ul.list
+  - @messages.each do |message|
+    %li
+      .row
+        .col-md-8.item
+          .item-content
+            .item-title
+              = message.body
+
+        .col-md-4.d-flex.align-items-center.justify-content-md-end
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_admin_message_path(message), class: 'btn btn-outline-secondary'
+            = link_to 'Delete', admin_message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+
+= paginate @messages, theme: 'comfy'

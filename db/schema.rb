@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_145854) do
+ActiveRecord::Schema.define(version: 2021_04_12_164249) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -164,8 +164,10 @@ ActiveRecord::Schema.define(version: 2021_04_11_145854) do
     t.string "name"
     t.string "email"
     t.integer "entry_process"
+    t.integer "message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_contacts_on_message_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -173,6 +175,12 @@ ActiveRecord::Schema.define(version: 2021_04_11_145854) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "partners", force: :cascade do |t|
@@ -184,4 +192,5 @@ ActiveRecord::Schema.define(version: 2021_04_11_145854) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contacts", "messages"
 end
