@@ -1,0 +1,43 @@
+<div class="page-header">
+  <%= link_to 'New Message', new_admin_message_path, class: 'btn btn-secondary float-right' %>
+  <h2>
+    <%= 'Messages' %>
+  </h2>
+</div>
+<%= paginate @messages, theme: 'comfy' %>
+<ul class="list">
+  <% @messages.each do |message| %>
+    <li>
+      <div class="row">
+        <div class="col-md-6 item">
+          <div class="item-content">
+            <div class="item-title">
+              <%= message.body %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 item">
+          <div class="item-content">
+            <div class="item-title">
+              <%= message.contact.name %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 item">
+          <div class="item-content">
+            <div class="item-title">
+              <%= message.contact.email %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-center justify-content-md-end">
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_admin_message_path(message), class: 'btn btn-outline-secondary' %>
+            <%= link_to 'Delete', admin_message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%= paginate @messages, theme: 'comfy' %>

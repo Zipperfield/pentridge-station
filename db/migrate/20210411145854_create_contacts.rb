@@ -4,7 +4,6 @@ class CreateContacts < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :email
       t.integer :entry_process
-      t.references :message, foreign_key: true
 
       t.timestamps
     end

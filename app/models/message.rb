@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  has_one :contact
+  belongs_to :contact
   accepts_nested_attributes_for :contact
 
 

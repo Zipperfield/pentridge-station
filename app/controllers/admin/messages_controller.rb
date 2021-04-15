@@ -4,7 +4,7 @@ class Admin::MessagesController < Comfy::Admin::BaseController
   before_action :load_message,   only: [:show, :edit, :update, :destroy]
 
   def index
-    @messages = Message.page(params[:page])
+    @messages = Message.page(params[:page]).includes(:contact)
   end
 
   def show
