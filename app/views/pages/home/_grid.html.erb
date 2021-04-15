@@ -5,10 +5,12 @@
             photo: cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')), 
             title: "RENT SPACE",
             subtitle: "An outdoor space for any occasion",
-            action: "BOOK NOW!"%>
+            actionText: "BOOK NOW!",
+            actionLink: "/book" %>
   <%= render 'pages/home/grid/action',
             photo: cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')), 
-            title: "RENT SPACE",
-            subtitle: "An outdoor space for any occasion",
-            action: "BOOK NOW!"%>
+            title: "GET SPICY",
+            subtitle: "Spicy food for the spicy soul",
+            actionText: "BURN BABY!",
+            actionLink: "/book"%>
 </div>
