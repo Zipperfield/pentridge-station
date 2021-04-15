@@ -1,0 +1,12 @@
+= form.text_field :name
+= form.text_field :tagline
+= form.text_field :bio
+= form.text_field :price
+= form.text_field :facebook
+= form.text_field :instagram
+= form.text_field :twitter
+= form.text_field :website
+
+= form.form_actions do
+  = form.submit class: "btn btn-primary"
+  = link_to 'Cancel', admin_partners_path, class: "btn btn-link"

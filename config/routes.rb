@@ -1,21 +1,23 @@
 Rails.application.routes.draw do
 
+
   namespace :admin do
-    resources :messages
+    resources :partners
   end
 
   namespace :admin do
+    resources :messages
     resources :contacts
+  
   end
 
   resources :events, only: %i[create]
-  resources :partners, only: %i[create]
+  resources :partners, only: %i[index]
   resources :contacts, only: %i[create]
   resources :messages, only: %i[create]
 
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
-  get '/partner', to: 'partners#new'
   get '/book', to: 'events#new'
 
 

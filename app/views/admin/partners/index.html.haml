@@ -1,0 +1,21 @@
+.page-header
+  = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-secondary float-right'
+  %h2= 'Partners'
+
+= paginate @partners, theme: 'comfy'
+
+%ul.list
+  - @partners.each do |partner|
+    %li
+      .row
+        .col-md-8.item
+          .item-content
+            .item-title
+              = partner.name
+
+        .col-md-4.d-flex.align-items-center.justify-content-md-end
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_admin_partner_path(partner), class: 'btn btn-outline-secondary'
+            = link_to 'Delete', admin_partner_path(partner), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+
+= paginate @partners, theme: 'comfy'
