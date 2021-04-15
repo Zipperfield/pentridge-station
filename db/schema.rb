@@ -177,10 +177,13 @@ ActiveRecord::Schema.define(version: 2021_04_15_175500) do
   end
 
   create_table "partners", force: :cascade do |t|
+    t.boolean "vendor"
+    t.boolean "musician"
     t.string "name"
     t.string "tagline"
     t.text "bio"
-    t.integer "price"
+    t.integer "low_price"
+    t.integer "high_price"
     t.string "facebook"
     t.string "instagram"
     t.string "twitter"
