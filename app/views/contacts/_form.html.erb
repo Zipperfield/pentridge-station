@@ -1,4 +1,4 @@
-<%= form_for @contact do |form| %>
+<%= form_for @contact, html: { class: 'hidden' } do |form|%>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
@@ -10,15 +10,15 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label 'Name' %>
-    <%= form.text_field :name %>
+    <%= form.label 'Name:' %>
+    <%= form.text_field :name, class: "border-b-2 border-blue-300" %>
   </div>
   <div class="field">
-    <%= form.label 'Email' %>
-    <%= form.text_field :email %>
+    <%= form.label 'Email:  ' %>
+    <%= form.text_field :email, class: "border-b-2 border-blue-300" %>
   </div>
   <%= form.hidden_field :entry_process , value: "Newsletter" %>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'subscribe', class: "border border-blue-400 bg-white px-5 mt-1 hover:bg-gray-200 cursor-pointer" %>
   </div>
 <% end %>
