@@ -8,17 +8,19 @@
   - @contacts.each do |contact|
     %li
       .row
-        .col-md-4.item
+        .col-md-3.item
           .item-content
             .item-title
               = contact.name
-        .col-md-4.item
+        .col-md-3.item
           .item-content
             .item-title
               = contact.email
-
-
-        .col-md-4.d-flex.align-items-center.justify-content-md-end
+        .col-md-3.item
+          .item-content
+            .item-title
+              = contact.entry_process
+        .col-md-3.d-flex.align-items-center.justify-content-md-end
           .btn-group.btn-group-sm
             = link_to 'Edit', edit_admin_contact_path(contact), class: 'btn btn-outline-secondary'
             = link_to 'Delete', admin_contact_path(contact), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
