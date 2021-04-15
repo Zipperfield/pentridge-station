@@ -12,6 +12,8 @@ import "stylesheets/app-base"
 import "stylesheets/app-components"
 import "stylesheets/app-utilities"
 
+import "pages/home"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
