@@ -2,8 +2,7 @@ class CreatePartners < ActiveRecord::Migration[5.2]
 
   def change
     create_table :partners do |t|
-      t.boolean :vendor
-      t.boolean :musician
+      t.integer :category
       t.string :name
       t.string :tagline
       t.text :bio

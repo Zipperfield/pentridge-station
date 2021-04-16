@@ -57,7 +57,7 @@ protected
   end
 
   def partner_params
-    params.fetch(:partner, {}).permit(:vendor, :musician, :name, :tagline, 
+    params.fetch(:partner, {}).permit(:category, :name, :tagline, 
                                       :bio, :low_price, :high_price, 
                                       :facebook, :instagram, :twitter,
                                       :website)
