@@ -1,27 +1,34 @@
 class EventsController < ApplicationController
   before_action :build_contact, only: [:new]
 
-    def new
-      @event = Event.new
-    end 
+  # GET /events/new
+  def new
+    @event = Event.new
+    @event.build_contact
+  end
 
-    def create
-      @event = Event.new(allowed_params)
+  # POST /events or /events.json
+  def create
+    @event = Event.new(event_params)
+    respond_to do |format|
       if @event.save
-        redirect_to :home, notice: 'Event was successfully created.'
-      else 
-        render root_path
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-
-    end
-
-    private
-
-    def allowed_params
-      params.require(:event).permit(:description, :date)
-    end
-
-    def build_contact
-      @contact = Contact.new
     end
   end
+
+  private
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:date, :start, :additional_time, :event_type, :contact_id)
+  end
+
+  def build_contact
+    @contact = Contact.new
+  end
+end

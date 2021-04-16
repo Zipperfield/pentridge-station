@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    resources :events
+  end
+
+  resources :events
+  namespace :admin do
     resources :partners
   end
 

@@ -1,0 +1,5 @@
+.page-header
+  %h2 New Event
+
+= comfy_form_with model: @event, url: [:admin, @event] do |form|
+  = render form

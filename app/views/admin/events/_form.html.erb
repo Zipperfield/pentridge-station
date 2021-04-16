@@ -1,0 +1,15 @@
+<%= form.date_field :date %>
+<%= form.time_field :start %>
+<%= form.select :additional_time, [1,2,3,4,5]%>
+<%= form.select :event_type, ['Wedding', 'Party', 'Music', 'Meeting']%>
+<%= form.fields_for :contact do |c| %>
+  <%= c.label 'Name' %>
+  <%= c.text_field :name%>
+  <%= c.label 'Email' %>
+  <%= c.text_field :email%>
+  <%= c.hidden_field :entry_process , value: "Event" %>
+<% end %>
+<%= form.form_actions do %>
+  <%= form.submit class: "btn btn-primary" %>
+  <%= link_to 'Cancel', admin_events_path, class: "btn btn-link" %>
+<% end %>
