@@ -13,6 +13,7 @@ import "stylesheets/app-components"
 import "stylesheets/app-utilities"
 
 import "pages/home"
+import "pages/book"
 
 Rails.start()
 Turbolinks.start()

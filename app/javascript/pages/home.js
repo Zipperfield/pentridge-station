@@ -9,7 +9,7 @@ function toggleForm(button){
 }
 
 document.addEventListener('turbolinks:load', () => {
-
+  console.log('hello');
   newsletterButton = document.getElementById("newsletterButton");
 
   newsletterButton.addEventListener("click", (event) =>{

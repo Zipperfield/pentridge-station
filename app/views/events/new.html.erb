@@ -1,6 +1,11 @@
 Book an Event
-<div class="flex justify-center">
-  <div class="bg-blue-200 w-96">
+<div id="temp_event_form" class="flex justify-center">
+  <div class="bg-blue-400 w-96">
+    <%= render 'temp_form'%>
+  </div>
+</div>
+<div id="event_form" class="hidden justify-center">
+  <div class="bg-blue-400 w-96">
     <%= render 'form'%>
   </div>
 </div>
