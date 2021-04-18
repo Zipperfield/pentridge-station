@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :build_contact, only: [:new]
+  before_action :set_newsletter_form, only: [:new]
 
   # GET /events/new
   def new
@@ -10,14 +10,11 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.save
+      redirect_to '/book', notice: 'Event was successfully created.'
+    else
+      set_newsletter_form
+      render '/book', status: :unprocessable_entity
     end
   end
 
@@ -25,10 +22,11 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:date, :start, :additional_time, :event_type, :contact_id)
+    params.require(:event).permit(:date, :start, :additional_time, :event_type,
+                                  contact_attributes: %i[name email entry_process])
   end
 
-  def build_contact
+  def set_newsletter_form
     @contact = Contact.new
   end
 end

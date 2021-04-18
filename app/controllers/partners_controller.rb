@@ -1,5 +1,5 @@
 class PartnersController < ApplicationController
-    before_action :build_contact, only: [:index]
+    before_action :set_newsletter_form, only: [:index]
 
     def index
       @partners = Partner.all
@@ -8,7 +8,7 @@ class PartnersController < ApplicationController
   
     private
 
-    def build_contact
+    def set_newsletter_form
       @contact = Contact.new
     end
   end

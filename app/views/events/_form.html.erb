@@ -1,16 +1,30 @@
 <%= form_with model: @event , local: true do |f|%>
-   
-
-   <%= f.label :description, "Description" %>
-   <%= f.text_field :description %>
-
-   <%= f.label :date, "Date" %>
-   <%= f.date_field :date %>
-
-   
-    <%# <%= f.hidden_field :num_passengers, value: @num_passengers %> %>
-
-    <%= submit_tag('Book Space') %>
-
-
- <% end %>
+  <div>
+    <%= f.label 'Date' %>
+    <%= f.date_field :date %>
+  </div>
+  <div>
+    <%= f.label 'Time' %>
+    <%= f.time_field :start %>
+  </div>
+  <div>
+    <%= f.label 'Additional Time' %>
+    <%= f.select :additional_time, [1,2,3,4,5]%>
+  </div>
+  <div>
+    <%= f.label 'Event Type' %>
+    <%= f.select :event_type, ['Wedding', 'Party', 'Music', 'Meeting']%>
+  </div>
+  <%= f.fields_for :contact do |c| %>
+    <div>
+      <%= c.label 'Name' %>
+      <%= c.text_field :name%>
+    </div>
+    <div>
+      <%= c.label 'Email' %>
+      <%= c.text_field :email%>
+    </div>
+    <%= c.hidden_field :entry_process , value: "Event" %>
+  <% end %>
+  <%= f.submit "SUBMIT", class: "btn btn-primary" %>
+<% end %>
