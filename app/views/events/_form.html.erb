@@ -4,16 +4,20 @@
     <%= f.date_field :date %>
   </div>
   <div>
-    <%= f.label 'Time' %>
-    <%= f.time_field :start %>
+    <%= f.label 'Start Time' %>
+    <%= f.select :start_time, [["10:00 AM", 10],["11:00 AM", 11]]%>
   </div>
   <div>
-    <%= f.label 'Additional Time' %>
-    <%= f.select :additional_time, [1,2,3,4,5]%>
+    <%= f.label 'End Time' %>
+    <%= f.select :end_time, [["11:00 AM",11],["12:00 PM",12]]%>
   </div>
   <div>
     <%= f.label 'Event Type' %>
     <%= f.select :event_type, ['Wedding', 'Party', 'Music', 'Meeting']%>
+  </div>
+  <div>
+    <%= f.label 'Number Attendees' %>
+    <%= f.select :num_attendees, ["1-15", "16-30", "31-49","50+"]%>
   </div>
   <%= f.fields_for :contact do |c| %>
     <div>
@@ -23,6 +27,10 @@
     <div>
       <%= c.label 'Email' %>
       <%= c.text_field :email%>
+    </div>
+    <div>
+      <%= c.label 'Phone Number' %>
+      <%= c.text_field :phone_number%>
     </div>
     <%= c.hidden_field :entry_process , value: "Event" %>
   <% end %>

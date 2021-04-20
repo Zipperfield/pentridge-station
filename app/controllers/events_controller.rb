@@ -22,8 +22,9 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:date, :start, :additional_time, :event_type,
-                                  contact_attributes: %i[name email entry_process])
+    params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
+                                  :num_attendees,
+                                  contact_attributes: %i[name email entry_process phone_number])
   end
 
   def set_newsletter_form

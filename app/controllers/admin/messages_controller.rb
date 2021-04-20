@@ -1,7 +1,6 @@
 class Admin::MessagesController < Comfy::Admin::BaseController
-
-  before_action :build_message,  only: [:new, :create]
-  before_action :load_message,   only: [:show, :edit, :update, :destroy]
+  before_action :build_message,  only: %i[new create]
+  before_action :load_message,   only: %i[show edit update destroy]
 
   def index
     @messages = Message.page(params[:page]).includes(:contact)
@@ -43,7 +42,7 @@ class Admin::MessagesController < Comfy::Admin::BaseController
     redirect_to action: :index
   end
 
-protected
+  protected
 
   def build_message
     @message = Message.new(message_params)
@@ -57,6 +56,6 @@ protected
   end
 
   def message_params
-    params.fetch(:message, {}).permit(:body, contact_attributes: [:name, :email, :entry_process])
+    params.fetch(:message, {}).permit(:body, contact_attributes: %i[name email entry_process phone_number])
   end
 end

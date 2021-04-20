@@ -164,13 +164,16 @@ ActiveRecord::Schema.define(version: 2021_04_16_215251) do
     t.string "name"
     t.string "email"
     t.integer "entry_process"
+    t.integer "phone_number", limit: 8
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.date "date"
-    t.time "start"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "num_attendees"
     t.integer "additional_time"
     t.integer "event_type"
     t.integer "contact_id", null: false

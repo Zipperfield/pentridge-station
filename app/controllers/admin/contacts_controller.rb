@@ -1,7 +1,6 @@
 class Admin::ContactsController < Comfy::Admin::BaseController
-
-  before_action :build_contact,  only: [:new, :create]
-  before_action :load_contact,   only: [:show, :edit, :update, :destroy]
+  before_action :build_contact,  only: %i[new create]
+  before_action :load_contact,   only: %i[show edit update destroy]
 
   def index
     @contacts = Contact.page(params[:page])
@@ -43,7 +42,7 @@ class Admin::ContactsController < Comfy::Admin::BaseController
     redirect_to action: :index
   end
 
-protected
+  protected
 
   def build_contact
     @contact = Contact.new(contact_params)
@@ -57,6 +56,6 @@ protected
   end
 
   def contact_params
-    params.fetch(:contact, {}).permit(:name, :distance)
+    params.fetch(:contact, {}).permit(:name, :email, :entry_process, :phone_number)
   end
 end
