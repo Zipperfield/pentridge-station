@@ -14,7 +14,7 @@ class EventsController < ApplicationController
       redirect_to '/book', notice: 'Event was successfully created.'
     else
       set_newsletter_form
-      render '/book', status: :unprocessable_entity
+      render 'events/new', status: :unprocessable_entity
     end
   end
 
