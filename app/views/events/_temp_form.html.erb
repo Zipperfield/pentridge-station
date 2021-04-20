@@ -1,10 +1,10 @@
 <div><%= date_field_tag "temp_event_date"%></div>
 <div><%= select_tag "temp_event_start", options_for_select(["10:00 AM", "11:00 AM", "12:00 PM","1:00 PM"])%></div>
-<div><%= select_tag "temp_event_end", options_for_select(["11:00 AM", "12:00 PM","1:00 PM", "2:00 PM"])%>
+<div><%= select_tag "temp_event_end", options_for_select(["11:00 AM", "12:00 PM", "1:00 PM","2:00 PM"])%>
 </div>
-<div><%= select_tag "temp_attendees", options_for_select(["1-15", "16-30", "31-49","50+"])%>
+<div><%= select_tag "temp_attendees", options_for_select(Event.num_attendees)%>
 </div>
-<div><%= select_tag "temp_event_type", options_for_select(["Wedding", "Party", "Music","Puzzles"])%>
+<div><%= select_tag "temp_event_type", options_for_select(Event.event_types)%>
 </div>
 <button id="temp_submit" class="bg-white px-6 text-xs text-blue-400">Begin Booking
 </button>

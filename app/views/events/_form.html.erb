@@ -13,11 +13,11 @@
   </div>
   <div>
     <%= f.label 'Event Type' %>
-    <%= f.select :event_type, ['Wedding', 'Party', 'Music', 'Meeting']%>
+    <%= f.select :event_type, options_for_select(Event.event_types)%>
   </div>
   <div>
     <%= f.label 'Number Attendees' %>
-    <%= f.select :num_attendees, ["1-15", "16-30", "31-49","50+"]%>
+    <%= f.select :num_attendees, options_for_select(Event.num_attendees)%>
   </div>
   <%= f.fields_for :contact do |c| %>
     <div>
