@@ -5,11 +5,11 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.build_contact
-    # @vendor_preference = @event.preference.build
-    @event.preferences.build
-    # @musician_preference = @event.preference.build
-    @vendor_choices = Partner.Vendor.collect { |p| [p.name, p.id] }
-    # @musician_choices = Partner.Musician.collect { |p| [p.name, p.id] }
+    @vendor_preference = @event.preferences.build
+    @musician_preference = @event.preferences.build
+
+    # @event.preferences.build
+    set_choices
   end
 
   # POST /events or /events.json
@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to '/book', notice: 'Event was successfully created.'
     else
+      set_choices
       set_newsletter_form
       render 'events/new', status: :unprocessable_entity
     end
@@ -35,5 +36,10 @@ class EventsController < ApplicationController
 
   def set_newsletter_form
     @contact = Contact.new
+  end
+
+  def set_choices
+    @vendor_choices = Partner.Vendor.collect { |p| [p.name, p.id] }
+    @musician_choices = Partner.Musician.collect { |p| [p.name, p.id] }
   end
 end

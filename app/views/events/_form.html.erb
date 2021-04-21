@@ -34,23 +34,34 @@
     </div>
     <%= c.hidden_field :entry_process , value: "Event" %>
   <% end %>
-  <%= @vendor_choices %>
-  <%= f.fields_for :preferences do |c| %>
+  <%= f.fields_for @vendor_preference do |c| %>
     <%= c.hidden_field :preference_type , value: "Vendor" %>
     <div>
       <%= c.label 'First Choice' %>
-      <%= c.collection_select :first_choice_id, Partner.all, :id, :name %>
-      <%# <%= c.select :first_choice_id, @vendor_choices%> %>
+      <%= c.select :first_choice_id, @vendor_choices %>
     </div>
     <div>
       <%= c.label 'Second Choice' %>
-      <%= c.collection_select :second_choice_id, Partner.all, :id, :name %>
-      <%# <%= c.select :second_choice_id, @vendor_choices%> %>
+      <%= c.select :second_choice_id, @vendor_choices %>
     </div>
     <div>
       <%= c.label 'Third Choice' %>
-      <%= c.collection_select :third_choice_id, Partner.all, :id, :name %>
-      <%# <%= c.select :third_choice_id, @vendor_choices%> %>
+      <%= c.select :third_choice_id, @vendor_choices %>
+    </div>
+  <% end %>
+  <%= f.fields_for @musician_preference do |c| %>
+    <%= c.hidden_field :preference_type , value: "Musician" %>
+    <div>
+      <%= c.label 'First Choice' %>
+      <%= c.select :first_choice_id, @musician_choices %>
+    </div>
+    <div>
+      <%= c.label 'Second Choice' %>
+      <%= c.select :second_choice_id, @musician_choices %>
+    </div>
+    <div>
+      <%= c.label 'Third Choice' %>
+      <%= c.select :third_choice_id, @musician_choices %>
     </div>
   <% end %>
   <%= f.submit "SUBMIT", class: "btn btn-primary" %>
