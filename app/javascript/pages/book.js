@@ -10,10 +10,13 @@ function hideOnClickOutside(parent, child) {
 
         document.removeEventListener('click', outsideClickListener);
     }
+
     document.addEventListener('click', outsideClickListener);
 }
+
 // || elem.getClientRects().length
 const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
+
 
 function transferValue(eventValueName) {
     // Takes an event value name that is in the temporary form
@@ -48,14 +51,35 @@ function toggleFormVisibility() {
     toggleClassListVisibility(formClassList);
 }
 
+function addPartnershipFormListeners() {
+
+}
+
+
 document.addEventListener('turbolinks:load', () => {
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
+    vendorPartnershipButton = document.getElementById('event_vendor_partnership');
+    vendorPartnershipForm = document.getElementById('vendor_partnership_form');
+    musicianPartnershipButton = document.getElementById('event_musician_partnership');
+    musicianPartnershipForm = document.getElementById('musician_partnership_form');
+
+
+    vendorPartnershipButton.addEventListener('click', (event) => {
+        // event.preventDefault();
+        toggleVisibility(vendorPartnershipForm);
+
+    });
+    musicianPartnershipButton.addEventListener('click', (event) => {
+        // event.preventDefault();
+
+        toggleVisibility(musicianPartnershipForm);
+
+    });
 
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
-        console.log(event);
 
         //   validate inputs
         // transfer content

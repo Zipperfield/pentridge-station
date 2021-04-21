@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_144830) do
     t.integer "num_attendees"
     t.integer "additional_time"
     t.integer "event_type"
-    t.boolean "music_partnership"
+    t.boolean "musician_partnership"
     t.boolean "vendor_partnership"
     t.integer "contact_id", null: false
     t.datetime "created_at", precision: 6, null: false

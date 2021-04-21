@@ -30,39 +30,57 @@
     </div>
     <div>
       <%= c.label 'Phone Number' %>
-      <%= c.text_field :phone_number%>
+      <%= c.telephone_field :phone_number%>
     </div>
     <%= c.hidden_field :entry_process , value: "Event" %>
   <% end %>
-  <%= f.fields_for @vendor_preference do |c| %>
-    <%= c.hidden_field :preference_type , value: "Vendor" %>
-    <div>
-      <%= c.label 'First Choice' %>
-      <%= c.select :first_choice_id, @vendor_choices %>
+  <div>
+    <span id="vendor_partnership"> I would like to request to book a Pentridge Station food vendor partner.</span>
+    <%= f.check_box :vendor_partnership, checked: true %>
+    <div id="vendor_partnership_form" class="flex flex-col">
+      <%= f.fields_for :preferences do |c| %>
+        <% if c.object.Vendor?%>
+          <%= c.hidden_field :preference_type , value: "Vendor" %>
+          <div>
+            <%= c.label 'First Choice' %>
+            <%= c.select :first_choice_id, @vendor_choices %>
+          </div>
+          <div>
+            <%= c.label 'Second Choice' %>
+            <%= c.select :second_choice_id, @vendor_choices %>
+          </div>
+          <div>
+            <%= c.label 'Third Choice' %>
+            <%= c.select :third_choice_id, @vendor_choices %>
+          </div>
+        <%end%>
+      <% end %>
     </div>
-    <div>
-      <%= c.label 'Second Choice' %>
-      <%= c.select :second_choice_id, @vendor_choices %>
+  </div>
+  <div>
+    <span id="musician_partnership"> I would like to request to book a Pentridge Station musical partner.</span>
+    <%= f.check_box :musician_partnership, checked: true%>
+    <div id="musician_partnership_form" class="flex flex-col">
+      <%= f.fields_for :preferences do |c| %>
+        <% if c.object.Musician?%>
+          <%= c.hidden_field :preference_type , value: "Musician" %>
+          <div>
+            <%= c.label 'First Choice' %>
+            <%= c.select :first_choice_id, @musician_choices %>
+          </div>
+          <div>
+            <%= c.label 'Second Choice' %>
+            <%= c.select :second_choice_id, @musician_choices %>
+          </div>
+          <div>
+            <%= c.label 'Third Choice' %>
+            <%= c.select :third_choice_id, @musician_choices %>
+          </div>
+        <%end%>
+      <% end %>
     </div>
-    <div>
-      <%= c.label 'Third Choice' %>
-      <%= c.select :third_choice_id, @vendor_choices %>
-    </div>
-  <% end %>
-  <%= f.fields_for @musician_preference do |c| %>
-    <%= c.hidden_field :preference_type , value: "Musician" %>
-    <div>
-      <%= c.label 'First Choice' %>
-      <%= c.select :first_choice_id, @musician_choices %>
-    </div>
-    <div>
-      <%= c.label 'Second Choice' %>
-      <%= c.select :second_choice_id, @musician_choices %>
-    </div>
-    <div>
-      <%= c.label 'Third Choice' %>
-      <%= c.select :third_choice_id, @musician_choices %>
-    </div>
-  <% end %>
-  <%= f.submit "SUBMIT", class: "btn btn-primary" %>
+  </div>
+  <div>
+    <%= f.submit "SUBMIT", class: "btn btn-primary" %>
+  </div>
 <% end %>

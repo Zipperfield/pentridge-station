@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.build_contact
-    @vendor_preference = @event.preferences.build
-    @musician_preference = @event.preferences.build
+    @event.preferences.build(preference_type: 'Vendor')
+    @event.preferences.build(preference_type: 'Musician')
 
     # @event.preferences.build
     set_choices
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
-                                  :num_attendees,
+                                  :num_attendees, :musician_partnership, :vendor_partnership,
                                   contact_attributes: %i[name email entry_process phone_number],
                                   preferences_attributes: %i[preference_type first_choice_id second_choice_id third_choice_id])
   end
