@@ -7,6 +7,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.integer :num_attendees
       t.integer :additional_time
       t.integer :event_type
+      t.boolean :music_partnership
+      t.boolean :vendor_partnership
       t.references :contact, null: false, foreign_key: true
 
       t.timestamps

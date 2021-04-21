@@ -34,5 +34,24 @@
     </div>
     <%= c.hidden_field :entry_process , value: "Event" %>
   <% end %>
+  <%= @vendor_choices %>
+  <%= f.fields_for :preferences do |c| %>
+    <%= c.hidden_field :preference_type , value: "Vendor" %>
+    <div>
+      <%= c.label 'First Choice' %>
+      <%= c.collection_select :first_choice_id, Partner.all, :id, :name %>
+      <%# <%= c.select :first_choice_id, @vendor_choices%> %>
+    </div>
+    <div>
+      <%= c.label 'Second Choice' %>
+      <%= c.collection_select :second_choice_id, Partner.all, :id, :name %>
+      <%# <%= c.select :second_choice_id, @vendor_choices%> %>
+    </div>
+    <div>
+      <%= c.label 'Third Choice' %>
+      <%= c.collection_select :third_choice_id, Partner.all, :id, :name %>
+      <%# <%= c.select :third_choice_id, @vendor_choices%> %>
+    </div>
+  <% end %>
   <%= f.submit "SUBMIT", class: "btn btn-primary" %>
 <% end %>

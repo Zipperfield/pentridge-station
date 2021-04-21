@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preference_type: 1
+  first: one
+  second: one
+  third: one
+  event: one
+
+two:
+  preference_type: 1
+  first: two
+  second: two
+  third: two
+  event: two

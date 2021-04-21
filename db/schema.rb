@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_215251) do
+ActiveRecord::Schema.define(version: 2021_04_21_144830) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -176,6 +176,8 @@ ActiveRecord::Schema.define(version: 2021_04_16_215251) do
     t.integer "num_attendees"
     t.integer "additional_time"
     t.integer "event_type"
+    t.boolean "music_partnership"
+    t.boolean "vendor_partnership"
     t.integer "contact_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -205,8 +207,26 @@ ActiveRecord::Schema.define(version: 2021_04_16_215251) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "preferences", force: :cascade do |t|
+    t.integer "preference_type"
+    t.integer "first_choice_id"
+    t.integer "second_choice_id"
+    t.integer "third_choice_id"
+    t.integer "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_preferences_on_event_id"
+    t.index ["first_choice_id"], name: "index_preferences_on_first_choice_id"
+    t.index ["second_choice_id"], name: "index_preferences_on_second_choice_id"
+    t.index ["third_choice_id"], name: "index_preferences_on_third_choice_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "contacts"
   add_foreign_key "messages", "contacts"
+  add_foreign_key "preferences", "events"
+  add_foreign_key "preferences", "partners", column: "first_choice_id"
+  add_foreign_key "preferences", "partners", column: "second_choice_id"
+  add_foreign_key "preferences", "partners", column: "third_choice_id"
 end

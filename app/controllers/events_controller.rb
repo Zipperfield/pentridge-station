@@ -5,6 +5,11 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.build_contact
+    # @vendor_preference = @event.preference.build
+    @event.preferences.build
+    # @musician_preference = @event.preference.build
+    @vendor_choices = Partner.Vendor.collect { |p| [p.name, p.id] }
+    # @musician_choices = Partner.Musician.collect { |p| [p.name, p.id] }
   end
 
   # POST /events or /events.json
@@ -24,7 +29,8 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
                                   :num_attendees,
-                                  contact_attributes: %i[name email entry_process phone_number])
+                                  contact_attributes: %i[name email entry_process phone_number],
+                                  preferences_attributes: %i[preference_type first_choice_id second_choice_id third_choice_id])
   end
 
   def set_newsletter_form
