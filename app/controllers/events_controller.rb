@@ -34,6 +34,24 @@ class EventsController < ApplicationController
                                   preferences_attributes: %i[preference_type first_choice_id second_choice_id third_choice_id])
   end
 
+  def conditonally_remove_preferences(new_params)
+    # This method removes the Preference before creation
+    # the problem with this idea is that if the other fields
+    # fail and the page gets rerendered.
+    # Instead I will just deleted the preferences after
+    # event creation
+    unless new_params[:vendor_partnership] == '1'
+      new_params[:preferences_attributes] =
+        new_params[:preferences_attributes].except('0')
+    end
+    unless new_params[:musician_partnership] == '1'
+      new_params[:preferences_attributes] =
+        new_params[:preferences_attributes].except('1')
+    end
+    puts new_params
+    new_params
+  end
+
   def set_newsletter_form
     @contact = Contact.new
   end

@@ -6,6 +6,13 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :contact
   accepts_nested_attributes_for :preferences
 
+  after_save :conditonally_remove_preferences
+
+  def conditonally_remove_preferences
+    preferences.destroy(preferences.vendor.first.id) unless vendor_partnership
+    preferences.destroy(preferences.musician.first.id) unless musician_partnership
+  end
+
   def event_type=(val)
     write_attribute :event_type, val.to_i
   end
