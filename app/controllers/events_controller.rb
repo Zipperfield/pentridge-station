@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.build_contact
-    @event.preferences.build(preference_type: 'Vendor')
-    @event.preferences.build(preference_type: 'Musician')
+    @event.preferences.build(preference_type: 'vendor')
+    @event.preferences.build(preference_type: 'musician')
 
     # @event.preferences.build
     set_choices
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   end
 
   def set_choices
-    @vendor_choices = Partner.Vendor.collect { |p| [p.name, p.id] }
-    @musician_choices = Partner.Musician.collect { |p| [p.name, p.id] }
+    @vendor_choices = Partner.vendor.collect { |p| [p.name, p.id] }
+    @musician_choices = Partner.musician.collect { |p| [p.name, p.id] }
   end
 end
