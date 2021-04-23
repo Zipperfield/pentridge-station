@@ -5,11 +5,11 @@
   </div>
   <div>
     <%= f.label 'Start Time' %>
-    <%= f.select :start_time, [["10:00 AM", 10],["11:00 AM", 11]]%>
+    <%= f.select :start_time, options_for_select(@event.hourly_choices(1,23))%>
   </div>
   <div>
     <%= f.label 'End Time' %>
-    <%= f.select :end_time, [["11:00 AM",11],["12:00 PM",12]]%>
+    <%= f.select :end_time, options_for_select(@event.hourly_choices(1,23))%>
   </div>
   <div>
     <%= f.label 'Event Type' %>

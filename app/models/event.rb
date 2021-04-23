@@ -13,6 +13,14 @@ class Event < ApplicationRecord
     preferences.destroy(preferences.musician.first.id) unless musician_partnership
   end
 
+  def hourly_choices(start, finish)
+    # (1..5).map { |i| [i, i+1] }
+    (start..finish).map do |i|
+      hour = Tod::TimeOfDay.new(i)
+      [hour.to_s(:short), hour]
+    end
+  end
+
   def event_type=(val)
     write_attribute :event_type, val.to_i
   end

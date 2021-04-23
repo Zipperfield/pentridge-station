@@ -7,6 +7,7 @@ function hideOnClickOutside(parent, child) {
 
     const removeClickListener = () => {
         toggleVisibility(parent);
+        transferContent(false);
 
         document.removeEventListener('click', outsideClickListener);
     }
@@ -18,16 +19,28 @@ function hideOnClickOutside(parent, child) {
 const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
 
 
-function transferValue(eventValueName) {
-    // Takes an event value name that is in the temporary form
-    // and transfers it to the actual form
-    document.getElementById(eventValueName).value =
-        document.getElementById("temp_" + eventValueName).value;
+function transferValue(eventValueName, openingForm) {
+    // Takes an event value name 
+    if (openingForm) {
+        document.getElementById(eventValueName).value =
+            document.getElementById("temp_" + eventValueName).value;
+    } else {
+        // closing form
+        document.getElementById("temp_" + eventValueName).value =
+            document.getElementById(eventValueName).value;
+
+    }
+
 
 }
 
-function transferContent() {
-    transferValue('event_date');
+function transferContent(openingForm) {
+    transferValue('event_date', openingForm);
+    transferValue('event_start_time', openingForm);
+    transferValue('event_end_time', openingForm);
+    transferValue('event_num_attendees', openingForm);
+    transferValue('event_event_type', openingForm);
+
 }
 
 function toggleVisibility(element) {
@@ -86,7 +99,7 @@ document.addEventListener('turbolinks:load', () => {
         // transfer content
         // toggle visibility
 
-        transferContent();
+        transferContent(true);
         toggleVisibility(eventFormScreen);
 
         hideOnClickOutside(eventFormScreen, eventFormContainer);
