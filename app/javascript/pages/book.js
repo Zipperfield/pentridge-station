@@ -66,6 +66,7 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
 
 
+    // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
         toggleVisibility(vendorPartnershipForm);

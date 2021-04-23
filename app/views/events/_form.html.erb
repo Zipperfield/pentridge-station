@@ -54,15 +54,15 @@
         <% end %>
         <div>
           <%= c.label 'First Choice' %>
-          <%= c.select :first_choice_id, choices %>
+          <%= c.select :first_choice_id, options_for_select(choices, choices.first)%>
         </div>
         <div>
           <%= c.label 'Second Choice' %>
-          <%= c.select :second_choice_id, choices %>
+          <%= c.select :second_choice_id, options_for_select(choices, choices.second) %>
         </div>
         <div>
           <%= c.label 'Third Choice' %>
-          <%= c.select :third_choice_id, choices %>
+          <%= c.select :third_choice_id, options_for_select(choices, choices.third) %>
         </div>
       </div>
     <% end %>

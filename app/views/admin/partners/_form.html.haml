@@ -1,4 +1,4 @@
-= form.select :category, ['Vendor','Musician']
+= form.select :category, options_for_select(Partner.categories)
 = form.text_field :name
 = form.text_field :tagline
 = form.text_field :bio

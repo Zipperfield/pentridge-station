@@ -13,6 +13,8 @@ class Partner < ActiveRecord::Base
   # -- Scopes ------------------------------------------------------------------
 
   # -- Class Methods -----------------------------------------------------------
-
+  def category=(val)
+    write_attribute :category, val.to_i
+  end
   # -- Instance Methods --------------------------------------------------------
 end
