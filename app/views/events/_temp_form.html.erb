@@ -1,4 +1,4 @@
-<div><%= date_field_tag "temp_event_date"%></div>
+<div><%= date_field_tag "temp_event_date", Date.today%></div>
 <div><%= select_tag "temp_event_start_time", options_for_select(@event.hourly_choices(1,23), Tod::TimeOfDay.new(14))%></div>
 <div><%= select_tag "temp_event_end_time", options_for_select(@event.hourly_choices(1,23), Tod::TimeOfDay.new(22))%>
 </div>
