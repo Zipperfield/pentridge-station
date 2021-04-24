@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     else
       set_choices
       set_newsletter_form
+      flash[:alert] = 'Form invalid'
       render 'events/new', status: :unprocessable_entity
     end
   end

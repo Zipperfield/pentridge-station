@@ -4,7 +4,9 @@ Book an Event
     <%= render 'temp_form'%>
   </div>
 </div>
-<div id="event_form_screen" class="hidden fixed w-full h-full top-0 left-0 bg-opacity-50 bg-gray-200 justify-center">
+<% var = 'false' %>
+<%=  var = 'true' if flash[:alert] %>
+<div alert=<%= var %> id="event_form_screen" class="hidden fixed w-full h-full top-0 left-0 bg-opacity-50 bg-gray-200 justify-center">
   <div id="event_form_container" class="bg-blue-400 w-11/12 h-5/6 self-center flex justify-center">
     <h3 class="text-5xl">Request to Book</h3>
     <%= render 'form'%>

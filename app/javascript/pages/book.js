@@ -106,5 +106,9 @@ document.addEventListener('turbolinks:load', () => {
         // formClassList = document.getElementById('event_form_container');
         // formClassList.style.display = 
     });
+    console.log(eventFormScreen.getAttribute('alert'));
 
+    if (eventFormScreen.getAttribute('alert') == 'true') {
+        tempSubmit.click();
+    }
 });

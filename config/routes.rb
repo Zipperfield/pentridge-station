@@ -1,19 +1,9 @@
 Rails.application.routes.draw do
-
-
   namespace :admin do
     resources :events
-  end
-
-  resources :events
-  namespace :admin do
     resources :partners
-  end
-
-  namespace :admin do
     resources :messages
     resources :contacts
-  
   end
 
   resources :events, only: %i[create]
@@ -23,14 +13,13 @@ Rails.application.routes.draw do
 
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
-  get '/book', to: 'events#new'
-
+  get '/book', to: 'events#new', as: :book
 
   root 'pages#home'
-  comfy_route :cms_admin, path: "/admin"
+  comfy_route :cms_admin, path: '/admin'
   # Ensure that this route is defined last
 
   # I dont think I want this >
-  comfy_route :cms, path: "/"
+  comfy_route :cms, path: '/'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
