@@ -1,4 +1,14 @@
 <%= form_with model: @event , local: true do |f|%>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <ul>
+        <% @event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div>
     <%= f.label 'Date' %>
     <%= f.date_field :date %>

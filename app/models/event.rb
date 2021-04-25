@@ -12,6 +12,17 @@ class Event < ApplicationRecord
     preferences.destroy(preferences.vendor.first.id) unless vendor_partnership
     preferences.destroy(preferences.musician.first.id) unless musician_partnership
   end
+  validates :start_time, :end_time, :event_type, :num_attendees, presence: true
+  validates_associated :preferences
+  validate :end_later_than_start
+
+  def end_later_than_start
+    # TODO: This could run without existing
+    return unless end_time <= start_time
+
+    errors.add(:start_time, 'must be earlier than \'end_time\'')
+    errors.add(:end_time, 'must be later than \'start_time\'')
+  end
 
   def hourly_choices(start, finish)
     # (1..5).map { |i| [i, i+1] }
