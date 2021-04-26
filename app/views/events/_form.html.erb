@@ -31,8 +31,12 @@
   </div>
   <%= f.fields_for :contact do |c| %>
     <div>
-      <%= c.label 'Name' %>
-      <%= c.text_field :name%>
+      <%= c.label 'First Name' %>
+      <%= c.text_field :first_name%>
+    </div>
+    <div>
+      <%= c.label 'Last Name' %>
+      <%= c.text_field :last_name%>
     </div>
     <div>
       <%= c.label 'Email' %>

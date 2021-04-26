@@ -161,7 +161,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_144830) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
     t.integer "entry_process"
     t.integer "phone_number", limit: 8

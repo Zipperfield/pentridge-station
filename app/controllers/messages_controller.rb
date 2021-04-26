@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
   private
 
   def allowed_params
-    params.require(:message).permit(:body, contact_attributes: %i[name email entry_process phone_number])
+    params.require(:message).permit(:body,
+                                    contact_attributes: %i[first_name last_name email entry_process phone_number])
   end
 end

@@ -5,7 +5,8 @@
 <%= form.select :num_attendees, options_for_select(Event.num_attendees)%>
 <%= form.fields_for :contact do |c| %>
   Contact
-  <%= c.text_field :name%>
+  <%= c.text_field :first_name%>
+  <%= c.text_field :last_name%>
   <%= c.text_field :email%>
   <%= c.text_field :phone_number%>
   <%= c.hidden_field :entry_process , value: "Event" %>

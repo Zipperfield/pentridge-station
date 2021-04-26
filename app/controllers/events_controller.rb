@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
                                   :num_attendees, :musician_partnership, :vendor_partnership,
-                                  contact_attributes: %i[name email entry_process phone_number],
+                                  contact_attributes: %i[first_name last_name email entry_process phone_number],
                                   preferences_attributes: %i[preference_type first_choice_id second_choice_id third_choice_id])
   end
 

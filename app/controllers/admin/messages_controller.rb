@@ -56,6 +56,7 @@ class Admin::MessagesController < Comfy::Admin::BaseController
   end
 
   def message_params
-    params.fetch(:message, {}).permit(:body, contact_attributes: %i[name email entry_process phone_number])
+    params.fetch(:message, {}).permit(:body,
+                                      contact_attributes: %i[first_name last_name email entry_process phone_number])
   end
 end

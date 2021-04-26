@@ -56,6 +56,6 @@ class Admin::ContactsController < Comfy::Admin::BaseController
   end
 
   def contact_params
-    params.fetch(:contact, {}).permit(:name, :email, :entry_process, :phone_number)
+    params.fetch(:contact, {}).permit(:first_name, :last_name, :email, :entry_process, :phone_number)
   end
 end
