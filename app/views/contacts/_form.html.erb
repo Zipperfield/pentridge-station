@@ -11,11 +11,11 @@
   <% end %>
   <div class="field">
     <%= form.label 'Name:' %>
-    <%= form.text_field :first_name, class: "border-b-2 border-blue-300" %>
+    <%= form.text_field :first_name, class: "border-b-2 border-blue-300", required: true %>
   </div>
   <div class="field">
     <%= form.label 'Email:  ' %>
-    <%= form.text_field :email, class: "border-b-2 border-blue-300" %>
+    <%= form.email_field :email, class: "border-b-2 border-blue-300", required: true %>
   </div>
   <%= form.hidden_field :entry_process , value: "Newsletter" %>
   <div class="actions">

@@ -64,8 +64,28 @@ function toggleFormVisibility() {
     toggleClassListVisibility(formClassList);
 }
 
-function addPartnershipFormListeners() {
+function foo() {
+    var date = document.querySelector('[type=date]');
 
+    function noMondays(e) {
+
+        var day = new Date(e.target.value).getUTCDay();
+
+        // Days in JS range from 0-6 where 0 is Sunday and 6 is Saturday
+
+        if (day == 1) {
+
+            e.target.setCustomValidity('OH NOES! We hate Mondays! Please pick any day but Monday.');
+
+        } else {
+
+            e.target.setCustomValidity('');
+
+        }
+
+    }
+
+    date.addEventListener('input', noMondays);
 }
 
 
@@ -78,7 +98,7 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipButton = document.getElementById('event_musician_partnership');
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
 
-
+    foo();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();

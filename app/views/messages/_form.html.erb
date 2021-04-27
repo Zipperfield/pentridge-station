@@ -14,21 +14,21 @@
       <%= c.label 'Name' %>
     </div>
     <div>
-      <%= c.text_field :first_name, class: "bg-blue-200 border-b-2 border-blue-300 w-full"%>
+      <%= c.text_field :first_name, class: "bg-blue-200 border-b-2 border-blue-300 w-full", required: true %>
     </div>
     <div>
       <%= c.label 'Email' %>
     </div>
     <div>
-      <%= c.text_field :email, class: "bg-blue-200 border-b-2 border-blue-300 w-full"%>
+      <%= c.email_field :email, class: "bg-blue-200 border-b-2 border-blue-300 w-full", required: true%>
     </div>
-    <%= c.hidden_field :entry_process , value: "Message" %>
+    <%= c.hidden_field :entry_process, value: "Message" %>
   <% end %>
   <div>
     <%= form.label "Message" %>
   </div>
   <div>
-    <%= form.text_area :body, class: "bg-blue-200 h-20 w-full resize-none" %>
+    <%= form.text_area :body, class: "bg-blue-200 h-20 w-full resize-none", required: true %>
   </div>
   <div class="flex justify-end">
     <%= form.submit "SUBMIT", class: "bg-white text-blue-200 font px-8 py-1 text-xs cursor-pointer"%>
