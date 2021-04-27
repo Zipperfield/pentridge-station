@@ -65,18 +65,20 @@ function toggleFormVisibility() {
 }
 
 function foo() {
-    var date = document.querySelector('[type=date]');
+    var f = document.getElementById('event_date');
+    var g = document.getElementById('temp_event_date');
 
+    console.log(f)
     function noMondays(e) {
-
+        console.log(e.target.value);
         var day = new Date(e.target.value).getUTCDay();
-
+        console.log(day)
         // Days in JS range from 0-6 where 0 is Sunday and 6 is Saturday
 
         if (day == 1) {
 
             e.target.setCustomValidity('OH NOES! We hate Mondays! Please pick any day but Monday.');
-
+            e.target.reportValidity();
         } else {
 
             e.target.setCustomValidity('');
@@ -84,8 +86,8 @@ function foo() {
         }
 
     }
-
-    date.addEventListener('input', noMondays);
+    g.addEventListener('input', noMondays);
+    f.addEventListener('input', noMondays);
 }
 
 
