@@ -32,19 +32,19 @@
   <%= f.fields_for :contact do |c| %>
     <div>
       <%= c.label 'First Name' %>
-      <%= c.text_field :first_name, required: true%>
+      <%= c.text_field :first_name, required: true, maxlength: 20 %>
     </div>
     <div>
       <%= c.label 'Last Name' %>
-      <%= c.text_field :last_name, required: true%>
+      <%= c.text_field :last_name, required: true, maxlength: 20 %>
     </div>
     <div>
       <%= c.label 'Email' %>
-      <%= c.email_field :email, required: true%>
+      <%= c.email_field :email, required: true, maxlength: 42 %>
     </div>
     <div>
       <%= c.label 'Phone Number' %>
-      <%= c.telephone_field :phone_number, required: true%>
+      <%= c.telephone_field :phone_number, required: true, maxlength: 10 %>
     </div>
     <%= c.hidden_field :entry_process , value: "Event" %>
   <% end %>

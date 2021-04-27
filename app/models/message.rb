@@ -9,10 +9,12 @@ class Message < ActiveRecord::Base
   # -- Validations -------------------------------------------------------------
   validates :body, presence: true
   validates_associated :contact
-
+  validates_length_of :body, maximum: 170
   # -- Scopes ------------------------------------------------------------------
 
   # -- Class Methods -----------------------------------------------------------
-
+  def body=(val)
+    write_attribute :body, val.gsub("\r\n", "\n")
+  end
   # -- Instance Methods --------------------------------------------------------
 end
