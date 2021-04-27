@@ -4,6 +4,7 @@ class Admin::EventsController < Comfy::Admin::BaseController
 
   def index
     @events = Event.page(params[:page])
+    @schedule = Schedule.new
   end
 
   def show

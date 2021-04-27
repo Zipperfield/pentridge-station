@@ -1,0 +1,26 @@
+.page-header
+  = link_to 'New Schedule', new_admin_schedule_path, class: 'btn btn-secondary float-right'
+  %h2= 'Schedules'
+
+= paginate @schedules, theme: 'comfy'
+
+%ul.list
+  - @schedules.each do |schedule|
+    %li
+      .row
+        .col-md-4.item
+          .item-content
+            .item-title
+              = schedule.date
+
+        .col-md-4.item
+          .item-content
+            .item-title
+              = schedule.description
+
+        .col-md-4.d-flex.align-items-center.justify-content-md-end
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_admin_schedule_path(schedule), class: 'btn btn-outline-secondary'
+            = link_to 'Delete', admin_schedule_path(schedule), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+
+= paginate @schedules, theme: 'comfy'

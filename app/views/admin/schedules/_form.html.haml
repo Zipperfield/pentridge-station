@@ -1,0 +1,6 @@
+= form.date_field :date, min: Date.today, required: true
+= form.text_field :description, required: true
+
+= form.form_actions do
+  = form.submit class: "btn btn-primary"
+  = link_to 'Cancel', admin_schedules_path, class: "btn btn-link"

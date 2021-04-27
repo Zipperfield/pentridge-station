@@ -1,0 +1,5 @@
+<%= form_with model: @schedule, url: [:admin, @schedule], local: true do |f|%>
+  <%= f.hidden_field :date , value: event_date %>
+  <%= f.hidden_field :description , value: event_description %>
+  <%= f.submit "Approve" %>
+<%end%>
