@@ -16,10 +16,12 @@ class Event < ApplicationRecord
   validates_associated :preferences
   validate :end_later_than_start
   validate :date_cannot_be_in_the_past
-           def date_cannot_be_in_the_past
-             errors.add(:date, "can't be in the past") if
-               !date.blank? && (date < Date.today)
-           end
+
+  def date_cannot_be_in_the_past
+    errors.add(:date, "can't be in the past") if
+    !date.blank? && (date < Date.today)
+  end
+
   def end_later_than_start
     # TODO: This could run without existing
     return unless end_time <= start_time

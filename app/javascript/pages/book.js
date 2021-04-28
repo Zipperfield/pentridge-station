@@ -64,30 +64,20 @@ function toggleFormVisibility() {
     toggleClassListVisibility(formClassList);
 }
 
-function foo() {
-    var f = document.getElementById('event_date');
-    var g = document.getElementById('temp_event_date');
-
-    console.log(f)
-    function noMondays(e) {
-        console.log(e.target.value);
-        var day = new Date(e.target.value).getUTCDay();
-        console.log(day)
-        // Days in JS range from 0-6 where 0 is Sunday and 6 is Saturday
-
-        if (day == 1) {
-
-            e.target.setCustomValidity('OH NOES! We hate Mondays! Please pick any day but Monday.');
+function validateDate() {
+    var formDateInput = document.getElementById('event_date');
+    var tempFormDateInput = document.getElementById('temp_event_date');
+    excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
+    function dontOverbook(e) {
+        if (excludedDates.indexOf(e.target.value) > -1) {
+            e.target.setCustomValidity('This date is already booked. Please select another date.');
             e.target.reportValidity();
         } else {
-
             e.target.setCustomValidity('');
-
         }
-
     }
-    g.addEventListener('input', noMondays);
-    f.addEventListener('input', noMondays);
+    formDateInput.addEventListener('input', dontOverbook);
+    tempFormDateInput.addEventListener('input', dontOverbook);
 }
 
 
@@ -100,7 +90,7 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipButton = document.getElementById('event_musician_partnership');
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
 
-    foo();
+    validateDate();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();

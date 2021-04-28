@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @event.build_contact
     @event.preferences.build(preference_type: 'vendor')
     @event.preferences.build(preference_type: 'musician')
-
+    @excluded_dates = Schedule.pluck(:date).map { |d| d.strftime('%F') }.join(',')
     # @event.preferences.build
     set_choices
   end
