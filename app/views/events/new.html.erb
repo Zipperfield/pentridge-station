@@ -1,15 +1,13 @@
-Book an Event
+<%= render 'shared/alternate_header' %>
+<div class="flex sm:flex-row flex-col-reverse">
+  <div class="sm:3/5">
+    <div class="sm:mt-24 pt-3 mx-6 sm:mx-12">
+      <%= render 'lorem'%>
+    </div>
+  </div>
+  <div class="sm:w-2/5">
+    <%= render 'sticky_form' %>
+  </div>
+</div>
+<%= render 'pop_up_screen'%>
 <div id="excluded_dates" class="hidden" dates= <%= @excluded_dates%>></div>
-<div id="temp_event_form_container" class="flex justify-center">
-  <div class="bg-blue-400 w-96">
-    <%= render 'temp_form'%>
-  </div>
-</div>
-<% var = 'false' %>
-<%=  var = 'true' if flash[:alert] %>
-<div alert=<%= var %> id="event_form_screen" class="hidden fixed w-full h-full top-0 left-0 bg-opacity-50 bg-gray-200 justify-center">
-  <div id="event_form_container" class="bg-blue-400 w-11/12 h-5/6 self-center flex justify-center">
-    <h3 class="text-5xl">Request to Book</h3>
-    <%= render 'form'%>
-  </div>
-</div>
