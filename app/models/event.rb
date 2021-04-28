@@ -16,6 +16,7 @@ class Event < ApplicationRecord
   validates_associated :preferences
   validate :end_later_than_start
   validate :date_cannot_be_in_the_past
+  validate :do_not_overbook_date
 
   def date_cannot_be_in_the_past
     errors.add(:date, "can't be in the past") if
@@ -28,6 +29,11 @@ class Event < ApplicationRecord
 
     errors.add(:start_time, 'must be earlier than \'end_time\'')
     errors.add(:end_time, 'must be later than \'start_time\'')
+  end
+
+  def do_not_overbook_date
+    errors.add(:date, 'is unavailable') if
+    !date.blank? && Schedule.exists?(date: date)
   end
 
   def hourly_choices(start, finish)
