@@ -14,4 +14,8 @@
   .vertical-lr {
     writing-mode: vertical-lr;
   }
+
+  .form-input {
+    @apply w-full border border-gray-300 px-2 py-3 text-sm text-gray-600;
+  }
 }
