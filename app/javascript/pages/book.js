@@ -110,14 +110,14 @@ document.addEventListener('turbolinks:load', () => {
         toggleVisibility(vendorPartnershipForm);
         toggleText(vendorPartnershipText,
             "I am requesting to book these food vendors:",
-            "I will bring my own food:")
+            "I will bring my own food.")
     });
     musicianPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
         toggleVisibility(musicianPartnershipForm);
         toggleText(musicianPartnershipText,
             "I am requesting to book these musicians:",
-            "I will bring my own music:")
+            "I will bring my own music.")
     });
 
     tempSubmit.addEventListener("click", (event) => {

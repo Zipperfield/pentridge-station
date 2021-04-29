@@ -1,29 +1,15 @@
 <%= form_with model: @event, local: true do |f|%>
   <h3 class="text-5xl">Request to Book</h3>
+  <%= render 'events/form/info'%>
   <%= render 'events/form/errors'%>
-  <div>
-    <%= f.label 'Date' %>
-    <%= f.date_field :date, min: Date.today, required: true%>
-  </div>
-  <div>
-    <%= f.label 'Start Time' %>
-    <%= f.select :start_time, options_for_select(@event.hourly_choices(1,23)), required: true%>
-  </div>
-  <div>
-    <%= f.label 'End Time' %>
-    <%= f.select :end_time, options_for_select(@event.hourly_choices(1,23)), required: true%>
-  </div>
-  <div>
-    <%= f.label 'Event Type' %>
-    <%= f.select :event_type, options_for_select(Event.event_types), required: true%>
-  </div>
-  <div>
-    <%= f.label 'Number Attendees' %>
-    <%= f.select :num_attendees, options_for_select(Event.num_attendees), required: true%>
-  </div>
   <%= render 'events/form/contact', f: f%>
   <%= render 'events/form/preferences', f: f%>
-  <div>
-    <%= f.submit "SUBMIT", class: "btn btn-primary" %>
+  <%= f.hidden_field :date%>
+  <%= f.hidden_field :start_time%>
+  <%= f.hidden_field :end_time%>
+  <%= f.hidden_field :event_type%>
+  <%= f.hidden_field :num_attendees%>
+  <div >
+    <%= f.submit "REQUEST TO BOOK", class: "w-full text-white bg-blue-400 py-3 " %>
   </div>
 <% end %>

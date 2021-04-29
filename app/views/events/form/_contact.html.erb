@@ -1,22 +1,18 @@
  <%= f.fields_for :contact do |c| %>
   <div class="flex">
     <div>
-      <%= c.label 'First Name' %>
-      <%= c.text_field :first_name, required: true, maxlength: 20 %>
+      <%= c.text_field :first_name, placeholder: 'First Name', class: "form-input w-56 ", required: true, maxlength: 20 %>
     </div>
     <div>
-      <%= c.label 'Last Name' %>
-      <%= c.text_field :last_name, required: true, maxlength: 20 %>
+      <%= c.text_field :last_name,  placeholder: 'Last Name', required: true, maxlength: 20 %>
     </div>
   </div>
   <div class="flex">
     <div>
-      <%= c.label 'Email' %>
-      <%= c.email_field :email, required: true, maxlength: 42 %>
+      <%= c.email_field :email,  placeholder: 'Email', required: true, maxlength: 42 %>
     </div>
     <div>
-      <%= c.label 'Phone Number' %>
-      <%= c.telephone_field :phone_number, required: true, maxlength: 10 %>
+      <%= c.telephone_field :phone_number,  placeholder: 'Phone Number', required: true, maxlength: 10 %>
     </div>
   </div>
   <%= c.hidden_field :entry_process , value: "Event" %>

@@ -1,9 +1,11 @@
 <div alert=<%= flash[:alert] ? 'true' : 'false' %> id="event_form_screen" class="flex fixed w-full h-full top-0 left-0 bg-opacity-80 bg-gray-700 justify-center">
   <div id="event_form_container" class="bg-white bg-opacity-95 w-11/12 h-5/6 self-center flex ">
     <div class="w-2/3 ">
-      <%= render 'form'%>
+      <div class="m-7 ">
+        <%= render 'form'%>
+      </div>
     </div>
     <div class="w-1/3 ">
-      asdfasdf    </div>
+      <%=render 'price_tool'%>    </div>
   </div>
 </div>

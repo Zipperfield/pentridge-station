@@ -2,39 +2,39 @@
   <div class="mr-8">?</div>
   <div>Do you want to request to book a Pentridge Partner?</div>
 </div>
-<div class="flex">
+<div class="flex h-72">
   <%= f.fields_for :preferences do |c| %>
     <div class="">
       <% if c.object.vendor?%>
         <% choices = @vendor_choices%>
         <div class="w-48">
-          <span id="vendor_partnership_text">I am requesting to book these food vendors:</span>
           <%= render 'shared/toggle_button',
                 name: 'event_vendor_partnership',
                 input: (f.check_box :vendor_partnership,
                             checked: true,
                             id: 'event_vendor_partnership',
                             class: 'sr-only') %>
+          <span id="vendor_partnership_text">I am requesting to book these food vendors:</span>
         </div>
         <div id="vendor_partnership_form" class="flex flex-col">
           <%= c.hidden_field :preference_type , value: "vendor" %>
         <% elsif c.object.musician? %>
           <% choices = @musician_choices%>
           <div class="w-48">
-            <span id="musician_partnership_text" >I am requesting to book these musicians:</span>
             <%= render 'shared/toggle_button',
                 name: 'event_musician_partnership',
                 input: (f.check_box :musician_partnership,
                             checked: true,
                             id: 'event_musician_partnership',
                             class: 'sr-only') %>
+            <span id="musician_partnership_text" >I am requesting to book these musicians:</span>
           </div>
           <div id="musician_partnership_form" class="flex flex-col">
             <%= c.hidden_field :preference_type , value: "musician" %>
           <% end %>
           <div>
             <%= c.label 'First Choice' %>
-            <%= c.select :first_choice_id, options_for_select(choices, choices.first)%>
+            <%= c.select :first_choice_id, options_for_select(choices, choices.first) %>
           </div>
           <div>
             <%= c.label 'Second Choice' %>
@@ -42,7 +42,7 @@
           </div>
           <div>
             <%= c.label 'Third Choice' %>
-            <%= c.select :third_choice_id, options_for_select(choices, choices.third) %>
+            <%= c.select :third_choice_id,  options_for_select(choices, choices.third) %>
           </div>
         </div>
       </div>
