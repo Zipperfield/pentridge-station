@@ -80,6 +80,16 @@ function validateDate() {
     tempFormDateInput.addEventListener('input', dontOverbook);
 }
 
+function toggleText(element, from, to) {
+    if (element.textContent == from) {
+        element.textContent = to;
+    } else if (element.textContent == to) {
+        element.textContent = from;
+    } else {
+        console.log("Element out of sync");
+    }
+}
+
 
 document.addEventListener('turbolinks:load', () => {
     tempSubmit = document.getElementById("temp_submit");
@@ -87,21 +97,27 @@ document.addEventListener('turbolinks:load', () => {
     eventFormContainer = document.getElementById('event_form_container');
     vendorPartnershipButton = document.getElementById('event_vendor_partnership');
     vendorPartnershipForm = document.getElementById('vendor_partnership_form');
+    vendorPartnershipText = document.getElementById('vendor_partnership_text');
+
     musicianPartnershipButton = document.getElementById('event_musician_partnership');
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
+    musicianPartnershipText = document.getElementById('musician_partnership_text');
 
     validateDate();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
         toggleVisibility(vendorPartnershipForm);
-
+        toggleText(vendorPartnershipText,
+            "I am requesting to book these food vendors:",
+            "I will bring my own food:")
     });
     musicianPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
-
         toggleVisibility(musicianPartnershipForm);
-
+        toggleText(musicianPartnershipText,
+            "I am requesting to book these musicians:",
+            "I will bring my own music:")
     });
 
     tempSubmit.addEventListener("click", (event) => {

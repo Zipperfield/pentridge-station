@@ -21,4 +21,8 @@
   .underlined-form-style {
     @apply border-0 border-b-2 border-blue-400;
   }
+  input:checked ~ .dot {
+    transform: translateX(135%);
+    @apply bg-green-500;
+  }
 }
