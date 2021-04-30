@@ -6,16 +6,28 @@ class Preference < ApplicationRecord
   enum preference_type: { vendor: 0, musician: 1 }
   validate :different_preferences
 
+  def check_nil
+    errors.add(:first_choice, 'must exist') if first_choice.nil?
+    errors.add(:second_choice, 'must exist') if second_choice.nil?
+    errors.add(:third_choice, 'must exist') if third_choice.nil?
+  end
+
+  def all_choices_filled_out
+    !first_choice.nil? && !second_choice.nil? && !third_choice.nil?
+  end
+
+  def choices_are_the_same
+    (first_choice_id == second_choice_id) ||
+      (second_choice_id == third_choice_id) ||
+      (first_choice_id == third_choice_id)
+  end
+
   def different_preferences
-    if requested
-      puts 'requested'
-      errors.add(:first_choice, 'must exist') if first_choice.nil?
-      errors.add(:second_choice, 'must exist') if second_choice.nil?
-      errors.add(:third_choice, 'must exist') if third_choice.nil?
-      if (!first_choice.nil? && !second_choice.nil? && !third_choice.nil?) &&
-         (first_choice_id == second_choice_id) || (second_choice_id == third_choice_id) || (first_choice_id == third_choice_id)
-        errors.add(:first_choice, 'must be different than second choice and third choice')
-      end
-    end
+    return unless requested
+
+    check_nil
+    return unless all_choices_filled_out && choices_are_the_same
+
+    errors.add(:first_choice, 'must be different than second choice and third choice')
   end
 end
