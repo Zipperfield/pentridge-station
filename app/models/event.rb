@@ -6,12 +6,18 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :contact
   accepts_nested_attributes_for :preferences
 
-  after_save :conditonally_remove_preferences
+  # after_save :conditonally_remove_preferences
 
-  def conditonally_remove_preferences
-    preferences.destroy(preferences.vendor.first.id) unless vendor_partnership
-    preferences.destroy(preferences.musician.first.id) unless musician_partnership
-  end
+  # def no_preferences_desired(attributed)
+  #   puts attributed
+  #   (!vendor_partnership && attributed['preference_type'] == 'vendor') ||
+  #     (!musician_partnership && attributed['preference_type'] == 'musician')
+  # end
+
+  # def conditonally_remove_preferences
+  #   preferences.destroy(preferences.vendor.first.id) unless vendor_partnership
+  #   preferences.destroy(preferences.musician.first.id) unless musician_partnership
+  # end
   validates :start_time, :end_time, :event_type, :num_attendees, presence: true
   validates_associated :preferences
   validate :end_later_than_start
@@ -25,7 +31,7 @@ class Event < ApplicationRecord
 
   def end_later_than_start
     # TODO: This could run without existing
-    return unless end_time <= start_time
+    return unless !end_time.blank? && !start_time.blank? && end_time <= start_time
 
     errors.add(:start_time, 'must be earlier than \'end_time\'')
     errors.add(:end_time, 'must be later than \'start_time\'')

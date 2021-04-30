@@ -2,6 +2,7 @@ class CreatePreferences < ActiveRecord::Migration[6.1]
   def change
     create_table :preferences do |t|
       t.integer :preference_type
+      t.boolean :requested
       t.references :first_choice
       t.references :second_choice
       t.references :third_choice

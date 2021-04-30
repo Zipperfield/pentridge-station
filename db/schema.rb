@@ -177,8 +177,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_193229) do
     t.integer "num_attendees"
     t.integer "additional_time"
     t.integer "event_type"
-    t.boolean "musician_partnership"
-    t.boolean "vendor_partnership"
     t.integer "contact_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -210,6 +208,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_193229) do
 
   create_table "preferences", force: :cascade do |t|
     t.integer "preference_type"
+    t.boolean "requested"
     t.integer "first_choice_id"
     t.integer "second_choice_id"
     t.integer "third_choice_id"

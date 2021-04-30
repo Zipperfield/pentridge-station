@@ -63,7 +63,11 @@ function toggleFormVisibility() {
     // toggleClassListVisibility(tempFormClassList);
     toggleClassListVisibility(formClassList);
 }
+function validatedTime() {
+    var startTime = document.getElementById('temp_event_start_time');
+    var endTime = document.getElementById('temp_event_end_time');
 
+}
 function validateDate() {
     var formDateInput = document.getElementById('event_date');
     var tempFormDateInput = document.getElementById('temp_event_date');
@@ -112,6 +116,8 @@ document.addEventListener('turbolinks:load', () => {
             "I am requesting to book these food vendors:",
             "I will bring my own food.")
     });
+
+
     musicianPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
         toggleVisibility(musicianPartnershipForm);
@@ -120,17 +126,22 @@ document.addEventListener('turbolinks:load', () => {
             "I will bring my own music.")
     });
 
+
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
 
         //   validate inputs
         // transfer content
         // toggle visibility
-
+        // if (timeValidated()) {
         transferContent(true);
         toggleVisibility(eventFormScreen);
 
         hideOnClickOutside(eventFormScreen, eventFormContainer);
+        // } else {
+        // alert
+        // }
+
         // formClassList = document.getElementById('event_form_container');
         // formClassList.style.display = 
     });

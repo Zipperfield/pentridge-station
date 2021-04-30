@@ -3,46 +3,55 @@
   <div>Do you want to request to book a Pentridge Partner?</div>
 </div>
 <div class="flex h-72">
-  <%= f.fields_for :preferences do |c| %>
+  <%= f.fields_for :preferences do |pref| %>
     <div class="">
-      <% if c.object.vendor?%>
+      <% if pref.object.vendor?%>
         <% choices = @vendor_choices%>
         <div class="w-48">
           <%= render 'shared/toggle_button',
                 name: 'event_vendor_partnership',
-                input: (f.check_box :vendor_partnership,
+                input: (pref.check_box :requested,
                             checked: true,
                             id: 'event_vendor_partnership',
                             class: 'sr-only') %>
           <span id="vendor_partnership_text">I am requesting to book these food vendors:</span>
         </div>
         <div id="vendor_partnership_form" class="flex flex-col">
-          <%= c.hidden_field :preference_type , value: "vendor" %>
-        <% elsif c.object.musician? %>
+          <%= pref.hidden_field :preference_type , value: "vendor" %>
+        <% elsif pref.object.musician? %>
           <% choices = @musician_choices%>
           <div class="w-48">
             <%= render 'shared/toggle_button',
                 name: 'event_musician_partnership',
-                input: (f.check_box :musician_partnership,
+                input: (pref.check_box :requested,
                             checked: true,
                             id: 'event_musician_partnership',
                             class: 'sr-only') %>
             <span id="musician_partnership_text" >I am requesting to book these musicians:</span>
           </div>
           <div id="musician_partnership_form" class="flex flex-col">
-            <%= c.hidden_field :preference_type , value: "musician" %>
+            <%= pref.hidden_field :preference_type , value: "musician" %>
           <% end %>
           <div>
-            <%= c.label 'First Choice' %>
-            <%= c.select :first_choice_id, options_for_select(choices, choices.first) %>
+            <%= pref.label 'First Choice' %>
+            <%= pref.select :first_choice_id,
+                options_for_select(choices),
+                prompt: 'First Choice',
+                required: true %>
           </div>
           <div>
-            <%= c.label 'Second Choice' %>
-            <%= c.select :second_choice_id, options_for_select(choices, choices.second) %>
+            <%= pref.label 'Second Choice' %>
+            <%= pref.select :second_choice_id,
+                options_for_select(choices),
+                prompt: 'Second Choice',
+                required: true %>
           </div>
           <div>
-            <%= c.label 'Third Choice' %>
-            <%= c.select :third_choice_id,  options_for_select(choices, choices.third) %>
+            <%= pref.label 'Third Choice' %>
+            <%= pref.select :third_choice_id,
+                options_for_select(choices),
+                prompt: 'Third Choice',
+                required: true %>
           </div>
         </div>
       </div>

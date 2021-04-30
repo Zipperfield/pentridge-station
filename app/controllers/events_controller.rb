@@ -30,27 +30,9 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
-                                  :num_attendees, :musician_partnership, :vendor_partnership,
+                                  :num_attendees,
                                   contact_attributes: %i[first_name last_name email entry_process phone_number],
-                                  preferences_attributes: %i[preference_type first_choice_id second_choice_id third_choice_id])
-  end
-
-  def conditonally_remove_preferences(new_params)
-    # This method removes the Preference before creation
-    # the problem with this idea is that if the other fields
-    # fail and the page gets rerendered.
-    # Instead I will just deleted the preferences after
-    # event creation
-    unless new_params[:vendor_partnership] == '1'
-      new_params[:preferences_attributes] =
-        new_params[:preferences_attributes].except('0')
-    end
-    unless new_params[:musician_partnership] == '1'
-      new_params[:preferences_attributes] =
-        new_params[:preferences_attributes].except('1')
-    end
-    puts new_params
-    new_params
+                                  preferences_attributes: %i[requested preference_type first_choice_id second_choice_id third_choice_id])
   end
 
   def set_newsletter_form
