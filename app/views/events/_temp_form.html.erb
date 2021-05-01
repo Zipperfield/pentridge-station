@@ -1,21 +1,30 @@
-<form class="w-4/5">
+<form name="temporary-form" class="w-4/5">
   <div class="font-bold text-xl mb-3">Date & Time</div>
-  <div><%= date_field_tag "temp_event_date", Date.today, class: 'form-input temp-form-style mb-1', min: Date.today%></div>
+  <div><%= date_field_tag "temp_event_date",  @event[:date].nil? ? Date.today : @event[:date],
+       class: 'form-input temp-form-style mb-1', min: Date.today%></div>
   <div class="flex my-1">
     <div><%= select_tag "temp_event_start_time",
-    options_for_select(@event.hourly_choices(1,23)), 
-    class: 'form-select temp-form-style', prompt:'start time', required: true %></div>
+    options_for_select(@event.hourly_choices(1,23),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T")), 
+    class: 'form-select temp-form-style', required: true, autocomplete: "off", include_blank: 'start_time'%></div>
     <div><%= select_tag "temp_event_end_time", 
-    options_for_select(@event.hourly_choices(1,23)),
-     class: 'form-select temp-form-style ml-1', prompt:'end time', required: true%>
+    options_for_select(@event.hourly_choices(1,23), @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T")),
+     class: 'form-select temp-form-style ml-1', include_blank: 'end_time', autocomplete: "off", required: true%>
     </div>
   </div>
   <div class="font-bold text-xl mt-5 mb-3">Atendees</div>
-  <div><%= select_tag "temp_event_num_attendees", options_for_select(Event.num_attendees), {class: 'form-select temp-form-style' }%>
+  <div><%= select_tag "temp_event_num_attendees",
+   options_for_select(Event.num_attendees,
+    @event[:num_attendees].nil? ? '0' :  Event.num_attendees[@event[:num_attendees]]), 
+  {class: 'form-select temp-form-style' }%>
+    <%# , @event[:num_attendees] unless @event[:num_attendees].nil? %>
   </div>
   <div class="font-bold text-xl mt-5 mb-3">Type of Event</div>
-  <div><%= select_tag "temp_event_event_type", options_for_select(Event.event_types), {class: 'form-select temp-form-style' }%>
+  <div><%= select_tag "temp_event_event_type", 
+    options_for_select(Event.event_types, 
+      @event[:event_type].nil? ? '0' :  Event.event_types[@event[:event_type]]), 
+    {class: 'form-select temp-form-style' }%>
   </div>
+  <%# , @event[:event_type] unless @event[:num_attendee].nil? %>
   <button id="temp_submit" class="bg-blue-400 w-full py-2 text-xs text-white mt-5">START BOOKING
   </button>
 </form>

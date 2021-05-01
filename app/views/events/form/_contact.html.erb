@@ -1,7 +1,9 @@
  <%= f.fields_for :contact do |c| %>
   <div class="flex">
     <div>
-      <%= c.text_field :first_name, placeholder: 'First Name', class: "form-input w-56 ", required: true, maxlength: 20 %>
+      <%= c.text_field :first_name, placeholder: 'First Name',
+       class: "form-input w-56 ", required: true,
+        maxlength: 20  %>
     </div>
     <div>
       <%= c.text_field :last_name,  placeholder: 'Last Name', required: true, maxlength: 20 %>
