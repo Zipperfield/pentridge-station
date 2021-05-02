@@ -113,7 +113,7 @@ document.addEventListener('turbolinks:load', () => {
         // event.preventDefault();
         toggleVisibility(vendorPartnershipForm);
         toggleText(vendorPartnershipText,
-            "I am requesting to book these food vendors:",
+            "I am requesting to book these vendors:",
             "I will bring my own food.")
     });
 
