@@ -14,7 +14,9 @@
                 name: 'event_vendor_partnership',
                 input: (pref.check_box :requested,
                             id: 'event_vendor_partnership',
-                            class: 'sr-only') %>
+                            class: 'sr-only',
+                            checked: 'checked',
+                            previouslyChecked: 'true' ) %>
           <span id="vendor_partnership_text">I am requesting to book these food vendors:</span>
         </div>
         <div id="vendor_partnership_form" class="flex flex-col">
@@ -26,7 +28,8 @@
                 name: 'event_musician_partnership',
                 input: (pref.check_box :requested,
                             id: 'event_musician_partnership',
-                            class: 'sr-only') %>
+                            class: 'sr-only',
+                            checked: 'checked') %>
             <span id="musician_partnership_text" >I am requesting to book these musicians:</span>
           </div>
           <div id="musician_partnership_form" class="flex flex-col">
@@ -35,22 +38,25 @@
           <div>
             <%= pref.label 'First Choice' %>
             <%= pref.select :first_choice_id,
-                options_for_select(choices),
-                prompt: 'First Choice',
+                options_for_select(choices,
+                  @event.preferences[pref.index].first_choice_id.nil? ? '' : @event.preferences[pref.index].first_choice_id),
+                include_blank: 'First Choice',
                 required: true %>
           </div>
           <div>
             <%= pref.label 'Second Choice' %>
             <%= pref.select :second_choice_id,
-                options_for_select(choices),
-                prompt: 'Second Choice',
+                options_for_select(choices,
+                  @event.preferences[pref.index].second_choice_id.nil? ? '' : @event.preferences[pref.index].second_choice_id),
+                include_blank: 'Second Choice',
                 required: true %>
           </div>
           <div>
             <%= pref.label 'Third Choice' %>
             <%= pref.select :third_choice_id,
-                options_for_select(choices),
-                prompt: 'Third Choice',
+                options_for_select(choices,
+                  @event.preferences[pref.index].third_choice_id.nil? ? '' : @event.preferences[pref.index].third_choice_id),
+                include_blank: 'Third Choice',
                 required: true %>
           </div>
         </div>

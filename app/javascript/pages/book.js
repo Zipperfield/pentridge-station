@@ -125,7 +125,10 @@ document.addEventListener('turbolinks:load', () => {
             "I am requesting to book these musicians:",
             "I will bring my own music.")
     });
-
+    // this is a janky solution but should work.
+    //  always set to one on server side
+    // pass the value of button to view through html value
+    // If param not one then artificially click on button
 
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
