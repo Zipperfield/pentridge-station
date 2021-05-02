@@ -129,14 +129,11 @@ document.addEventListener('turbolinks:load', () => {
     //  always set to one on server side
     // pass the value of button to view through html value
     // If param not one then artificially click on button
-    console.log(vendorPartnershipButton.getAttribute('click_again'));
-
-    console.log(musicianPartnershipButton.getAttribute('click_again'));
     if (musicianPartnershipButton.getAttribute('click_again') == 'true') {
         musicianPartnershipButton.click();
     }
     if (vendorPartnershipButton.getAttribute('click_again') == 'true') {
-        musicianPartnershipButton.click();
+        vendorPartnershipButton.click();
     }
 
 
