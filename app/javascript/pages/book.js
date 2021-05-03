@@ -63,10 +63,30 @@ function toggleFormVisibility() {
     // toggleClassListVisibility(tempFormClassList);
     toggleClassListVisibility(formClassList);
 }
-function validatedTime() {
+
+function getDateFromHours(time) {
+    time = time.split(':');
+    let now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...time);
+}
+
+function validateTime() {
     var startTime = document.getElementById('temp_event_start_time');
     var endTime = document.getElementById('temp_event_end_time');
 
+    function startBeforeFinish(e) {
+        if ((endTime.value != '') && (startTime != '') &&
+            (getDateFromHours(endTime.value) - getDateFromHours(startTime.value) <= 0)) {
+            e.target.setCustomValidity('The event must start before it finishes.');
+            e.target.reportValidity();
+        } else {
+            endTime.setCustomValidity('');
+            startTime.setCustomValidity('');
+
+        }
+    }
+    startTime.addEventListener('input', startBeforeFinish);
+    endTime.addEventListener('input', startBeforeFinish);
 }
 function validateDate() {
     var formDateInput = document.getElementById('event_date');
@@ -108,6 +128,7 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipText = document.getElementById('musician_partnership_text');
 
     validateDate();
+    validateTime();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
@@ -139,15 +160,25 @@ document.addEventListener('turbolinks:load', () => {
 
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
+        if (document.getElementById("temp_event_start_time").checkValidity()
+            && document.getElementById("temp_event_end_time").checkValidity()
+            && document.getElementById("temp_event_date").checkValidity()) {
+            transferContent(true);
+            toggleVisibility(eventFormScreen);
+
+            hideOnClickOutside(eventFormScreen, eventFormContainer);
+
+        } else {
+            document.getElementById("temp_event_start_time").reportValidity()
+            document.getElementById("temp_event_end_time").reportValidity()
+            document.getElementById("temp_event_date").reportValidity()
+        }
 
         //   validate inputs
         // transfer content
         // toggle visibility
         // if (timeValidated()) {
-        transferContent(true);
-        toggleVisibility(eventFormScreen);
 
-        hideOnClickOutside(eventFormScreen, eventFormContainer);
         // } else {
         // alert
         // }
