@@ -8,11 +8,15 @@ function hideOnClickOutside(parent, child) {
     const removeClickListener = () => {
         toggleVisibility(parent);
         transferContent(false);
-
         document.removeEventListener('click', outsideClickListener);
+        document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
+        document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
     }
 
     document.addEventListener('click', outsideClickListener);
+    document.getElementById('edit_event_type').addEventListener('click', removeClickListener);
+    document.getElementById('edit_event_date').addEventListener('click', removeClickListener);
+
 }
 
 // || elem.getClientRects().length
