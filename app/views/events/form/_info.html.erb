@@ -1,11 +1,13 @@
-<div>Your booking</div>
-<div class="flex justify-between">
-  <div>Date & Time</div>
-  <button id="edit_event_date">Edit</button>
+<div class=<%=@event.errors.any? ? 'hidden' : 'inline'%>>
+  <div>Your booking</div>
+  <div class="flex justify-between">
+    <div>Date & Time</div>
+    <button id="edit_event_date">Edit</button>
+  </div>
+  <div><span id='info_date'>April 15th</span> | <span id='info_start_time'>8PM</span> to <span id='info_end_time'>10PM</span></div>
+  <div class="flex justify-between">
+    <div>Type</div>
+    <button id="edit_event_type">Edit</button>
+  </div>
+  <div id="info_event_type">Wedding</div>
 </div>
-<div><span id='info_date'>April 15th</span> | <span id='info_start_time'>8PM</span> to <span id='info_end_time'>10PM</span></div>
-<div class="flex justify-between">
-  <div>Type</div>
-  <button id="edit_event_type">Edit</button>
-</div>
-<div id="info_event_type">Wedding</div>
