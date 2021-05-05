@@ -16,7 +16,6 @@ function hideOnClickOutside(parent, child) {
     document.addEventListener('click', outsideClickListener);
     document.getElementById('edit_event_type').addEventListener('click', removeClickListener);
     document.getElementById('edit_event_date').addEventListener('click', removeClickListener);
-
 }
 
 // || elem.getClientRects().length
@@ -146,8 +145,91 @@ function toggleText(element, from, to) {
     }
 }
 
+class Preference {
+    constructor(buttonID, firstChoiceID, secondChoiceID, thirdChoiceID) {
+        this.button = document.getElementById(buttonID);
+        this.firstChoice = document.getElementById(firstChoiceID);
+        this.secondChoice = document.getElementById(secondChoiceID);
+        this.thirdChoice = document.getElementById(thirdChoiceID);
+        this.isValid = true;
+        this.validate = function () {
+            this.isValid = true;
+            this.firstChoice.setCustomValidity('');
+            this.secondChoice.setCustomValidity('');
+            this.thirdChoice.setCustomValidity('');
+
+            if (this.button.checked) {
+                if (this.firstChoice.value == '') {
+                    this.firstChoice.setCustomValidity('Please fill out this field.');
+                    this.firstChoice.reportValidity();
+                    this.isValid = false;
+                }
+                else if (this.secondChoice.value == '') {
+                    this.secondChoice.setCustomValidity('Please fill out this field.');
+                    this.secondChoice.reportValidity();
+                    this.isValid = false;
+                }
+                else if (this.thirdChoice.value == '') {
+                    this.thirdChoice.setCustomValidity('Please fill out this field.');
+                    this.thirdChoice.reportValidity();
+                    this.isValid = false;
+                }
+                else if (this.firstChoice.value != '' &&
+                    this.secondChoice.value != '' &&
+                    this.thirdChoice.value != '') {
+                    if (this.thirdChoice.value == this.secondChoice.value ||
+                        this.thirdChoice.value == this.firstChoice.value) {
+                        this.thirdChoice.setCustomValidity('Preferences must be different.');
+                        this.thirdChoice.reportValidity();
+                        this.isValid = false;
+
+
+                    } else if (this.secondChoice.value == this.firstChoice.value) {
+                        this.secondChoice.setCustomValidity('Preferences must be different.');
+                        this.secondChoice.reportValidity();
+                        this.isValid = false;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+function validatePreferences() {
+
+    vendorPreference = new Preference('event_vendor_partnership',
+        'event_preferences_attributes_0_first_choice_id',
+        'event_preferences_attributes_0_second_choice_id',
+        'event_preferences_attributes_0_third_choice_id')
+    musicianPreference = new Preference('event_musician_partnership',
+        'event_preferences_attributes_1_first_choice_id',
+        'event_preferences_attributes_1_second_choice_id',
+        'event_preferences_attributes_1_third_choice_id')
+
+    document.getElementById('event_submit').addEventListener('click', (event) => {
+        // event.preventDefault();
+
+
+        vendorPreference.validate();
+        musicianPreference.validate();
+
+        if (musicianPreference.isValid && vendorPreference.isValid) {
+            console.log('valid!')
+            return true
+        } else {
+            console.log('not valid!')
+            event.preventDefault();
+        }
+
+    });
+
+
+
+}
 
 document.addEventListener('turbolinks:load', () => {
+
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
@@ -161,6 +243,7 @@ document.addEventListener('turbolinks:load', () => {
 
     validateDate();
     validateTime();
+    validatePreferences();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
