@@ -18,6 +18,34 @@ function hideOnClickOutside(parent, child) {
 // || elem.getClientRects().length
 const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
 
+function getSelectedOptionText(e) {
+    return e.options[e.selectedIndex].textContent;
+}
+
+const nth = function (d) {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+    }
+}
+function formatDateForInfo(date) {
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
+    return `${month} ${date.getDate()}${nth(date.getDate())}`
+}
+
+function transferInfo() {
+    document.getElementById('info_date').textContent =
+        formatDateForInfo(new Date(document.getElementById('temp_event_date').value.replace(/-/g, '\/')));
+    document.getElementById('info_start_time').textContent =
+        getSelectedOptionText(document.getElementById('temp_event_start_time'));
+    document.getElementById('info_end_time').textContent =
+        getSelectedOptionText(document.getElementById('temp_event_end_time'));
+    document.getElementById('info_event_type').textContent =
+        getSelectedOptionText(document.getElementById('temp_event_event_type'));
+}
 
 function transferValue(eventValueName, openingForm) {
     // Takes an event value name 
@@ -164,6 +192,7 @@ document.addEventListener('turbolinks:load', () => {
             && document.getElementById("temp_event_end_time").checkValidity()
             && document.getElementById("temp_event_date").checkValidity()) {
             transferContent(true);
+            transferInfo();
             toggleVisibility(eventFormScreen);
 
             hideOnClickOutside(eventFormScreen, eventFormContainer);

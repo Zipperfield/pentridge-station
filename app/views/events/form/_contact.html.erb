@@ -14,7 +14,7 @@
       <%= c.email_field :email,  placeholder: 'Email', required: true, maxlength: 42 %>
     </div>
     <div>
-      <%= c.telephone_field :phone_number,  placeholder: 'Phone Number', required: true, maxlength: 10 %>
+      <%= c.telephone_field :phone_number, pattern: '[0-9]{10}', placeholder: 'Phone Number', required: true, maxlength: 10 %>
     </div>
   </div>
   <%= c.hidden_field :entry_process , value: "Event" %>
