@@ -1,0 +1,15 @@
+<div class="flex flex-wrap mx-8 my-8">
+  <% @partners.each do |partner| %>
+    <div class="w-40 my-8 mx-8 h-80">
+      <div><%= partner.name %></div>
+      <div><%= partner.tagline %></div>
+      <div><%= partner.bio %></div>
+      <div><%= partner.low_price %> - <%= partner.high_price %></div>
+      <div>
+        <% if partner.photo.attached?%>
+          <img src="<%=url_for(partner.photo)%>" alt="photo" class="w-40 h-40">
+        <%end%>
+      </div>
+    </div>
+  <%end%>
+</div>

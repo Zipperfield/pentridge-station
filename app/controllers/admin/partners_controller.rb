@@ -1,7 +1,6 @@
 class Admin::PartnersController < Comfy::Admin::BaseController
-
-  before_action :build_partner,  only: [:new, :create]
-  before_action :load_partner,   only: [:show, :edit, :update, :destroy]
+  before_action :build_partner,  only: %i[new create]
+  before_action :load_partner,   only: %i[show edit update destroy]
 
   def index
     @partners = Partner.page(params[:page])
@@ -43,7 +42,7 @@ class Admin::PartnersController < Comfy::Admin::BaseController
     redirect_to action: :index
   end
 
-protected
+  protected
 
   def build_partner
     @partner = Partner.new(partner_params)
@@ -57,9 +56,9 @@ protected
   end
 
   def partner_params
-    params.fetch(:partner, {}).permit(:category, :name, :tagline, 
-                                      :bio, :low_price, :high_price, 
+    params.fetch(:partner, {}).permit(:category, :name, :tagline,
+                                      :bio, :low_price, :high_price,
                                       :facebook, :instagram, :twitter,
-                                      :website)
+                                      :website, :photo)
   end
 end

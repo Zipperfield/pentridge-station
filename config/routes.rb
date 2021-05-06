@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :contacts, only: %i[create]
   resources :messages, only: %i[create]
 
+  get '/partners/musicians', to: 'partners#musicians', as: :musicians
+  get '/partners/vendors', to: 'partners#vendors', as: :vendors
+
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
   get '/book', to: 'events#new', as: :book
