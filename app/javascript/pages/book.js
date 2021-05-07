@@ -1,3 +1,36 @@
+function embedMap() {
+    // create map and set center and zoom level
+    publicMapboxApiKey = document.getElementById('map').getAttribute('public-api-key');
+    var map = new L.map("map");
+    map.setView([39.948021, -75.220581], 15);
+
+    var mapboxTileUrl =
+        "https://api.mapbox.com/styles/v1/jdegrootlutzner/ckoddb6292czl19o4kmxe0d6a/tiles/256/{z}/{x}/{y}@2x?access_token=" + publicMapboxApiKey;
+
+    L.tileLayer(mapboxTileUrl, {
+        attribution:
+            'Background map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    // Creating a marker
+
+    // Icon options
+    var iconOptions = {
+        iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    }
+    // Creating a custom icon
+    var customIcon = L.icon(iconOptions);
+
+    // Creating Marker Options
+    var markerOptions = {
+        icon: customIcon
+    }
+
+    var marker = L.marker([39.946, -75.2244], markerOptions);
+    marker.bindPopup("<b>Pentridge Station</b><br>5110-5120 Pentridge St.<br>Philadelphia, PA 19143").openPopup();
+    marker.addTo(map);
+
+}
+
 function hideOnClickOutside(parent, child) {
     const outsideClickListener = event => {
         if (!(event.defaultPrevented) && !child.contains(event.target) && isVisible(child)) {
@@ -229,7 +262,6 @@ function validatePreferences() {
 }
 
 document.addEventListener('turbolinks:load', () => {
-
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
@@ -307,4 +339,6 @@ document.addEventListener('turbolinks:load', () => {
     if (eventFormScreen.getAttribute('alert') == 'true') {
         tempSubmit.click();
     }
+    // embedMap();
+
 });

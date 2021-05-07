@@ -36,6 +36,9 @@ gem 'kaminari'
 # Add gem to help store hours of day
 gem 'tod'
 
+# Secure Api keys
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

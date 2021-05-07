@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import leaflet from 'leaflet'
 import "stylesheets/app-base"
 import "stylesheets/app-components"
 import "stylesheets/app-utilities"
