@@ -1,21 +1,24 @@
  <%= f.fields_for :contact do |c| %>
-  <div class="flex">
-    <div>
-      <%= c.text_field :first_name, placeholder: 'First Name',
+  <div class="flex flex-col sm:flex-row border-t border-gray-300 pt-5">
+    <%= c.text_field :first_name,  
+       placeholder: 'First Name',
        class: "form-input w-56 ", required: true,
-        maxlength: 20  %>
-    </div>
-    <div>
-      <%= c.text_field :last_name,  placeholder: 'Last Name', required: true, maxlength: 20 %>
-    </div>
+        maxlength: 20, size: '',
+        class: 'sm:w-5/12 sm:mr-3 border-gray-400 mb-3' %>
+    <%= c.text_field :last_name,
+        placeholder: 'Last Name', required: true,
+        maxlength: 20, size: '',
+        class: 'sm:w-7/12 border-gray-400 mb-3'%>
   </div>
-  <div class="flex">
-    <div>
-      <%= c.email_field :email,  placeholder: 'Email', required: true, maxlength: 42 %>
-    </div>
-    <div>
-      <%= c.telephone_field :phone_number, pattern: '[0-9]{10}', placeholder: 'Phone Number', required: true, maxlength: 10 %>
-    </div>
+  <div class="flex flex-col sm:flex-row ">
+    <%= c.email_field :email, 
+      placeholder: 'Email', required: true, 
+      maxlength: 42, size: '', 
+      class: 'sm:w-5/12 sm:mr-3 border-gray-400 mb-3'%>
+    <%= c.telephone_field :phone_number,  
+      pattern: '[0-9]{10}', placeholder: 'Phone Number',
+       required: true, maxlength: 10, size: '', 
+       class: 'sm:w-7/12 border-gray-400 mb-3'%>
   </div>
   <%= c.hidden_field :entry_process , value: "Event" %>
 <% end %>

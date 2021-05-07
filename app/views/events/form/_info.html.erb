@@ -1,13 +1,13 @@
-<div class=<%=@event.errors.any? ? 'hidden' : 'inline'%>>
-  <div>Your booking</div>
+<div class=<%=@event.errors.any? ? 'hidden text-gray-600' : 'inline text-gray-600'%>>
+  <p class=" font-semibold text-lg mb-5">Your booking</p>
   <div class="flex justify-between">
-    <div>Date & Time</div>
-    <button id="edit_event_date">Edit</button>
+    <p class=" font-semibold">Date & Time</p>
+    <button id="edit_event_date" class="font-semibold underline">Edit</button>
   </div>
-  <div><span id='info_date'>April 15th</span> | <span id='info_start_time'>8PM</span> to <span id='info_end_time'>10PM</span></div>
+  <div class='my-2 font-light'><span id='info_date'>April 15th</span> | <span id='info_start_time'>8PM</span> to <span id='info_end_time'>10PM</span></div>
   <div class="flex justify-between">
-    <div>Type</div>
-    <button id="edit_event_type">Edit</button>
+    <div class="font-semibold">Type</div>
+    <button id="edit_event_type" class="font-semibold underline">Edit</button>
   </div>
-  <div id="info_event_type">Wedding</div>
+  <div id="info_event_type" class="mt-2 mb-5">Wedding</div>
 </div>

@@ -2,9 +2,9 @@
   <div class="mr-8">?</div>
   <div>Do you want to request to book a Pentridge Partner?</div>
 </div>
-<div class="flex">
+<div class="flex flex-col sm:flex-row justify-around">
   <%= f.fields_for :preferences do |pref| %>
-    <div class="">
+    <div class="w-1/2 mx-2">
       <% if pref.object.vendor?%>
         <% choices = @vendor_choices%>
         <% partner_type = 'vendor'%>
@@ -26,30 +26,21 @@
       </div>
       <div id=<%=partner_type+"_partnership_form"%> class="flex flex-col">
         <%= pref.hidden_field :preference_type , value: partner_type%>
-        <div>
-          <%= pref.label 'First Choice' %>
-          <%= pref.select :first_choice_id,
+        <%= pref.select :first_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].first_choice_id.nil? ? '' : @event.preferences[pref.index].first_choice_id),
                 include_blank: 'First Choice',
-                required: true %>
-        </div>
-        <div>
-          <%= pref.label 'Second Choice' %>
-          <%= pref.select :second_choice_id,
+                required: true, class: 'border-red-600 mb-2' %>
+        <%= pref.select :second_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].second_choice_id.nil? ? '' : @event.preferences[pref.index].second_choice_id),
                 include_blank: 'Second Choice',
-                required: true %>
-        </div>
-        <div>
-          <%= pref.label 'Third Choice' %>
-          <%= pref.select :third_choice_id,
+                required: true%>
+        <%= pref.select :third_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].third_choice_id.nil? ? '' : @event.preferences[pref.index].third_choice_id),
                 include_blank: 'Third Choice',
-                required: true %>
-        </div>
+                required: true, class: 'mb-2' %>
       </div>
     </div>
   <% end %>
