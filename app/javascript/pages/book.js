@@ -262,6 +262,9 @@ function validatePreferences() {
 }
 
 document.addEventListener('turbolinks:load', () => {
+    if (document.getElementById('header').getAttribute('page') != 'book') {
+        return
+    }
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
