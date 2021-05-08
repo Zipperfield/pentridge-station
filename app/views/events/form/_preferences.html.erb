@@ -1,10 +1,7 @@
-<div class="flex">
-  <div class="mr-8">?</div>
-  <div>Do you want to request to book a Pentridge Partner?</div>
-</div>
+<p class="mt-1 lg:w-3/4 font-semibold">Do you want to partner with Pentridge food vendors and/or musicans?</p>
 <div class="flex flex-col sm:flex-row justify-around">
   <%= f.fields_for :preferences do |pref| %>
-    <div class="w-1/2 mx-2">
+    <div class="sm:w-1/2 mx-2 mt-2 border-b border-gray-300">
       <% if pref.object.vendor?%>
         <% choices = @vendor_choices%>
         <% partner_type = 'vendor'%>
@@ -12,7 +9,7 @@
         <% choices = @musician_choices%>
         <% partner_type = 'musician'%>
       <%end%>
-      <div class="w-48" >
+      <div class="w-48 flex " >
         <%= render 'shared/toggle_button',
                 name: 'event_' + partner_type + '_partnership',
                 input: (pref.check_box :requested,
@@ -22,25 +19,25 @@
                             click_again: (!@event.preferences[pref.index].requested.nil? && 
                                             !@event.preferences[pref.index].requested?) ? 'true' : 'false')
                              %>
-        <span id= <%= partner_type+"_partnership_text"%>>I am requesting to book these <%=partner_type.pluralize%>:</span>
+        <p class="ml-2 mb-2" id= <%= partner_type+"_partnership_text"%>>I am requesting to book these <%=partner_type.pluralize%>:</p>
       </div>
       <div id=<%=partner_type+"_partnership_form"%> class="flex flex-col">
         <%= pref.hidden_field :preference_type , value: partner_type%>
         <%= pref.select :first_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].first_choice_id.nil? ? '' : @event.preferences[pref.index].first_choice_id),
-                include_blank: 'First Choice',
-                required: true, class: 'border-red-600 mb-2' %>
+                {include_blank: 'First Choice'},
+                {class: 'border-gray-400 text-gray-600 mb-2'} %>
         <%= pref.select :second_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].second_choice_id.nil? ? '' : @event.preferences[pref.index].second_choice_id),
-                include_blank: 'Second Choice',
-                required: true%>
+                {include_blank: 'Second Choice'},
+                {class: 'border-gray-400 text-gray-600 mb-2'} %>
         <%= pref.select :third_choice_id,
                 options_for_select(choices,
                   @event.preferences[pref.index].third_choice_id.nil? ? '' : @event.preferences[pref.index].third_choice_id),
-                include_blank: 'Third Choice',
-                required: true, class: 'mb-2' %>
+                {include_blank: 'Third Choice'},
+                {class: 'form-select border-gray-400 text-gray-600 mb-2'} %>
       </div>
     </div>
   <% end %>

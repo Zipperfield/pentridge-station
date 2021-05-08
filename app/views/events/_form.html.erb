@@ -1,14 +1,14 @@
 <%= form_with model: @event, local: true do |f|%>
-  <h3 class="text-4xl font-bold mt-10 mb-8">Request to Book</h3>
+  <h3 class="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Request to Book</h3>
+  <%= render 'events/form/info' %>
+  <%= render 'events/form/errors'%>
+  <%= render 'events/form/contact', f: f%>
+  <%= render 'events/form/preferences', f: f%>
   <%= f.hidden_field :date%>
   <%= f.hidden_field :start_time%>
   <%= f.hidden_field :end_time%>
   <%= f.hidden_field :event_type%>
   <%= f.hidden_field :num_attendees%>
-  <%= render 'events/form/info' %>
-  <%= render 'events/form/errors'%>
-  <%= render 'events/form/contact', f: f%>
-  <%= render 'events/form/preferences', f: f%>
   <div >
     <%= f.submit "REQUEST TO BOOK", id:'event_submit', class: "w-full text-white bg-blue-400 py-3 " %>
   </div>
