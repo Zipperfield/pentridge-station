@@ -2,7 +2,9 @@
 <header id="header" class="bg-fixed bg-center" style="background-image: url(<%= titlePhoto %>)" page=<%=pageName%>>
   <div>
     <div class=" flex flex-row justify-between pt-6 mx-10 ">
-      <div class=""> Pentridge Station Logo</div>
+      <a href=<%= root_path%>>
+        <div class=""> Pentridge Station Logo</div>
+      </a>
       <nav class="">
         <%#  
       <a href="" class="nav-item"> HOME </a>
@@ -21,6 +23,8 @@
     <%= cms_fragment_content(:pageTitle, Comfy::Cms::Page.find_by_full_path('/home'))%>
   </div>
   <div class="my-6 sm:w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.</div>
-  <button class="ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
+  <a href=<%= about_path %>>
+    <button class="ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
+  </a>
 </div >
 </header>
