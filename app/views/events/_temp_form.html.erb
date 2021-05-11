@@ -1,17 +1,17 @@
 <form name="temporary-form" class="w-4/5 z-0">
   <div class="font-bold text-xl mb-3">Date & Time</div>
   <div><%= date_field_tag "temp_event_date",  @event[:date].nil? ? Date.today : @event[:date],
-       class: 'form-input temp-form-style mb-1', min: Date.today%></div>
-  <div class="flex my-1">
+       class: 'form-input temp-form-style mb-2', min: Date.today%></div>
+  <div class="flex flex-col sm:flex-row">
     <div><%= select_tag "temp_event_start_time",
     options_for_select(@event.hourly_choices(1,23),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T")), 
-    class: 'form-select temp-form-style', required: true, autocomplete: "off", include_blank: 'start_time'%></div>
+    class: 'form-select temp-form-style mb-2', required: true, autocomplete: "off", include_blank: 'start_time'%></div>
     <div><%= select_tag "temp_event_end_time", 
     options_for_select(@event.hourly_choices(1,23), @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T")),
-     class: 'form-select temp-form-style ml-1', include_blank: 'end_time', autocomplete: "off", required: true%>
+     class: 'form-select temp-form-style mb-2 sm:ml-1', include_blank: 'end_time', autocomplete: "off", required: true%>
     </div>
   </div>
-  <div class="font-bold text-xl mt-5 mb-3">Atendees</div>
+  <div class="font-bold text-xl my-3">Atendees</div>
   <div><%= select_tag "temp_event_num_attendees",
    options_for_select(Event.num_attendees,
     @event[:num_attendees].nil? ? '0' :  Event.num_attendees[@event[:num_attendees]]), 
