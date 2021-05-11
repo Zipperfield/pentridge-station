@@ -1,4 +1,4 @@
-<form name="temporary-form" class="w-4/5">
+<form name="temporary-form" class="w-4/5 z-0">
   <div class="font-bold text-xl mb-3">Date & Time</div>
   <div><%= date_field_tag "temp_event_date",  @event[:date].nil? ? Date.today : @event[:date],
        class: 'form-input temp-form-style mb-1', min: Date.today%></div>
