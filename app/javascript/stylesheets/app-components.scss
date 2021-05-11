@@ -28,4 +28,7 @@
   .h-11\/12 {
     height: 91.6666666667%;
   }
+  details summary > * {
+    display: inline;
+  }
 }
