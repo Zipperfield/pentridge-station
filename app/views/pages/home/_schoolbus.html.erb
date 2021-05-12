@@ -1,11 +1,11 @@
 <%# School Bus Section %>
 <div class="mt-16 text-white ">
-  <div class="bg-blue-400 w-80 md:w-1/2 absolute right-2 md:right-20 ">
-    <div class="bg-blue-400 p-16">
+  <div class="z-10 bg-opacity-80 hover:bg-opacity-100 sm:opacity-100 bg-blue-400 w-80 md:w-1/2 absolute right-2 md:right-20 mt-64 ">
+    <div class="p-16">
       <p class="font-bold">
         RESERVE A TABLE
       </p>
-      <p class="text-3xl sm:text-4xl">
+      <p class="text-3xl md:text-4xl">
         An <span class="font-bold"> unforgettable dinner experience</span> in a school bus
       </p>
       <button class="bg-white text-blue-400 text-xs w-36 py-2">
@@ -13,7 +13,7 @@
       </button>
     </div>
   </div>
-  <div class="bg-blue-300 ml-3 md:ml-24 w-1/2 h-96 py-40">
-    hi
+  <% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
+  <div id="bus-photo" class="z-0 bg-blue-300 ml-3 md:ml-24 w-2/3 md:w-1/2 h-80 py-96 bg-center bg-cover" style= <%= titlePhoto.nil? ? '' : `background-image: url(#{ titlePhoto})` %> >
   </div>
 </div>
