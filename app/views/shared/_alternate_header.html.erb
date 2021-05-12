@@ -1,5 +1,7 @@
-<% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
-<header id="header" class="bg-fixed bg-center bg-cover h-96" style="background-image: url(<%= titlePhoto %>)" page=<%=pageName%>>
+<header id="header" 
+      class="bg-blue-300 bg-fixed bg-center bg-cover h-96" 
+      style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)"
+      page=<%=pageName%>>
   <%= render 'shared/navbar'%>
   <div class="absolute bg-blue-400 mx-3 w-80 sm:w-96 mt-72 sm:mt-60 sm:ml-16 md:ml-24 text-white px-10 py-12">
     <div class="text-4xl sm:text-5xl font-extrabold">

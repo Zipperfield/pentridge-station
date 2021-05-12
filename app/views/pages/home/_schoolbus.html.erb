@@ -13,7 +13,8 @@
       </button>
     </div>
   </div>
-  <% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
-  <div id="bus-photo" class="z-0 bg-blue-300 ml-3 md:ml-24 w-2/3 md:w-1/2 h-80 py-96 bg-center bg-cover" style= <%= titlePhoto.nil? ? '' : `background-image: url(#{ titlePhoto})` %> >
+  <div id="bus-photo"
+  class="z-0 bg-blue-300 ml-3 md:ml-24 w-2/3 md:w-1/2 h-80 py-96 bg-center bg-cover" 
+  style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)" >
   </div>
 </div>

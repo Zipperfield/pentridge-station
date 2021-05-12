@@ -3,9 +3,12 @@ class PagesController < ApplicationController
   def home
     @message = Message.new
     @message.build_contact
+    @cms = Comfy::Cms::Page.find_by_full_path('/home')
   end
 
-  def about; end
+  def about
+    @cms = Comfy::Cms::Page.find_by_full_path('/home')
+  end
 
   private
 

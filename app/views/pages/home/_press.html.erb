@@ -4,8 +4,8 @@
     <p class="vertical-lr transform rotate-180 font-black text-4xl ">
       IN THE PRESS</p>
   </div>
-  <% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
-  <div class="col-span-11 md:col-span-7 bg-blue-600 bg-center bg-cover" style="background-image: url(<%= titlePhoto %>)">
+  <div class="col-span-11 md:col-span-7 bg-blue-600 bg-center bg-cover" 
+      style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)" %>
     <div class="group w-full h-full bg-gray-300 bg-opacity-0 hover:bg-opacity-50 ">
       <div class="opacity-0 group-hover:opacity-100 text-black">hello</div>
     </div>

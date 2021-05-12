@@ -1,5 +1,6 @@
-<% titlePhoto = cms_fragment_render(:titlePhoto, Comfy::Cms::Page.find_by_full_path('/home')) %>
-<header id="header" class="bg-fixed bg-center bg-cover" style="background-image: url(<%= titlePhoto %>)" page=<%=pageName%>>
+<header id="header" class="bg-blue-300 bg-fixed bg-center bg-cover"
+    style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)",
+    page=<%=pageName%>>
   <%= render 'shared/navbar'%>
   <div class="mx-3 sm:w-96 mt-12 sm:ml-16 md:ml-24 text-white pb-8">
     <div class="text-4xl sm:text-7xl font-extrabold">
@@ -7,7 +8,7 @@
     </div>
     <div class="my-6 sm:w-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.</div>
     <a href=<%= about_path %>>
-      <button class="ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
+      <button class=" ring-4 ring-blue-400 w-36 py-2 text-sm">LEARN MORE</button>
     </a>
   </div>
 </header>

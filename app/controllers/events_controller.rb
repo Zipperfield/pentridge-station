@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     @excluded_dates = Schedule.pluck(:date).map { |d| d.strftime('%F') }.join(',')
     # @event.preferences.build
     set_choices
+    @cms = Comfy::Cms::Page.find_by_full_path('/home')
   end
 
   # POST /events or /events.json
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to '/book', notice: 'Event was successfully created.'
     else
+      @cms = Comfy::Cms::Page.find_by_full_path('/home')
       set_choices
       set_newsletter_form
       flash[:alert] = 'Form invalid'
