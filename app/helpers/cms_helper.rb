@@ -7,7 +7,7 @@ module CmsHelper
   end
 
   def get_text_content(name, backup)
-    return '' if @cms.nil?
+    return backup if @cms.nil?
 
     content = cms_fragment_render(name, @cms)
     content.empty? ? backup : content
