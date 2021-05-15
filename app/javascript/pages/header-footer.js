@@ -8,6 +8,7 @@ function toggleForm(button) {
 
 }
 
+
 document.addEventListener('turbolinks:load', () => {
 
   newsletterButton = document.getElementById("newsletterButton");
@@ -15,6 +16,12 @@ document.addEventListener('turbolinks:load', () => {
   newsletterButton.addEventListener("click", (event) => {
     event.preventDefault();
     toggleForm(newsletterButton);
+  });
+
+  hamburger = document.querySelector(".tham");
+  hamburger.addEventListener("click", (event) => {
+    // event.preventDefault();
+    hamburger.classList.toggle('tham-active');
   });
 });
 

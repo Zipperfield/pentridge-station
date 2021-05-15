@@ -1,16 +1,27 @@
-<div class=" flex flex-row justify-between pt-6 mx-10 ">
+<div class=" flex flex-row justify-between pt-6 mx-2 sm:mx-10">
   <a href=<%= root_path%>>
     <div class=""> Pentridge Station</div>
   </a>
-  <%# <nav class=""> %>
-  <%#  
-      <a href="" class="nav-item"> HOME </a>
-      <a href="" class="nav-item"> ABOUT </a>
-      <a href="" class="nav-item"> CONTACT </a>
-      <a href="" class="nav-item"> PRESS </a>
-      <a href="" class="nav-item"> PARTNERS </a>
-      <a href="" class="nav-item"> %>
-  <%= link_to "RENT SPACE", '/book', class: "w-auto bg-blue-400 text-white px-3 py-2" %>
-  <%# </a> %>
-  <%# </nav> %>
+  <div class='flex'>
+    <%= link_to "RENT SPACE", book_path, class: "w-auto bg-blue-400 text-white px-3 h-9 pt-2" %>
+    <details class="ml-4">
+      <summary class='inline'>
+        <div class="tham tham-e-squeeze tham-w-4  bg-gray-600 w-9 h-9 rounded-full ">
+          <div class="tham-box">
+            <div class="tham-inner bg-white">
+            </div>
+          </div>
+        </div>
+      </summary>
+      <nav class="z-50 shadow-2xl bg-white text-blue-400 flex flex-col absolute right-0 text-6xl pl-14 pr-8 py-6 mt-1 text-right rounded-l-full ">
+        <%= link_to 'Home.', root_path %>
+        <%= link_to 'About', about_path %>
+        <%= link_to 'Contact', root_path(anchor: 'message-form') %>
+        <%= link_to 'Press', root_path(anchor: 'press') %>
+        <%= link_to 'Partners', partners_path %>
+        <%= link_to "RENT SPACE", book_path,
+         class: "mt-4 bg-blue-400 text-base text-center ml-24 text-white w-32 px-3 h-9 pt-2" %>
+      </nav>
+    </details>
+  </div>
 </div>

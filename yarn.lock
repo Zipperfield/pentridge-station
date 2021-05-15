@@ -7213,6 +7213,11 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+tailwind-hamburgers@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tailwind-hamburgers/-/tailwind-hamburgers-1.0.2.tgz#b70e1372e9fa348c0e7dee100456dbbb863fd15f"
+  integrity sha512-TPDEslkYHbsELXHeKblaQUtxWXHRo5t8/Gh/aFK4IKOWUSsoqBcV6ojYsUTY4jMgRJFmhHyqjW2UfJhR2Ugxyw==
+
 "tailwindcss@npm:@tailwindcss/postcss7-compat":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@tailwindcss/postcss7-compat/-/postcss7-compat-2.0.4.tgz#30014c5acd15f92c888e15af489fec1f4e8ffad5"
