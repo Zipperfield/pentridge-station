@@ -7,7 +7,7 @@ ruby '2.7.2'
 gem 'rails', '~> 6.1.3'
 # Setting up production as heroku
 group :development, :test do
- gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 group :production do
@@ -44,6 +44,9 @@ gem 'tod'
 
 # Secure Api keys
 gem 'figaro'
+
+# Inline svgs
+gem 'inline_svg'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

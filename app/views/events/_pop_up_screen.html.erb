@@ -1,12 +1,17 @@
 <div alert=<%= flash[:alert] ? 'true' : 'false' %> 
   id="event_form_screen" 
   class="hidden fixed z-50 w-full h-full top-0 left-0 bg-opacity-80 bg-gray-700 justify-center">
-  <div id="event_form_container" class="bg-white bg-opacity-95 self-center w-5/6 h-11/12 flex flex-col md:flex-row overflow-auto">
+  <div id="event_form_container" class="bg-white bg-opacity-95 self-center w-11/12 sm:w-5/6 h-11/12 flex flex-col md:flex-row overflow-auto">
     <div class="md:w-2/3 z-10 ">
-      <div class="m-3 mr-5 sm:m-7 flex">
+      <div class=" mr-5 sm:m-7 flex">
         <div class="">
-          <img src="" alt="" class="w-10 h-10">
-          <img src="" alt="" class="w-10 h-10 mt-96 sm:mt-72">
+          <%= inline_svg_tag "left-chevron.svg",
+                      class:'ml-1 mt-2 sm:mt-3',
+                      id: 'left-chevron' %>
+          <div class="mb-8"></div>
+          <%= inline_svg_tag "question-mark.svg",
+                      class:'w-7 mt-96 sm:mt-72',
+                      id: 'question-mark' %>
         </div>
         <%= render 'form'%>
       </div>

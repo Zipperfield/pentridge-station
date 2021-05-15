@@ -1,14 +1,16 @@
 <%# Let's Connect %>
 <div id="connect" class="pt-8"></div>
-<div class="bg-blue-400 flex flex-col md:flex-row text-white">
+<div class="bg-blue-400 flex flex-col md:flex-row text-white pb-4">
   <div class="md:w-1/2 flex justify-center md:ml-16 my-3 md:my-16">
     <div class="md:w-80">
-      <p class="text-4xl sm:text-7xl font-bold my-6">Let's Connect</p>
+      <p class="text-4xl sm:text-7xl font-bold mb-6">Let's Connect</p>
       <div class="flex">
-        <p>email@pentridgestation.com</p>
+        <%= inline_svg_tag "mail.svg", class:'w-5 h-6 stroke-current fill-current text-white' %>
+        <p class="ml-4 mt-1">email@pentridgestation.com</p>
       </div>
-      <div class="flex">
-        <p>(215) 123-1234</p>
+      <div class="flex mt-4">
+        <%= inline_svg_tag "phone.svg", class:'w-5 h-6 stroke-current fill-current text-white' %>
+        <p class="ml-4 mt-1">(215) 123-1234</p>
       </div>
     </div>
   </div>

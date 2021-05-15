@@ -117,6 +117,9 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    inline_svg (1.7.2)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jquery-rails (4.4.0)
@@ -274,6 +277,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   comfortable_mexican_sofa (~> 2.0.0)
   figaro
+  inline_svg
   jbuilder (~> 2.7)
   kaminari
   listen (~> 3.3)

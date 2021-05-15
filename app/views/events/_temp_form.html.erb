@@ -5,10 +5,10 @@
   <div class="flex flex-col sm:flex-row">
     <div><%= select_tag "temp_event_start_time",
     options_for_select(@event.hourly_choices(1,23),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T")), 
-    class: 'form-select temp-form-style mb-2', required: true, autocomplete: "off", include_blank: 'start_time'%></div>
+    class: 'form-select temp-form-style mb-2', required: true, autocomplete: "off", include_blank: 'start time'%></div>
     <div><%= select_tag "temp_event_end_time", 
     options_for_select(@event.hourly_choices(1,23), @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T")),
-     class: 'form-select temp-form-style mb-2 sm:ml-1', include_blank: 'end_time', autocomplete: "off", required: true%>
+     class: 'form-select temp-form-style mb-2 sm:ml-1', include_blank: 'end time', autocomplete: "off", required: true%>
     </div>
   </div>
   <div class="font-bold text-xl my-3">Atendees</div>

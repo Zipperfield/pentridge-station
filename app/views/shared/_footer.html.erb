@@ -10,14 +10,25 @@
         </div>
       </div>
       <div class="w-52">
-        <p>(215) 123-1234</p>
-        <p>email@pentridgestation.com</p>
-        <div class="flex flex-row">
+        <p class="underline">(215) 123-1234</p>
+        <p class="underline mt-2">email@pentridgestation.com</p>
+        <div class="flex flex-row mt-3 ">
+          <a href="">
+            <%= inline_svg_tag "twitter.svg", class:'w-5 ' %>
+          </a>
+          <a href="">
+            <%= inline_svg_tag "instagram.svg", class:'w-5 ml-2' %>
+          </a>
+          <a href="">
+            <%= inline_svg_tag "facebook.svg", class:'w-5 ml-2' %>
+          </a>
         </div>
       </div>
       <div class="w-52 text-right">
+        <a href="#top">
+          <%= inline_svg_tag "up-arrow.svg", class:'w-8 fill-current text-white ml-44 animate-bounce' %>
+        </a>
         <p>go to <span class="font-bold">top</span></p>
-        <p></p>
       </div>
     </div>
     <div class="mt-3">
