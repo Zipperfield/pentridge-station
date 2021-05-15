@@ -13,7 +13,7 @@ import "stylesheets/app-base"
 import "stylesheets/app-components"
 import "stylesheets/app-utilities"
 
-import "pages/home"
+import "pages/footer"
 import "pages/book"
 
 Rails.start()
