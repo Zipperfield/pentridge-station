@@ -52,4 +52,18 @@
   .press-quote {
     @apply w-2/3 italic text-lg self-center text-center;
   }
+
+  #navbar-details > summary {
+    list-style: none;
+  }
+  #navbar-details > summary::marker {
+    display: none;
+  }
+  #navbar-details ::-webkit-details-marker {
+    display: none;
+  }
+
+  details > summary {
+    @apply outline-none;
+  }
 }
