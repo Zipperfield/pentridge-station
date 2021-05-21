@@ -185,11 +185,14 @@ class Preference {
         this.secondChoice = document.getElementById(secondChoiceID);
         this.thirdChoice = document.getElementById(thirdChoiceID);
         this.isValid = true;
-        this.validate = function () {
+
+        this.reset = function () {
             this.isValid = true;
             this.firstChoice.setCustomValidity('');
             this.secondChoice.setCustomValidity('');
             this.thirdChoice.setCustomValidity('');
+        }
+        this.validate = function () {
 
             if (this.button.checked) {
                 if (this.firstChoice.value == '') {
@@ -240,8 +243,8 @@ function validatePreferences() {
         'event_preferences_attributes_1_second_choice_id',
         'event_preferences_attributes_1_third_choice_id')
 
-    document.getElementById('event_submit').addEventListener('click', (event) => {
-        // event.preventDefault();
+    document.getElementById('event_form').addEventListener('submit', (event) => {
+        console.log('validating');
 
 
         vendorPreference.validate();
@@ -249,10 +252,12 @@ function validatePreferences() {
 
         if (musicianPreference.isValid && vendorPreference.isValid) {
             console.log('valid!')
-            return true
+            return true;
         } else {
             console.log('not valid!')
             event.preventDefault();
+            vendorPreference.reset();
+            musicianPreference.reset();
         }
 
     });
