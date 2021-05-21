@@ -31,10 +31,21 @@ function embedMap() {
 
 }
 
+
+
+
 function hideOnClickOutside(parent, child) {
     const outsideClickListener = event => {
         if (!(event.defaultPrevented) && !child.contains(event.target) && isVisible(child)) {
             removeClickListener();
+        }
+    }
+
+    const submitOnEnter = event => {
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById('event_submit').click();
         }
     }
 
@@ -44,11 +55,14 @@ function hideOnClickOutside(parent, child) {
         document.removeEventListener('click', outsideClickListener);
         document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
         document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
+        document.removeEventListener('keydown', submitOnEnter);
+
     }
 
     document.addEventListener('click', outsideClickListener);
     document.getElementById('edit_event_type').addEventListener('click', removeClickListener);
     document.getElementById('edit_event_date').addEventListener('click', removeClickListener);
+    document.addEventListener('keydown', submitOnEnter);
 }
 
 // || elem.getClientRects().length
@@ -348,5 +362,6 @@ document.addEventListener('turbolinks:load', () => {
         tempSubmit.click();
     }
     // embedMap();
+
 
 });
