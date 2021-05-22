@@ -1,5 +1,4 @@
-<%= form_with model: @event, html: {id: 'event_form', class: 'ml-8'}, local: true do |f|%>
-  <%= render 'events/form/title' %>
+<%= form_with model: @event, html: {id: 'event_form'}, local: true do |f|%>
   <%= render 'events/form/info' %>
   <%= render 'events/form/errors'%>
   <%= render 'events/form/contact', f: f%>

@@ -55,6 +55,8 @@ function hideOnClickOutside(parent, child) {
         document.removeEventListener('click', outsideClickListener);
         document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
         document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
+        document.getElementById('left_chevron').removeEventListener('click', removeClickListener);
+
         document.removeEventListener('keydown', submitOnEnter);
 
     }
@@ -62,6 +64,8 @@ function hideOnClickOutside(parent, child) {
     document.addEventListener('click', outsideClickListener);
     document.getElementById('edit_event_type').addEventListener('click', removeClickListener);
     document.getElementById('edit_event_date').addEventListener('click', removeClickListener);
+    document.getElementById('left_chevron').addEventListener('click', removeClickListener);
+
     document.addEventListener('keydown', submitOnEnter);
 }
 

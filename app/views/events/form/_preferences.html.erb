@@ -1,10 +1,13 @@
-<div class="flex relative">
+<div class="relative">
   <p class="mt-1 lg:w-3/4 font-semibold">
     Do you want to partner with Pentridge food vendors and/or musicans?
   </p>
-  <%= inline_svg_tag "question-mark.svg",
-                      class:'absolute -left-6 top-2',
-                      id: 'question-mark' %>
+  <%= link_to partners_path, target: :_blank do %>
+    <%= inline_svg_tag "question-mark.svg",
+                      class:'absolute -left-7 top-2',
+                      id: 'question_mark' %>
+  <% end %>
+</a>
 </div>
 <div class="flex flex-col sm:flex-row justify-around">
   <%= f.fields_for :preferences do |pref| %>
