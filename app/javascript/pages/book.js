@@ -148,6 +148,27 @@ function getDateFromHours(time) {
     return new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...time);
 }
 
+function validNumAttendees() {
+    var tempNumAttendees = document.getElementById('temp_event_num_attendees');
+    tempNumAttendees.setCustomValidity('');
+    console.log(tempNumAttendees.value);
+    console.log(tempNumAttendees.value === "");
+
+    if (tempNumAttendees.value === "") {
+        tempNumAttendees.setCustomValidity('Please fill out this field.');
+        tempNumAttendees.reportValidity();
+        return false;
+    }
+    if (tempNumAttendees.value < 1 || tempNumAttendees > 300) {
+        tempNumAttendees.setCustomValidity('You may have between 1 and 300 guests.');
+        tempNumAttendees.reportValidity();
+        return false;
+    }
+    tempNumAttendees.value = Math.trunc(tempNumAttendees.value);
+    return true;
+}
+
+
 function validateTime() {
     var startTime = document.getElementById('temp_event_start_time');
     var endTime = document.getElementById('temp_event_end_time');
@@ -331,7 +352,8 @@ document.addEventListener('turbolinks:load', () => {
         event.preventDefault();
         if (document.getElementById("temp_event_start_time").checkValidity()
             && document.getElementById("temp_event_end_time").checkValidity()
-            && document.getElementById("temp_event_date").checkValidity()) {
+            && document.getElementById("temp_event_date").checkValidity()
+            && validNumAttendees()) {
             transferContent(true);
             transferInfo();
             toggleVisibility(eventFormScreen);
