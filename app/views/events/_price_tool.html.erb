@@ -1,5 +1,38 @@
-<div class="m-4 sm:ml-12 md:ml-8">
-  <div class="border border-gray-300 w-full h-96">
-    Estimated Price: $1200
+<div class="m-4 sm:ml-12 md:ml-8 ">
+  <div class="sticky top-10 mt-72 self-start border border-gray-300 w-full p-8 ">
+    <h3 class="text-2xl sm:text-3xl font-bold ">Total Estimated Cost</h3>
+    <h3 class="text-xl sm:text-2xl">$<span id="estimated_price"></span>2500</h3>
+    <%= render 'line_item', 
+          id: 'base',
+          readable_name: 'Base Cost',
+          base: 1500,
+          wedding: 500,
+          hourly: 0, 
+          per_person: 0,
+          large: ''%>
+    <%= render 'line_item', 
+          id: 'doorperson',
+          readable_name: 'Doorperson',
+          base: 0,
+          wedding: 0,
+          hourly: 15, 
+          per_person: 0,
+          large: 25%>
+    <%= render 'line_item', 
+          id: 'bartender',
+          readable_name: 'BART Certified Bartender',
+          base: 0,
+          wedding: 0,
+          hourly: 15, 
+          per_person: 0,
+          large: 25%>
+    <%= render 'line_item', 
+          id: 'open_bar',
+          readable_name: 'Open Bar ',
+          base: 0,
+          wedding: 0,
+          hourly: 0, 
+          per_person: 15,
+          large: ''%>
   </div>
 </div>
