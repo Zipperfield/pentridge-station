@@ -3,11 +3,9 @@
   <%= render 'events/form/errors'%>
   <%= render 'events/form/contact', f: f%>
   <%= render 'events/form/preferences', f: f%>
-  <%= f.hidden_field :date%>
-  <%= f.hidden_field :start_time%>
-  <%= f.hidden_field :end_time%>
-  <%= f.hidden_field :event_type%>
-  <%= f.hidden_field :num_attendees%>
+  <%= render 'events/form/doorperson', f: f%>
+  <%= render 'events/form/alcohol', f: f%>
+  <%= render 'events/form/hidden_fields', f: f%>
   <div >
     <%= f.submit "REQUEST TO BOOK",
          data: { disable_with: false },

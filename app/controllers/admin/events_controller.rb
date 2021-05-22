@@ -59,6 +59,7 @@ class Admin::EventsController < Comfy::Admin::BaseController
 
   def event_params
     params.fetch(:event, {}).permit(:date, :start_time, :end_time, :additional_time, :event_type,
+                                    :doorperson, :alcohol, :open_bar,
                                     contact_attributes: %i[first_name last_name email entry_process phone_number])
   end
 end

@@ -2,7 +2,10 @@
 <%= form.select :start_time, [["10:00 AM", 10],["11:00 AM", 11]]%>
 <%= form.select :end_time, [["11:00 AM",11],["12:00 PM",12]]%>
 <%= form.select :event_type, options_for_select(Event.event_types)%>
-<%= form.select :num_attendees, options_for_select(Event.num_attendees)%>
+<%= form.number_field :num_attendees %>
+<%= form.check_box :doorperson %>
+<%= form.check_box :alcohol %>
+<%= form.check_box :open_bar%>
 <%= form.fields_for :contact do |c| %>
   Contact
   <%= c.text_field :first_name%>
