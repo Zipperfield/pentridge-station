@@ -66,4 +66,8 @@
   details > summary {
     @apply outline-none;
   }
+
+  .bg-popup-gray {
+    background-color: rgba(247, 248, 248, var(--tw-bg-opacity));
+  }
 }
