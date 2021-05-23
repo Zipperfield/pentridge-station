@@ -6,6 +6,10 @@
   <%= render 'events/form/doorperson', f: f%>
   <%= render 'events/form/alcohol', f: f%>
   <%= render 'events/form/hidden_fields', f: f%>
+  <div><%= select_tag "temp_event_end_time", 
+    options_for_select(@event.hourly_choices(14,23), @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T")),
+     class: 'hidden form-select temp-form-style mb-2 sm:ml-1', include_blank: 'end time', autocomplete: "off", required: true%>
+  </div>
   <div >
     <%= f.submit "REQUEST TO BOOK",
          data: { disable_with: false },

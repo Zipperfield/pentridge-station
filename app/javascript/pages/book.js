@@ -176,17 +176,19 @@ function validNumAttendees() {
 }
 
 
+
+
 function validateTime() {
     var startTime = document.getElementById('temp_event_start_time');
     var endTime = document.getElementById('temp_event_end_time');
-
+    sixHours = 21600000;
     function startBeforeFinish(e) {
         endTime.setCustomValidity('');
         startTime.setCustomValidity('');
         if ((endTime.value != '') && (startTime != '')) {
             end = getDateFromHours(endTime.value);
             start = getDateFromHours(startTime.value);
-            sixHours = 21600000;
+
             if (end - start <= 0) {
                 e.target.setCustomValidity('You must start before you finish!');
                 e.target.reportValidity();
@@ -196,6 +198,19 @@ function validateTime() {
             }
         }
     }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function setTime(e) {
+        start = getDateFromHours(startTime.value);
+        endTime.value = `${checkTime(start.getHours() + 6)}:00:00`;
+    }
+
+    startTime.addEventListener('input', setTime);
     startTime.addEventListener('input', startBeforeFinish);
     endTime.addEventListener('input', startBeforeFinish);
 }
