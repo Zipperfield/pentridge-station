@@ -178,14 +178,22 @@ function validateTime() {
     var endTime = document.getElementById('temp_event_end_time');
 
     function startBeforeFinish(e) {
-        if ((endTime.value != '') && (startTime != '') &&
-            (getDateFromHours(endTime.value) - getDateFromHours(startTime.value) <= 0)) {
-            e.target.setCustomValidity('The event must start before it finishes.');
-            e.target.reportValidity();
-        } else {
-            endTime.setCustomValidity('');
-            startTime.setCustomValidity('');
-
+        endTime.setCustomValidity('');
+        startTime.setCustomValidity('');
+        if ((endTime.value != '') && (startTime != '')) {
+            end = getDateFromHours(endTime.value);
+            start = getDateFromHours(startTime.value);
+            sixHours = 21600000;
+            console.log(end);
+            console.log(start);
+            console.log(end - start);
+            if (end - start <= 0) {
+                e.target.setCustomValidity('You must start before you finish!');
+                e.target.reportValidity();
+            } else if (end - start < sixHours) {
+                e.target.setCustomValidity("One event rental includes a minimum of 6 hours (1 hour for set up, 4 hour event and 1 hour for cleanup)");
+                e.target.reportValidity();
+            }
         }
     }
     startTime.addEventListener('input', startBeforeFinish);
