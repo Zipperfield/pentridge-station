@@ -187,9 +187,6 @@ function validateTime() {
             end = getDateFromHours(endTime.value);
             start = getDateFromHours(startTime.value);
             sixHours = 21600000;
-            console.log(end);
-            console.log(start);
-            console.log(end - start);
             if (end - start <= 0) {
                 e.target.setCustomValidity('You must start before you finish!');
                 e.target.reportValidity();
@@ -244,11 +241,22 @@ class LineItem {
             this.readableName.value = newName;
         }
         this.updatePrice = function (userInput) {
-            console.log(userInput.isWedding());
-            res = this.base + this.hourly + this.hourly + this.perPerson * userInput.numAttendees;
-            console.log(res);
+            res = this.calculatePrice(userInput);
             this.setPrice(res);
             return res;
+        }
+
+        this.calculatePrice = function (userInput) {
+            console.log(this.isLarge(userInput));
+            // console.log(this.base + userInput.isWedding() * 500 * !!this.base);
+
+            // console.log(userInput.numHours() * this.hourly * (this.isLarge(userInput) + 1));
+            console.log(this.perPerson);
+            console.log(userInput.numAttendees());
+            console.log(this.perPerson * userInput.numAttendees());
+            return (this.base + userInput.isWedding() * 500 * !!this.base +
+                (userInput.numHours() - 2) * this.hourly * (this.isLarge(userInput) + 1) +
+                this.perPerson * userInput.numAttendees());
         }
 
         this.setPrice = function (newPrice) {
@@ -257,14 +265,10 @@ class LineItem {
         }
 
         this.isLarge = function (userInput) {
-            console.log('is large ?');
-            console.log(this.large);
-
             if (this.large < 0) {
                 return false;
             }
-            console.log(userInput.numAttendees > this.large)
-            return (userInput.numAttendees > this.large)
+            return (userInput.numAttendees() > this.large)
         }
 
         this.toggleVisibility = function () {
@@ -276,19 +280,33 @@ class LineItem {
 
 class UserPriceInput {
     constructor() {
-        this.numAttendees = Number(document.getElementById('event_num_attendees').value);
+        this.numberAttendees = document.getElementById('event_num_attendees');
         this.eventType = Number(document.getElementById('event_event_type').value);
+        this.startHour = document.getElementById('temp_event_start_time');
+        this.endHour = document.getElementById('temp_event_end_time');
+        // this.numHours = ((this.endHour - this.startHour) / 3600000)
+
+        this.numAttendees = function () {
+            // console.log('pls');
+            // console.log(this.numberAttendees);
+            return (Number(this.numberAttendees.value));
+        }
 
         this.isWedding = function () {
             return (this.eventType == 0);
+        }
+        this.numHours = function () {
+            return ((getDateFromHours(this.endHour.value) - getDateFromHours(this.startHour.value)) / 3600000)
         }
     }
 }
 
 class PriceTool {
     constructor() {
-        this.bartenderLineItem = new LineItem('bartender', false);
         this.baseLineItem = new LineItem('base', true);
+        this.bartenderLineItem = new LineItem('bartender', false);
+        this.doorpersonLineItem = new LineItem('doorperson', true);
+        this.openBarLineItem = new LineItem('open_bar', false);
         this.estimatedPrice = document.getElementById('estimated_price')
         this.userPriceInput = new UserPriceInput();
 
@@ -300,9 +318,12 @@ class PriceTool {
         this.setPrices = function () {
             console.log('setting prices');
             bartenderPrice = this.bartenderLineItem.updatePrice(this.userPriceInput);
+            basePrice = this.baseLineItem.updatePrice(this.userPriceInput);
+            doorpersonPrice = this.doorpersonLineItem.updatePrice(this.userPriceInput);
+            openBarPrice = this.openBarLineItem.updatePrice(this.userPriceInput);
             console.log('price set');
             console.log(bartenderPrice);
-            this.setEstimatedPrice(bartenderPrice);
+            this.setEstimatedPrice(bartenderPrice + basePrice + doorpersonPrice + openBarPrice);
         }
     }
 
@@ -381,10 +402,8 @@ function validatePreferences() {
         musicianPreference.validate();
 
         if (musicianPreference.isValid && vendorPreference.isValid) {
-            console.log('valid!')
             return true;
         } else {
-            console.log('not valid!')
             event.preventDefault();
             vendorPreference.reset();
             musicianPreference.reset();
@@ -451,8 +470,8 @@ document.addEventListener('turbolinks:load', () => {
             && validNumAttendees()) {
             transferContent(true);
             transferInfo();
-            priceTool.setPrices();
             toggleVisibility(eventFormScreen);
+            priceTool.setPrices();
 
             hideOnClickOutside(eventFormScreen, eventFormContainer);
 
