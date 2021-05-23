@@ -1,7 +1,7 @@
 <div class="m-4 sm:ml-12 md:ml-8 ">
   <div class="md:sticky md:top-10 mt-3 md:mt-72 self-start border border-gray-300 w-full p-4 md:p-8 ">
     <h3 class="text-2xl sm:text-3xl font-bold ">Total Estimated Cost</h3>
-    <h3 class="text-xl sm:text-2xl text-right">$<span id="estimated_price"></span>2500</h3>
+    <h3 class="text-xl sm:text-2xl text-right">$<span id="estimated_price"></span></h3>
     <%= render 'line_item', 
           id: 'base',
           readable_name: 'Base Cost',
@@ -9,7 +9,7 @@
           wedding: 500,
           hourly: 0, 
           per_person: 0,
-          large: ''%>
+          large: -1%>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
@@ -33,6 +33,6 @@
           wedding: 0,
           hourly: 0, 
           per_person: 15,
-          large: ''%>
+          large: -1%>
   </div>
 </div>

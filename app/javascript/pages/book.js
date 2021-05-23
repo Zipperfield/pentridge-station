@@ -217,6 +217,86 @@ function toggleText(element, from, to) {
     }
 }
 
+class LineItem {
+    constructor(id, visibility) {
+        this.section = document.getElementById(id + "_section");
+        this.readableName = document.getElementById(id + "_name");
+        this.price = document.getElementById(id + '_price');
+        this.base = Number(this.section.getAttribute('base'));
+        this.wedding = Number(this.section.getAttribute('wedding'));
+        this.hourly = Number(this.section.getAttribute('hourly'));
+        this.perPerson = Number(this.section.getAttribute('per_person'));
+        this.large = Number(this.section.getAttribute('large'));
+        this.visibility = visibility;
+
+        this.setReadableName = function (newName) {
+            this.readableName.value = newName;
+        }
+        this.updatePrice = function (userInput) {
+            console.log(userInput.isWedding());
+            res = this.base + this.hourly + this.hourly + this.perPerson * userInput.numAttendees;
+            console.log(res);
+            this.setPrice(res);
+            return res;
+        }
+
+        this.setPrice = function (newPrice) {
+            this.price.textContent = newPrice;
+
+        }
+
+        this.isLarge = function (userInput) {
+            console.log('is large ?');
+            console.log(this.large);
+
+            if (this.large < 0) {
+                return false;
+            }
+            console.log(userInput.numAttendees > this.large)
+            return (userInput.numAttendees > this.large)
+        }
+
+        this.toggleVisibility = function () {
+            this.visible = !this.visibility;
+            this.section.classList.toggle('hidden');
+        }
+    }
+}
+
+class UserPriceInput {
+    constructor() {
+        this.numAttendees = Number(document.getElementById('event_num_attendees').value);
+        this.eventType = Number(document.getElementById('event_event_type').value);
+
+        this.isWedding = function () {
+            return (this.eventType == 0);
+        }
+    }
+}
+
+class PriceTool {
+    constructor() {
+        this.bartenderLineItem = new LineItem('bartender', false);
+        this.baseLineItem = new LineItem('base', true);
+        this.estimatedPrice = document.getElementById('estimated_price')
+        this.userPriceInput = new UserPriceInput();
+
+        // document.getElementById('')
+        this.setEstimatedPrice = function (newPrice) {
+            this.estimatedPrice.textContent = newPrice;
+        }
+
+        this.setPrices = function () {
+            console.log('setting prices');
+            bartenderPrice = this.bartenderLineItem.updatePrice(this.userPriceInput);
+            console.log('price set');
+            console.log(bartenderPrice);
+            this.setEstimatedPrice(bartenderPrice);
+        }
+    }
+
+}
+
 class Preference {
     constructor(buttonID, firstChoiceID, secondChoiceID, thirdChoiceID) {
         this.button = document.getElementById(buttonID);
@@ -351,7 +431,7 @@ document.addEventListener('turbolinks:load', () => {
         vendorPartnershipButton.click();
     }
 
-
+    priceTool = new PriceTool();
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
         if (document.getElementById("temp_event_start_time").checkValidity()
@@ -360,6 +440,7 @@ document.addEventListener('turbolinks:load', () => {
             && validNumAttendees()) {
             transferContent(true);
             transferInfo();
+            priceTool.setPrices();
             toggleVisibility(eventFormScreen);
 
             hideOnClickOutside(eventFormScreen, eventFormContainer);
