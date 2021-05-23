@@ -99,6 +99,9 @@ function transferInfo() {
         getSelectedOptionText(document.getElementById('temp_event_end_time'));
     document.getElementById('info_event_type').textContent =
         getSelectedOptionText(document.getElementById('temp_event_event_type'));
+    document.getElementById('info_num_attendees').textContent =
+        document.getElementById('temp_event_num_attendees').value;
+
 }
 
 function transferValue(eventValueName, openingForm) {
