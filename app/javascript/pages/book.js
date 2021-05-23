@@ -253,7 +253,7 @@ class LineItem {
         this.visibility = visibility;
 
         this.setReadableName = function (newName) {
-            this.readableName.value = newName;
+            this.readableName.textContent = newName;
         }
         this.updatePrice = function (userInput) {
             res = this.calculatePrice(userInput);
@@ -296,7 +296,7 @@ class LineItem {
 class UserPriceInput {
     constructor() {
         this.numberAttendees = document.getElementById('event_num_attendees');
-        this.eventType = Number(document.getElementById('event_event_type').value);
+        this.eventType = document.getElementById('event_event_type');
         this.startHour = document.getElementById('temp_event_start_time');
         this.endHour = document.getElementById('temp_event_end_time');
         // this.numHours = ((this.endHour - this.startHour) / 3600000)
@@ -308,7 +308,7 @@ class UserPriceInput {
         }
 
         this.isWedding = function () {
-            return (this.eventType == 0);
+            return (this.eventType.value == '0');
         }
         this.numHours = function () {
             return ((getDateFromHours(this.endHour.value) - getDateFromHours(this.startHour.value)) / 3600000)
@@ -330,7 +330,21 @@ class PriceTool {
             this.estimatedPrice.textContent = newPrice;
         }
 
+        this.pluralize = function () {
+            if (this.bartenderLineItem.isLarge(this.userPriceInput)) {
+                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
+            } else {
+                this.bartenderLineItem.setReadableName('BART Certified Bartender');
+            }
+            if (this.doorpersonLineItem.isLarge(this.userPriceInput)) {
+                this.doorpersonLineItem.setReadableName('Doorpersons');
+            } else {
+                this.doorpersonLineItem.setReadableName('Doorperson');
+            }
+        }
+
         this.setPrices = function () {
+            this.pluralize();
             console.log('setting prices');
             bartenderPrice = this.bartenderLineItem.updatePrice(this.userPriceInput);
             basePrice = this.baseLineItem.updatePrice(this.userPriceInput);
