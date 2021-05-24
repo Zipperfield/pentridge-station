@@ -90,9 +90,13 @@ function formatDateForInfo(date) {
     return `${month} ${date.getDate()}${nth(date.getDate())}`
 }
 
+function changeValueToDate(element) {
+    return new Date(element.value.replace(/-/g, '\/'))
+}
+
 function transferInfo() {
     document.getElementById('info_date').textContent =
-        formatDateForInfo(new Date(document.getElementById('temp_event_date').value.replace(/-/g, '\/')));
+        formatDateForInfo(changeValueToDate(document.getElementById('temp_event_date')));
     document.getElementById('info_start_time').textContent =
         getSelectedOptionText(document.getElementById('temp_event_start_time'));
     document.getElementById('info_end_time').textContent =
@@ -286,6 +290,20 @@ class LineItem {
             return (userInput.numAttendees() > this.large)
         }
 
+        this.hide = function () {
+            if (this.section.classList.contains('hidden')) {
+                return;
+            }
+            this.section.classList.add('hidden');
+        }
+
+        this.show = function () {
+            if (this.section.classList.contains('hidden')) {
+                this.section.classList.remove('hidden');
+            }
+
+        }
+
         this.toggleVisibility = function () {
             this.visible = !this.visibility;
             this.section.classList.toggle('hidden');
@@ -299,6 +317,7 @@ class UserPriceInput {
         this.eventType = document.getElementById('event_event_type');
         this.startHour = document.getElementById('temp_event_start_time');
         this.endHour = document.getElementById('temp_event_end_time');
+        this.date = document.getElementById('temp_event_date');
         // this.numHours = ((this.endHour - this.startHour) / 3600000)
 
         this.numAttendees = function () {
@@ -313,6 +332,26 @@ class UserPriceInput {
         this.numHours = function () {
             return ((getDateFromHours(this.endHour.value) - getDateFromHours(this.startHour.value)) / 3600000)
         }
+        this.addedBusinessCost = function () {
+            return this.businessHours() && this.dateIsBusinessDay();
+        }
+
+        this.businessHours = function () {
+            return (getDateFromHours(this.endHour.value).getHours() > 17);
+        }
+
+        this.dateIsBusinessDay = function () {
+            switch (changeValueToDate(this.date).getDay()) {
+                case 0:
+                    return true;
+                case 6:
+                    return true;
+                case 7:
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 }
 
@@ -322,10 +361,15 @@ class PriceTool {
         this.bartenderLineItem = new LineItem('bartender', false);
         this.doorpersonLineItem = new LineItem('doorperson', true);
         this.openBarLineItem = new LineItem('open_bar', false);
-        this.estimatedPrice = document.getElementById('estimated_price')
+        this.businessLineItem = new LineItem('business_operation', false);
+        this.estimatedPrice = document.getElementById('estimated_price');
         this.userPriceInput = new UserPriceInput();
 
+
+        this.businessLineItem.setPrice(500);
+
         // document.getElementById('')
+
         this.setEstimatedPrice = function (newPrice) {
             this.estimatedPrice.textContent = newPrice;
         }
@@ -342,17 +386,30 @@ class PriceTool {
                 this.doorpersonLineItem.setReadableName('Doorperson');
             }
         }
+        this.checkBusinessHours = function () {
+            if (this.userPriceInput.addedBusinessCost()) {
+                this.businessLineItem.show();
+                return 500;
+            } else {
+                this.businessLineItem.hide();
+                return 0;
+            }
+        }
+
+
 
         this.setPrices = function () {
+
             this.pluralize();
             console.log('setting prices');
             bartenderPrice = this.bartenderLineItem.updatePrice(this.userPriceInput);
             basePrice = this.baseLineItem.updatePrice(this.userPriceInput);
             doorpersonPrice = this.doorpersonLineItem.updatePrice(this.userPriceInput);
             openBarPrice = this.openBarLineItem.updatePrice(this.userPriceInput);
+            businessExpense = this.checkBusinessHours();
             console.log('price set');
             console.log(bartenderPrice);
-            this.setEstimatedPrice(bartenderPrice + basePrice + doorpersonPrice + openBarPrice);
+            this.setEstimatedPrice(bartenderPrice + basePrice + doorpersonPrice + openBarPrice + businessExpense);
         }
     }
 
@@ -448,6 +505,7 @@ document.addEventListener('turbolinks:load', () => {
     if (document.getElementById('header').getAttribute('page') != 'book') {
         return
     }
+    priceTool = new PriceTool();
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
@@ -490,7 +548,6 @@ document.addEventListener('turbolinks:load', () => {
         vendorPartnershipButton.click();
     }
 
-    priceTool = new PriceTool();
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
         if (document.getElementById("temp_event_start_time").checkValidity()
