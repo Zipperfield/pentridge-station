@@ -11,6 +11,14 @@
           per_person: 0,
           large: -1%>
     <%= render 'line_item', 
+          id: 'business_operation',
+          readable_name: 'Closing Cost *',
+          base: 0,
+          wedding: 0,
+          hourly: 0, 
+          per_person: 0,
+          large: -1%>
+    <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
           base: 0,
@@ -33,14 +41,6 @@
           wedding: 0,
           hourly: 0, 
           per_person: 15,
-          large: -1%>
-    <%= render 'line_item', 
-          id: 'business_operation',
-          readable_name: 'Business Operation Expense',
-          base: 0,
-          wedding: 0,
-          hourly: 0, 
-          per_person: 0,
           large: -1%>
   </div>
 </div>

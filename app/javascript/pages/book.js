@@ -265,30 +265,31 @@ class LineItem {
             return res;
         }
 
-        this.calculatePrice = function (userInput) {
-            console.log(this.isLarge(userInput));
-            // console.log(this.base + userInput.isWedding() * 500 * !!this.base);
 
-            // console.log(userInput.numHours() * this.hourly * (this.isLarge(userInput) + 1));
-            console.log(this.perPerson);
-            console.log(userInput.numAttendees());
-            console.log(this.perPerson * userInput.numAttendees());
-            return (this.base + userInput.isWedding() * 500 * !!this.base +
-                (userInput.numHours() - 2) * this.hourly * (this.isLarge(userInput) + 1) +
-                this.perPerson * userInput.numAttendees());
+        this.calculateBasePrice = function (userInput) {
+            return (this.setPrice(
+                500 +
+                250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
+                500 * userInput.isWedding() * !userInput.addedBusinessCost() +
+                1000 * userInput.addedBusinessCost() +
+                250 * !userInput.addedBusinessCost() * userInput.isLarge()));
+        }
+
+        this.calculateHourlyPrice = function (userInput) {
+            return (this.setPrice(
+                (userInput.numHours() - 2) * this.hourly * (userInput.isLarge() + 1)));
+        }
+
+        this.calculatePerPersonPrice = function (userInput) {
+            return (this.setPrice(
+                this.perPerson * userInput.numAttendees()));
         }
 
         this.setPrice = function (newPrice) {
             this.price.textContent = newPrice;
-
+            return newPrice;
         }
 
-        this.isLarge = function (userInput) {
-            if (this.large < 0) {
-                return false;
-            }
-            return (userInput.numAttendees() > this.large)
-        }
 
         this.hide = function () {
             if (this.section.classList.contains('hidden')) {
@@ -352,6 +353,9 @@ class UserPriceInput {
                     return false;
             }
         }
+        this.isLarge = function () {
+            return (this.numAttendees() > 25)
+        }
     }
 }
 
@@ -366,7 +370,7 @@ class PriceTool {
         this.userPriceInput = new UserPriceInput();
 
 
-        this.businessLineItem.setPrice(500);
+        this.businessLineItem.setPrice('*');
 
         // document.getElementById('')
 
@@ -375,12 +379,12 @@ class PriceTool {
         }
 
         this.pluralize = function () {
-            if (this.bartenderLineItem.isLarge(this.userPriceInput)) {
+            if (this.userPriceInput.isLarge()) {
                 this.bartenderLineItem.setReadableName('BART Certified Bartenders');
             } else {
                 this.bartenderLineItem.setReadableName('BART Certified Bartender');
             }
-            if (this.doorpersonLineItem.isLarge(this.userPriceInput)) {
+            if (this.userPriceInput.isLarge()) {
                 this.doorpersonLineItem.setReadableName('Doorpersons');
             } else {
                 this.doorpersonLineItem.setReadableName('Doorperson');
@@ -389,10 +393,8 @@ class PriceTool {
         this.checkBusinessHours = function () {
             if (this.userPriceInput.addedBusinessCost()) {
                 this.businessLineItem.show();
-                return 500;
             } else {
                 this.businessLineItem.hide();
-                return 0;
             }
         }
 
@@ -402,14 +404,15 @@ class PriceTool {
 
             this.pluralize();
             console.log('setting prices');
-            bartenderPrice = this.bartenderLineItem.updatePrice(this.userPriceInput);
-            basePrice = this.baseLineItem.updatePrice(this.userPriceInput);
-            doorpersonPrice = this.doorpersonLineItem.updatePrice(this.userPriceInput);
-            openBarPrice = this.openBarLineItem.updatePrice(this.userPriceInput);
-            businessExpense = this.checkBusinessHours();
+            basePrice = this.baseLineItem.calculateBasePrice(this.userPriceInput);
+
+            bartenderPrice = this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput);
+            doorpersonPrice = this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput);
+            openBarPrice = this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput);
+            this.checkBusinessHours();
             console.log('price set');
             console.log(bartenderPrice);
-            this.setEstimatedPrice(bartenderPrice + basePrice + doorpersonPrice + openBarPrice + businessExpense);
+            this.setEstimatedPrice(basePrice + bartenderPrice + doorpersonPrice + openBarPrice);
         }
     }
 
