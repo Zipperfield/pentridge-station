@@ -249,11 +249,8 @@ class LineItem {
         this.section = document.getElementById(id + "_section");
         this.readableName = document.getElementById(id + "_name");
         this.price = document.getElementById(id + '_price');
-        this.base = Number(this.section.getAttribute('base'));
-        this.wedding = Number(this.section.getAttribute('wedding'));
         this.hourly = Number(this.section.getAttribute('hourly'));
         this.perPerson = Number(this.section.getAttribute('per_person'));
-        this.large = Number(this.section.getAttribute('large'));
         this.visibility = visibility;
 
         this.setReadableName = function (newName) {

@@ -5,42 +5,28 @@
     <%= render 'line_item', 
           id: 'base',
           readable_name: 'Base Cost',
-          base: 1500,
-          wedding: 500,
-          hourly: 0, 
-          per_person: 0,
-          large: -1%>
+          values: ""
+      %>
     <%= render 'line_item', 
           id: 'business_operation',
           readable_name: 'Closing Cost *',
-          base: 0,
-          wedding: 0,
-          hourly: 0, 
-          per_person: 0,
-          large: -1%>
+          values: ""
+
+      %>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
-          base: 0,
-          wedding: 0,
-          hourly: 30, 
-          per_person: 0,
-          large: 25%>
+          values: "hourly= 30 "
+      %>
     <%= render 'line_item', 
           id: 'bartender',
           readable_name: 'BART Certified Bartender',
-          base: 0,
-          wedding: 0,
-          hourly: 30, 
-          per_person: 0,
-          large: 25%>
+          values: "hourly= 30 "
+      %>
     <%= render 'line_item', 
           id: 'open_bar',
           readable_name: 'Open Bar ',
-          base: 0,
-          wedding: 0,
-          hourly: 0, 
-          per_person: 15,
-          large: -1%>
+          values: "per_person= 15 "
+      %>
   </div>
 </div>
