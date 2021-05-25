@@ -5,10 +5,10 @@
   <div><%= select_tag "temp_event_start_time",
     options_for_select(@event.hourly_choices(8,17),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T")), 
     class: 'form-select temp-form-style mb-2', required: true, autocomplete: "off", include_blank: 'start time'%></div>
-  <div class="font-bold text-xl my-3">Atendees</div>
+  <div class="font-bold text-xl my-3">Attendees</div>
   <div>
     <%= number_field_tag "temp_event_num_attendees", nil,
-    placeholder: 'number of attendees',
+    placeholder: 'estimated number',
       class: 'form-select temp-form-style',
       in: 1..300,
       step: 1,
