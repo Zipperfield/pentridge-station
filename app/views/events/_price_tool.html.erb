@@ -5,28 +5,32 @@
     <%= render 'line_item', 
           id: 'base',
           readable_name: 'Base Cost',
-          values: ""
+          values: "",
+          details: ""
       %>
     <%= render 'line_item', 
           id: 'business_operation',
           readable_name: 'Closing Cost *',
-          values: ""
-
+          values: "",
+          details: "You can avoid this fee by ending the event and clean up by 5 PM."
       %>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
-          values: "hourly= 30 "
+          values: "hourly= 30 ",
+          details: ""
       %>
     <%= render 'line_item', 
           id: 'bartender',
           readable_name: 'BART Certified Bartender',
-          values: "hourly= 30 "
+          values: "hourly= 30 ",
+          details: ""
       %>
     <%= render 'line_item', 
           id: 'open_bar',
           readable_name: 'Open Bar ',
-          values: "per_person= 15 "
+          values: "per_person= 15 ",
+          details: ""
       %>
   </div>
 </div>

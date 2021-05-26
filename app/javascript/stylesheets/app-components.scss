@@ -70,4 +70,12 @@
   .bg-popup-gray {
     background-color: rgba(247, 248, 248, var(--tw-bg-opacity));
   }
+
+  .tool-tip::after {
+    content: "";
+    margin-top: -5px;
+    border-color: transparent transparent
+      rgba(247, 248, 248, var(--tw-bg-opacity)) transparent;
+    @apply top-0 left-6 absolute border-solid border-8;
+  }
 }
