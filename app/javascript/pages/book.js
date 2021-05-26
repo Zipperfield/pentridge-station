@@ -264,26 +264,25 @@ class LineItem {
 
 
         this.calculateBasePrice = function (userInput) {
-            return (this.setPrice(
+            return (
                 500 +
                 250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
                 500 * userInput.isWedding() * !userInput.addedBusinessCost() +
                 1000 * userInput.addedBusinessCost() +
-                250 * !userInput.addedBusinessCost() * userInput.isLarge()));
+                250 * !userInput.addedBusinessCost() * userInput.isLarge());
         }
 
-        this.calculateHourlyPrice = function (userInput) {
-            return (this.setPrice(
-                (userInput.numHours() - 2) * this.hourly * (userInput.isLarge() + 1)));
+        this.calculateHourlyPrice = function (userInput, hoursReduced = 2) {
+            console.log(userInput.numHours() - hoursReduced);
+            return ((userInput.numHours() - hoursReduced) * this.hourly * (userInput.isLarge() + 1));
         }
 
         this.calculatePerPersonPrice = function (userInput) {
-            return (this.setPrice(
-                this.perPerson * userInput.numAttendees()));
+            return (this.perPerson * userInput.numAttendees());
         }
 
-        this.setPrice = function (newPrice) {
-            this.price.textContent = newPrice;
+        this.setPrice = function (newPrice, lead = '$', close = "") {
+            this.price.textContent = lead + newPrice + close;
             return newPrice;
         }
 
@@ -342,9 +341,9 @@ class UserPriceInput {
             switch (changeValueToDate(this.date).getDay()) {
                 case 0:
                     return true;
-                case 6:
+                case 5:
                     return true;
-                case 7:
+                case 6:
                     return true;
                 default:
                     return false;
@@ -363,16 +362,22 @@ class PriceTool {
         this.doorpersonLineItem = new LineItem('doorperson', true);
         this.openBarLineItem = new LineItem('open_bar', false);
         this.businessLineItem = new LineItem('business_operation', false);
+        this.musicianLineItem = new LineItem('musician_cost', false);
+        this.vendorLineItem = new LineItem('food_vendor_cost', false);
         this.estimatedPrice = document.getElementById('estimated_price');
         this.userPriceInput = new UserPriceInput();
 
 
-        this.businessLineItem.setPrice('*');
+        this.businessLineItem.setPrice('*', lead = '');
 
         // document.getElementById('')
 
-        this.setEstimatedPrice = function (newPrice) {
-            this.estimatedPrice.textContent = newPrice;
+        this.setEstimatedPrice = function (newPrice, musicAndFoodPrice) {
+            close = ""
+            if (musicAndFoodPrice > 0) {
+                close = "+"
+            }
+            this.estimatedPrice.textContent = newPrice + close;
         }
 
         this.pluralize = function () {
@@ -401,15 +406,20 @@ class PriceTool {
 
             this.pluralize();
             console.log('setting prices');
-            basePrice = this.baseLineItem.calculateBasePrice(this.userPriceInput);
+            basePrice = this.baseLineItem.setPrice(this.baseLineItem.calculateBasePrice(this.userPriceInput));
 
-            bartenderPrice = this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput);
-            doorpersonPrice = this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput);
-            openBarPrice = this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput);
+            bartenderPrice = this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput));
+            doorpersonPrice = this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput));
+            openBarPrice = this.openBarLineItem.setPrice(this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput));
+            vendorPrice = this.vendorLineItem.setPrice(this.vendorLineItem.calculatePerPersonPrice(this.userPriceInput), "$", "+*")
+            musicianPrice = this.musicianLineItem.setPrice(this.musicianLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*")
             this.checkBusinessHours();
             console.log('price set');
             console.log(bartenderPrice);
-            this.setEstimatedPrice(basePrice + bartenderPrice + doorpersonPrice + openBarPrice);
+            this.setEstimatedPrice(
+                basePrice + bartenderPrice + doorpersonPrice + openBarPrice + vendorPrice + musicianPrice,
+                vendorPrice + musicianPrice
+            );
         }
     }
 
