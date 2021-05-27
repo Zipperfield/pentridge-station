@@ -296,7 +296,7 @@ class LineItem {
                     250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
                     500 * userInput.isWedding() * !userInput.addedBusinessCost() +
                     1000 * userInput.addedBusinessCost() +
-                    250 * !userInput.addedBusinessCost() * userInput.isLarge()));
+                    250 * !userInput.addedBusinessCost() * userInput.isLarge() * !userInput.isWedding()));
         }
 
         this.calculateHourlyPrice = function (userInput, hoursReduced = 2) {
