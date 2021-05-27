@@ -1,6 +1,6 @@
 <div alert=<%= flash[:alert] ? 'true' : 'false' %> 
   id="event_form_screen" 
-  class="hidden fixed z-30 w-full h-full top-0 left-0 bg-opacity-80 bg-gray-700 justify-center">
+  class="flex fixed z-30 w-full h-full top-0 left-0 bg-opacity-80 bg-gray-700 justify-center">
   <div id="event_form_container" class="bg-white bg-opacity-95 self-center w-11/12 sm:w-5/6 h-11/12 flex flex-col md:flex-row overflow-auto">
     <div class="md:w-2/3 z-0 relative">
       <%= render 'events/form/title' %>

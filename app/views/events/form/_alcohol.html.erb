@@ -1,5 +1,6 @@
-<div class="flex " >
-  <%= render 'shared/toggle_button',
+<div class="mb-3">
+  <div class="flex " >
+    <%= render 'shared/toggle_button',
                 name: 'event_alcohol',
                 input: (f.check_box :alcohol,
                             id: 'event_alcohol',
@@ -8,17 +9,26 @@
                             click_again: (!@event.alcohol.nil? && 
                                             @event.alcohol?) ? 'true' : 'false')
                              %>
-  <p class="ml-2 mb-2" id= 'event_alcohol_text'>There will be <b> NO </b> alcohol at my event.</p>
-</div>
-<div class="flex" id="open_bar_toggle_section" >
-  <%= render 'shared/toggle_button',
-                name: 'event_open_bar',
-                input: (f.check_box :open_bar,
+    <p class="ml-2 mb-2" id= 'event_alcohol_text'>There will be <b> NO </b> alcohol at my event.</p>
+  </div>
+  <%# click_again: (!@event.open_bar.nil? && 
+                                            @event.open_bar?) ? 'true' : 'false') %>
+  <div class="ml-20" id="open_bar_toggle_section" >
+    <div class="flex" >
+      <%= f.check_box :open_bar,
                             id: 'event_open_bar',
-                            class: 'sr-only',
-                            checked: '',
-                            click_again: (!@event.open_bar.nil? && 
-                                            @event.open_bar?) ? 'true' : 'false')
+                            class: '',
+                            checked: 'checked'
                              %>
-  <p class="ml-2 mb-2" id= 'event_open_bar_text'>I will provide the alcohol, Pentridge Station will provide the bartender.</p>
+      <p class="ml-2 mb-2" id= 'event_open_bar_text'>Pentridge Station will provide an open bar.</p>
+    </div>
+    <div class="flex" >
+      <%= check_box_tag 'name',
+                            id: 'event_byob',
+                            class: '',
+                            checked: ''
+                             %>
+      <p class="ml-2 mb-2" id= 'event_open_bar_text'>I will bring my own alcohol, and Pentridge Station will provide a BART certified bartender.</p>
+    </div>
+  </div>
 </div>

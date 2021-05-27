@@ -78,4 +78,7 @@
       rgba(247, 248, 248, var(--tw-bg-opacity)) transparent;
     @apply top-0 left-6 absolute border-solid border-8;
   }
+  .line-item {
+    @apply group font-light relative inline-block group text-lg;
+  }
 }
