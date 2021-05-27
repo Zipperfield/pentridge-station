@@ -12,7 +12,7 @@
           id: 'business_operation',
           readable_name: 'Closing Fee',
           values: "",
-          details: "You can avoid this fee by having cleaned the space and being out by 5 PM firm."
+          details: "The base cost increased because we would have to close the bar during business hours. You can avoid this added cost by cleaning and vaquating the space by 5 PM firm."
       %>
     <%= render 'line_item', 
           id: 'doorperson',
@@ -36,13 +36,13 @@
           id: 'musician_cost',
           readable_name: 'Musician Booking',
           values: "hourly= 100",
-          details: "Most musicians have a two hour booking minimum."
+          details: "Musicians have a two hour booking minimum."
       %>
     <%= render 'line_item', 
           id: 'food_vendor_cost',
           readable_name: 'Food Vendor Booking',
           values: "per_person= 10",
-          details: "Food vendor pricing is based off your requested menu. Options range from street fare to full course meals."
+          details: "Food vendor pricing is based on your requested menu. Options range from $10 per person for a simpler dish to $200 per person for a full course meal."
       %>
   </div>
 </div>
