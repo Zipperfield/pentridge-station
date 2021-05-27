@@ -154,7 +154,6 @@ function transferContent(openingForm) {
 }
 
 function toggleVisibility(element) {
-    console.log("toggleVisibility")
     if (element.classList.contains('flex')) {
         element.classList.remove('flex');
         element.classList.add('hidden');
@@ -183,8 +182,6 @@ function getDateFromHours(time) {
 function validNumAttendees() {
     var tempNumAttendees = document.getElementById('temp_event_num_attendees');
     tempNumAttendees.setCustomValidity('');
-    console.log(tempNumAttendees.value);
-    console.log(tempNumAttendees.value === "");
 
     if (tempNumAttendees.value === "") {
         tempNumAttendees.setCustomValidity('Please fill out this field.');
@@ -266,7 +263,7 @@ function toggleText(element, from, to) {
 }
 
 class LineItem {
-    constructor(id, controller = "") {
+    constructor(id, controller = "", altController = "") {
         this.section = document.getElementById(id + "_section");
         this.readableName = document.getElementById(id + "_name");
         this.price = document.getElementById(id + '_price');
@@ -274,6 +271,7 @@ class LineItem {
         this.perPerson = Number(this.section.getAttribute('per_person'));
         this.controllingButton = document.getElementById(controller);
 
+        this.altControllingButton = document.getElementById(altController);
 
 
         this.visible = function () {
@@ -388,7 +386,7 @@ class PriceTool {
         this.baseLineItem = new LineItem('base');
         this.bartenderLineItem = new LineItem('bartender', "event_alcohol");
         this.doorpersonLineItem = new LineItem('doorperson', "event_doorperson");
-        this.openBarLineItem = new LineItem('open_bar', "event_open_bar");
+        this.openBarLineItem = new LineItem('open_bar', "event_open_bar", "event_byob");
         this.businessLineItem = new LineItem('business_operation',);
         this.musicianLineItem = new LineItem('musician_cost', "event_musician_partnership");
         this.vendorLineItem = new LineItem('food_vendor_cost', "event_vendor_partnership");
@@ -399,7 +397,7 @@ class PriceTool {
         this.calculateEstimatePrice = function () {
             return (this.basePrice() +
                 this.bartenderPrice() +
-                this.doorPersonPrice() +
+                this.doorpersonPrice() +
                 this.openBarPrice() +
                 this.musicianPrice() +
                 this.vendorPrice());
@@ -424,7 +422,42 @@ class PriceTool {
                 this.businessLineItem.hide();
             }
         }
+        this.pluralizeBartenderText = function () {
+            if (this.userPriceInput.isLarge()) {
+                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
+            } else {
+                this.bartenderLineItem.setReadableName('BART Certified Bartender');
+            }
+        }
 
+        this.pluralizeDoorPersonText = function () {
+            if (this.userPriceInput.isLarge()) {
+                this.doorpersonLineItem.setReadableName('Doorpersons');
+            } else {
+                this.doorpersonLineItem.setReadableName('Doorperson');
+            }
+        }
+
+
+        this.doorpersonSpecificAfterClick = function () {
+            e = document.getElementById("event_doorperson_text");
+            if (e.textContent == "Pentridge Station will provide a doorperson.") {
+                e.textContent = "I will provide a doorperson for my event.";
+            } else {
+                e.textContent = "Pentridge Station will provide a doorperson.";
+            }
+        }
+
+        this.alcoholSpecificAfterClick = function () {
+            console.log('toggleAlcoholText');
+            e = document.getElementById("event_alcohol_text");
+            if (e.textContent == "NOT") {
+                e.textContent = "";
+            } else {
+                e.textContent = "NOT";
+            }
+            document.getElementById('open_bar_toggle_section').classList.toggle('hidden');
+        }
 
         this.basePrice = function () {
             return (this.baseLineItem.setPrice(this.baseLineItem.calculateBasePrice(this.userPriceInput)));
@@ -432,21 +465,14 @@ class PriceTool {
         }
 
         this.bartenderPrice = function () {
-            if (this.userPriceInput.isLarge()) {
-                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
-            } else {
-                this.bartenderLineItem.setReadableName('BART Certified Bartender');
-            }
+            this.pluralizeBartenderText();
             return (this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput)));
         }
 
 
-        this.doorPersonPrice = function () {
-            if (this.userPriceInput.isLarge()) {
-                this.doorpersonLineItem.setReadableName('Doorpersons');
-            } else {
-                this.doorpersonLineItem.setReadableName('Doorperson');
-            }
+
+        this.doorpersonPrice = function () {
+            this.pluralizeDoorPersonText();
             return (this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput)));
         }
         this.openBarPrice = function () {
@@ -471,27 +497,34 @@ class PriceTool {
 
         this.setPrices = this.setPrices.bind(this);
 
-        this.addLineItemListener = function (lineItem, func) {
+        this.addLineItemListener = function (lineItem, func, specificFunc = function () { }) {
             if (!!lineItem.controllingButton) {
                 console.log('addding listener')
                 lineItem.controllingButton.addEventListener('click', function () {
-                    console.log('-----:')
-                    console.log(lineItem.visible);
                     lineItem.toggleVisibility();
                     func();
+                    specificFunc();
+                });
+            }
+            if (!!lineItem.altControllingButton) {
+                console.log('addding listener')
+                lineItem.altControllingButton.addEventListener('click', function () {
+                    lineItem.toggleVisibility();
+                    func();
+                    specificFunc();
                 });
             }
         };
 
         this.addLineItemListeners = function () {
             this.addLineItemListener(this.bartenderLineItem, this.setPrices);
-            this.addLineItemListener(this.doorpersonLineItem, this.setPrices);
+            this.addLineItemListener(this.doorpersonLineItem, this.setPrices, this.doorpersonSpecificAfterClick);
             this.addLineItemListener(this.openBarLineItem, this.setPrices);
             this.addLineItemListener(this.musicianLineItem, this.setPrices);
             this.addLineItemListener(this.vendorLineItem, this.setPrices);
+            document.getElementById('event_alcohol').addEventListener('click', this.alcoholSpecificAfterClick);
         }
     }
-
 }
 
 
@@ -563,9 +596,6 @@ function validatePreferences() {
         'event_preferences_attributes_1_third_choice_id')
 
     document.getElementById('event_form').addEventListener('submit', (event) => {
-        console.log('validating');
-
-
         vendorPreference.validate();
         musicianPreference.validate();
 

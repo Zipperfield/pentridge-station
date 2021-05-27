@@ -9,11 +9,11 @@
                             click_again: (!@event.alcohol.nil? && 
                                             @event.alcohol?) ? 'true' : 'false')
                              %>
-    <p class="ml-2 mb-2" id= 'event_alcohol_text'>There will be <b> NO </b> alcohol at my event.</p>
+    <p class="ml-2 mb-2">There will <span class="semibold" id= 'event_alcohol_text'>NOT</span> be alcohol at my event.</p>
   </div>
   <%# click_again: (!@event.open_bar.nil? && 
                                             @event.open_bar?) ? 'true' : 'false') %>
-  <div class="ml-20" id="open_bar_toggle_section" >
+  <div class="ml-20 hidden" id="open_bar_toggle_section">
     <div class="flex" >
       <%= f.check_box :open_bar,
                             id: 'event_open_bar',
