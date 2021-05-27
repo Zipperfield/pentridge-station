@@ -18,17 +18,17 @@
       <%= f.check_box :open_bar,
                             id: 'event_open_bar',
                             class: '',
-                            checked: 'checked'
-                             %>
-      <p class="ml-2 mb-2" id= 'event_open_bar_text'>Pentridge Station will provide an open bar.</p>
-    </div>
-    <div class="flex" >
-      <%= check_box_tag 'name',
-                            id: 'event_byob',
-                            class: '',
                             checked: ''
                              %>
-      <p class="ml-2 mb-2" id= 'event_open_bar_text'>I will bring my own alcohol, and Pentridge Station will provide a BART certified bartender.</p>
+      <p class="ml-2 mb-2">Pentridge Station will provide an open bar.</p>
+    </div>
+    <div class="flex" >
+      <%= check_box_tag 'event_byob',
+                            '',
+                            true,
+                            class: ''
+                             %>
+      <p class="ml-2 mb-2">I will bring my own alcohol, and Pentridge Station will provide a BART certified bartender.</p>
     </div>
   </div>
 </div>

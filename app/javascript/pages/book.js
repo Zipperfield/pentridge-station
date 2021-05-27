@@ -32,7 +32,28 @@ function embedMap() {
 }
 
 
+function alcoholChoiceHelper() {
+    openInput = document.getElementById('event_open_bar');
+    byobInput = document.getElementById('event_byob');
 
+    function switchCheck(value) {
+        if (value == false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const switchClick = event => {
+        if (event.target == openInput) {
+            byobInput.checked = switchCheck(byobInput.checked);
+        } else {
+            openInput.checked = switchCheck(openInput.checked);
+        }
+    }
+    openInput.addEventListener('click', switchClick);
+    byobInput.addEventListener('click', switchClick);
+}
 
 function hideOnClickOutside(parent, child) {
     const outsideClickListener = event => {
@@ -530,6 +551,7 @@ document.addEventListener('turbolinks:load', () => {
     validateDate();
     validateTime();
     validatePreferences();
+    alcoholChoiceHelper();
     // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
