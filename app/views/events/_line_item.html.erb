@@ -2,7 +2,7 @@
     class= "<%=class_names({"hidden": !visible}, "line-item")%>" 
   <%=values%>>
   <p id="<%=id%>_name" 
-    class= "<%=class_names({"underline": !details.empty? }, "line-item-name")%>" >
+    class= "<%=class_names({"underline": !details.empty? }, "line-item-text")%>" >
     <% if !details.empty? %>
       <span class="opacity-0 group-hover:opacity-100 leading-none text-md tool-tip z-50 bg-popup-gray py-3 px-4 w-56 sm:w-72 shadow-md absolute top-6 md:top-0 md:-left-72 ">
         <%= details %>
