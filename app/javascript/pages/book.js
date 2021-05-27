@@ -266,13 +266,19 @@ function toggleText(element, from, to) {
 }
 
 class LineItem {
-    constructor(id, visibility) {
+    constructor(id, controller = "") {
         this.section = document.getElementById(id + "_section");
         this.readableName = document.getElementById(id + "_name");
         this.price = document.getElementById(id + '_price');
         this.hourly = Number(this.section.getAttribute('hourly'));
         this.perPerson = Number(this.section.getAttribute('per_person'));
-        this.visibility = visibility;
+        this.controllingButton = document.getElementById(controller);
+
+
+
+        this.visible = function () {
+            return (!this.section.classList.contains('hidden'));
+        }
 
         this.setReadableName = function (newName) {
             this.readableName.textContent = newName;
@@ -286,21 +292,23 @@ class LineItem {
 
         this.calculateBasePrice = function (userInput) {
             return (
-                500 +
-                250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
-                500 * userInput.isWedding() * !userInput.addedBusinessCost() +
-                1000 * userInput.addedBusinessCost() +
-                250 * !userInput.addedBusinessCost() * userInput.isLarge());
+                (500 +
+                    250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
+                    500 * userInput.isWedding() * !userInput.addedBusinessCost() +
+                    1000 * userInput.addedBusinessCost() +
+                    250 * !userInput.addedBusinessCost() * userInput.isLarge()));
         }
 
         this.calculateHourlyPrice = function (userInput, hoursReduced = 2) {
-            console.log(userInput.numHours() - hoursReduced);
-            return ((userInput.numHours() - hoursReduced) * this.hourly * (userInput.isLarge() + 1));
+            return (this.visible() *
+                (userInput.numHours() - hoursReduced) * this.hourly * (userInput.isLarge() + 1));
         }
 
         this.calculatePerPersonPrice = function (userInput) {
-            return (this.perPerson * userInput.numAttendees());
+            return (this.visible() *
+                this.perPerson * userInput.numAttendees());
         }
+
 
         this.setPrice = function (newPrice, lead = '$', close = "") {
             this.price.textContent = lead + newPrice + close;
@@ -309,23 +317,22 @@ class LineItem {
 
 
         this.hide = function () {
-            if (this.section.classList.contains('hidden')) {
+            if (this.visible()) {
                 return;
             }
             this.section.classList.add('hidden');
         }
 
         this.show = function () {
-            if (this.section.classList.contains('hidden')) {
+            if (!this.visible()) {
                 this.section.classList.remove('hidden');
             }
 
         }
-
         this.toggleVisibility = function () {
-            this.visible = !this.visibility;
             this.section.classList.toggle('hidden');
         }
+
     }
 }
 
@@ -378,41 +385,38 @@ class UserPriceInput {
 
 class PriceTool {
     constructor() {
-        this.baseLineItem = new LineItem('base', true);
-        this.bartenderLineItem = new LineItem('bartender', false);
-        this.doorpersonLineItem = new LineItem('doorperson', true);
-        this.openBarLineItem = new LineItem('open_bar', false);
-        this.businessLineItem = new LineItem('business_operation', false);
-        this.musicianLineItem = new LineItem('musician_cost', false);
-        this.vendorLineItem = new LineItem('food_vendor_cost', false);
+        this.baseLineItem = new LineItem('base');
+        this.bartenderLineItem = new LineItem('bartender', "event_alcohol");
+        this.doorpersonLineItem = new LineItem('doorperson', "event_doorperson");
+        this.openBarLineItem = new LineItem('open_bar', "event_open_bar");
+        this.businessLineItem = new LineItem('business_operation',);
+        this.musicianLineItem = new LineItem('musician_cost', "event_musician_partnership");
+        this.vendorLineItem = new LineItem('food_vendor_cost', "event_vendor_partnership");
         this.estimatedPrice = document.getElementById('estimated_price');
         this.userPriceInput = new UserPriceInput();
 
 
+        this.calculateEstimatePrice = function () {
+            return (this.basePrice() +
+                this.bartenderPrice() +
+                this.doorPersonPrice() +
+                this.openBarPrice() +
+                this.musicianPrice() +
+                this.vendorPrice());
+        }
+
+
         this.businessLineItem.setPrice('*', lead = '');
 
-        // document.getElementById('')
 
-        this.setEstimatedPrice = function (newPrice, musicAndFoodPrice) {
+        this.setEstimatedPrice = function (newPrice) {
             close = ""
-            if (musicAndFoodPrice > 0) {
+            if ((this.vendorPrice()) > 0) {
                 close = "+"
             }
             this.estimatedPrice.textContent = newPrice + close;
         }
 
-        this.pluralize = function () {
-            if (this.userPriceInput.isLarge()) {
-                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
-            } else {
-                this.bartenderLineItem.setReadableName('BART Certified Bartender');
-            }
-            if (this.userPriceInput.isLarge()) {
-                this.doorpersonLineItem.setReadableName('Doorpersons');
-            } else {
-                this.doorpersonLineItem.setReadableName('Doorperson');
-            }
-        }
         this.checkBusinessHours = function () {
             if (this.userPriceInput.addedBusinessCost()) {
                 this.businessLineItem.show();
@@ -422,29 +426,76 @@ class PriceTool {
         }
 
 
+        this.basePrice = function () {
+            return (this.baseLineItem.setPrice(this.baseLineItem.calculateBasePrice(this.userPriceInput)));
+
+        }
+
+        this.bartenderPrice = function () {
+            if (this.userPriceInput.isLarge()) {
+                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
+            } else {
+                this.bartenderLineItem.setReadableName('BART Certified Bartender');
+            }
+            return (this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput)));
+        }
+
+
+        this.doorPersonPrice = function () {
+            if (this.userPriceInput.isLarge()) {
+                this.doorpersonLineItem.setReadableName('Doorpersons');
+            } else {
+                this.doorpersonLineItem.setReadableName('Doorperson');
+            }
+            return (this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput)));
+        }
+        this.openBarPrice = function () {
+            return (this.openBarLineItem.setPrice(this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput)));
+        }
+
+        this.vendorPrice = function () {
+            return (this.vendorLineItem.setPrice(this.vendorLineItem.calculatePerPersonPrice(this.userPriceInput), "$", "+*"));
+
+        }
+
+        this.musicianPrice = function () {
+            return (this.musicianLineItem.setPrice(this.musicianLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*"));
+
+        }
+
 
         this.setPrices = function () {
+            this.setEstimatedPrice(this.calculateEstimatePrice());
+        }
+        // this.bartenderPrice = this.bartenderPrice.bind(this);
 
-            this.pluralize();
-            console.log('setting prices');
-            basePrice = this.baseLineItem.setPrice(this.baseLineItem.calculateBasePrice(this.userPriceInput));
+        this.setPrices = this.setPrices.bind(this);
 
-            bartenderPrice = this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput));
-            doorpersonPrice = this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput));
-            openBarPrice = this.openBarLineItem.setPrice(this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput));
-            vendorPrice = this.vendorLineItem.setPrice(this.vendorLineItem.calculatePerPersonPrice(this.userPriceInput), "$", "+*")
-            musicianPrice = this.musicianLineItem.setPrice(this.musicianLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*")
-            this.checkBusinessHours();
-            console.log('price set');
-            console.log(bartenderPrice);
-            this.setEstimatedPrice(
-                basePrice + bartenderPrice + doorpersonPrice + openBarPrice + vendorPrice + musicianPrice,
-                vendorPrice + musicianPrice
-            );
+        this.addLineItemListener = function (lineItem, func) {
+            if (!!lineItem.controllingButton) {
+                console.log('addding listener')
+                lineItem.controllingButton.addEventListener('click', function () {
+                    console.log('-----:')
+                    console.log(lineItem.visible);
+                    lineItem.toggleVisibility();
+                    func();
+                });
+            }
+        };
+
+        this.addLineItemListeners = function () {
+            this.addLineItemListener(this.bartenderLineItem, this.setPrices);
+            this.addLineItemListener(this.doorpersonLineItem, this.setPrices);
+            this.addLineItemListener(this.openBarLineItem, this.setPrices);
+            this.addLineItemListener(this.musicianLineItem, this.setPrices);
+            this.addLineItemListener(this.vendorLineItem, this.setPrices);
         }
     }
 
 }
+
+
+
 
 class Preference {
     constructor(buttonID, firstChoiceID, secondChoiceID, thirdChoiceID) {
@@ -537,6 +588,7 @@ document.addEventListener('turbolinks:load', () => {
         return
     }
     priceTool = new PriceTool();
+    priceTool.addLineItemListeners();
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');

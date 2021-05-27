@@ -6,42 +6,49 @@
           id: 'base',
           readable_name: 'Base Cost',
           values: "",
+          visible: true,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'business_operation',
           readable_name: 'Closing Fee',
           values: "",
+          visible: false,
           details: "The base cost increased because we would have to close the bar during business hours. You can avoid this added cost by cleaning and vaquating the space by 5 PM firm."
       %>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
           values: "hourly= 30 ",
+          visible: true,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'bartender',
           readable_name: 'BART Certified Bartender',
           values: "hourly= 30 ",
+          visible: false,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'open_bar',
           readable_name: 'Open Bar ',
           values: "per_person= 15 ",
+          visible: false,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'musician_cost',
           readable_name: 'Musician Booking',
           values: "hourly= 100",
+          visible: true,
           details: "Musicians have a two hour booking minimum."
       %>
     <%= render 'line_item', 
           id: 'food_vendor_cost',
           readable_name: 'Food Vendor Booking',
           values: "per_person= 10",
+          visible: true,
           details: "Food vendor pricing is based on your requested menu. Options range from $10 per person for a simpler dish to $200 per person for a full course meal."
       %>
   </div>
