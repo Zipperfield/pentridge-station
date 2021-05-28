@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:date, :start_time, :end_time, :additional_time, :event_type,
-                                  :num_attendees,
+                                  :num_attendees, :doorperson, :alcohol, :open_bar,
                                   contact_attributes: %i[first_name last_name email entry_process phone_number],
                                   preferences_attributes: %i[requested preference_type first_choice_id second_choice_id third_choice_id])
   end

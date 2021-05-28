@@ -1,5 +1,5 @@
 <% if @event.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="pt-7">
     <h2><%= pluralize(@event.errors.count, "error") %> prohibited this message from being saved:</h2>
     <ul>
       <% @event.errors.each do |error| %>

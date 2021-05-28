@@ -1,0 +1,12 @@
+<div class="flex mt-3 mb-4" >
+  <%= render 'shared/toggle_button',
+                name: 'event_doorperson',
+                input: (f.check_box :doorperson,
+                            id: 'event_doorperson',
+                            class: 'sr-only',
+                            checked: 'checked',
+                            click_again: (!@event.doorperson.nil? && 
+                                            !@event.doorperson?) ? 'true' : 'false')
+                             %>
+  <p class="ml-2 mb-2" id= 'event_doorperson_text'>Pentridge Station will provide a doorperson.</p>
+</div>

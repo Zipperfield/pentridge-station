@@ -1,22 +1,20 @@
 <%= form_with model: @event, html: {id: 'event_form'}, local: true do |f|%>
-  <h3 class="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Request to Book</h3>
   <%= render 'events/form/info' %>
   <%= render 'events/form/errors'%>
   <%= render 'events/form/contact', f: f%>
   <%= render 'events/form/preferences', f: f%>
-  <%= f.hidden_field :date%>
-  <%= f.hidden_field :start_time%>
-  <%= f.hidden_field :end_time%>
-  <%= f.hidden_field :event_type%>
-  <%= f.hidden_field :num_attendees%>
+  <%= render 'events/form/doorperson', f: f%>
+  <%= render 'events/form/alcohol', f: f%>
+  <%= render 'events/form/hidden_fields', f: f%>
+  <div><%= select_tag "temp_event_end_time", 
+    options_for_select(@event.hourly_choices(14,23), @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T")),
+     class: 'hidden form-select temp-form-style mb-2 sm:ml-1', include_blank: 'end time', autocomplete: "off", required: true%>
+  </div>
   <div >
     <%= f.submit "REQUEST TO BOOK",
          data: { disable_with: false },
          id:'event_submit', 
-         class: "w-full text-white bg-blue-400 py-3 "
+         class: "w-full text-white bg-blue-400 py-3 mb-3 "
       %>
   </div>
-  <%# ,
-
- %>
 <% end %>

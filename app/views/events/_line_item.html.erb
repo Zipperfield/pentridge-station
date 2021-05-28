@@ -1,0 +1,16 @@
+<div id="<%=id%>_section" 
+    class= "<%=class_names({"hidden": !visible}, "line-item")%>" 
+  <%=values%>>
+  <p id="<%=id%>_name" 
+    class= "<%=class_names({"underline": !details.empty? }, "line-item-text")%>" >
+    <%=readable_name%>
+  </p>
+  <% if !details.empty? %>
+    <p class="line-item-target hidden leading-none text-md tool-tip z-50 bg-popup-gray py-3 px-4 w-56 sm:w-72 shadow-md absolute top-6 md:top-0 md:-left-72 ">
+      <%= details %>
+    </p>
+  <% end%>
+  <div class="flex flex-col self-end">
+    <p class="ml-4 text-lg"><span id="<%=id%>_price"></span></p>
+  </div>
+</div>

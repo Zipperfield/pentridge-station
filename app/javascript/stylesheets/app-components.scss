@@ -66,4 +66,27 @@
   details > summary {
     @apply outline-none;
   }
+
+  .bg-popup-gray {
+    background-color: rgba(247, 248, 248, var(--tw-bg-opacity));
+  }
+
+  .tool-tip::after {
+    content: "";
+    margin-top: -5px;
+    border-color: transparent transparent
+      rgba(247, 248, 248, var(--tw-bg-opacity)) transparent;
+    @apply top-0 left-6 absolute border-solid border-8;
+  }
+  .line-item-text {
+    @apply font-light relative inline-block group text-lg;
+  }
+
+  .line-item {
+    @apply flex relative justify-between mb-1;
+  }
+
+  .line-item-text:hover ~ .line-item-target {
+    display: block;
+  }
 }
