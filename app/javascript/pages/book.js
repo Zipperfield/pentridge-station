@@ -250,6 +250,10 @@ function dontOverbook(calendar) {
         calendar.setCustomValidity('This date is already booked. Please select another date.');
         calendar.reportValidity();
         return false;
+    } else if (changeValueToDate(calendar) < new Date()) {
+        calendar.setCustomValidity('Date must be in the future');
+        calendar.reportValidity();
+        return false;
     } else {
         calendar.setCustomValidity('');
         return true;
