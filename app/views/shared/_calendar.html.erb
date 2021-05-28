@@ -10,10 +10,11 @@
       <div class="container">
         <div class="w-full md:w-64 mb-2">
           <div class="relative">
-            <input type="hidden" id="date_backup_input" name="date" x-ref="date">
+            <input type="hidden" id="date_backup_value" name="date" x-ref="date">
             <%#  %>
             <%# w-full pl-4 pr-10 py-3 leading-none shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium %>
             <input 
+                          id="date_backup_input"
                           type="text"
                           readonly
                           x-model="datepickerValue"
@@ -80,7 +81,7 @@
                 </template>
                 <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                   <div style="width: 14.28%" class="px-1 mb-1">
-                    <div
+                    <div                      id = "zzz"
                                               @click="getDateValue(date)"
                                               x-text="date"
                                               class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100"
@@ -127,7 +128,7 @@
                   let selectedDate = new Date(this.year, this.month, date);
                   this.datepickerValue = selectedDate.toDateString();
       
-                  this.$refs.date.value = selectedDate.getFullYear() +"-"+ ('0'+ selectedDate.getMonth()).slice(-2) +"-"+ ('0' + selectedDate.getDate()).slice(-2);
+                  this.$refs.date.value = selectedDate.getFullYear() +"-"+ ('0'+ (selectedDate.getMonth()+1)).slice(-2) +"-"+ ('0' + selectedDate.getDate()).slice(-2);
       
                   console.log(this.$refs.date.value);
       

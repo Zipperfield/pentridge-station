@@ -55,7 +55,7 @@ function alcoholChoiceHelper() {
     byobInput.addEventListener('click', switchClick);
 }
 
-function hideOnClickOutside(parent, child) {
+function hideOnClickOutside(parent, child, calendar) {
     const outsideClickListener = event => {
         if (!(event.defaultPrevented) && !child.contains(event.target) && isVisible(child)) {
             removeClickListener();
@@ -72,7 +72,7 @@ function hideOnClickOutside(parent, child) {
 
     const removeClickListener = () => {
         toggleVisibility(parent);
-        transferContent(false);
+        transferContent(false, calendar[1]);
         document.removeEventListener('click', outsideClickListener);
         document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
         document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
@@ -120,14 +120,14 @@ function backupCalendarVisible() {
 
 }
 
-function transferInfo() {
-    if (backupCalendarVisible()) {
-        document.getElementById('info_date').textContent =
-            formatDateForInfo(changeValueToDate(document.getElementById('date_backup_input')));
-    } else {
-        document.getElementById('info_date').textContent =
-            formatDateForInfo(changeValueToDate(document.getElementById('temp_event_date')));
-    }
+
+
+function transferInfo(calendarValue) {
+    console.log('transfer info');
+    console.log(calendarValue);
+    console.log(calendarValue.value);
+    document.getElementById('info_date').textContent =
+        formatDateForInfo(changeValueToDate(calendarValue));
     document.getElementById('info_start_time').textContent =
         getSelectedOptionText(document.getElementById('temp_event_start_time'));
     document.getElementById('info_end_time').textContent =
@@ -139,14 +139,14 @@ function transferInfo() {
 
 }
 
-function transferValue(eventValueName, openingForm) {
+function transferValue(eventValueName, openingForm, target = document.getElementById("temp_" + eventValueName)) {
     // Takes an event value name 
     if (openingForm) {
         document.getElementById(eventValueName).value =
-            document.getElementById("temp_" + eventValueName).value;
+            target.value;
     } else {
-        // closing form
-        document.getElementById("temp_" + eventValueName).value =
+        // closing formf
+        target.value =
             document.getElementById(eventValueName).value;
 
     }
@@ -154,13 +154,12 @@ function transferValue(eventValueName, openingForm) {
 
 }
 
-function transferContent(openingForm) {
-    transferValue('event_date', openingForm);
+function transferContent(openingForm, calendarValue) {
+    transferValue('event_date', openingForm, calendarValue);
     transferValue('event_start_time', openingForm);
     transferValue('event_end_time', openingForm);
     transferValue('event_num_attendees', openingForm);
     transferValue('event_event_type', openingForm);
-
 }
 
 function toggleVisibility(element) {
@@ -246,20 +245,17 @@ function validateTime() {
     startTime.addEventListener('input', startBeforeFinish);
     endTime.addEventListener('input', startBeforeFinish);
 }
-function validateDate() {
-    var formDateInput = document.getElementById('event_date');
-    var tempFormDateInput = document.getElementById('temp_event_date');
+function validateDate(calendar) {
     excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
     function dontOverbook(e) {
-        if (excludedDates.indexOf(e.target.value) > -1) {
-            e.target.setCustomValidity('This date is already booked. Please select another date.');
-            e.target.reportValidity();
+        if (excludedDates.indexOf(calendar[1].value) > -1) {
+            calendar[1].setCustomValidity('This date is already booked. Please select another date.');
+            calendar[1].reportValidity();
         } else {
-            e.target.setCustomValidity('');
+            calendar[1].setCustomValidity('');
         }
     }
-    formDateInput.addEventListener('input', dontOverbook);
-    tempFormDateInput.addEventListener('input', dontOverbook);
+    calendar[1].addEventListener('input', dontOverbook);
 }
 
 function toggleText(element, from, to) {
@@ -374,8 +370,6 @@ class UserPriceInput {
         }
 
         this.dateIsBusinessDay = function () {
-            console.log('business date');
-            console.log(this.date);
             switch (changeValueToDate(this.date).getDay()) {
                 case 0:
                     return true;
@@ -503,6 +497,7 @@ class PriceTool {
 
 
         this.setPrices = function () {
+            this.checkBusinessHours();
             this.setEstimatedPrice(this.calculateEstimatePrice());
         }
         // this.bartenderPrice = this.bartenderPrice.bind(this);
@@ -625,12 +620,37 @@ function validatePreferences() {
 
 }
 
+function whichCalendar() {
+    // test whether a new date input falls back to a text input or not
+    var test = document.createElement('input');
+
+    try {
+        test.type = 'date';
+    } catch (e) {
+        console.log(e.description);
+    }
+    if (test.type === 'text') {
+        document.getElementById('date_backup_section').classList.remove('hidden');
+        document.getElementById('temp_event_date').classList.add('hidden');
+        return [document.getElementById('date_backup_input'),
+        document.getElementById('date_backup_value')];
+    } else {
+        return [document.getElementById('temp_event_date'),
+        document.getElementById('temp_event_date')];
+    }
+}
+
 document.addEventListener('turbolinks:load', () => {
     if (document.getElementById('header').getAttribute('page') != 'book') {
         return
     }
     priceTool = new PriceTool();
     priceTool.addLineItemListeners();
+    calendar = whichCalendar();
+    console.log('calendar value');
+
+    console.log("asdfasd")
+
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
     eventFormContainer = document.getElementById('event_form_container');
@@ -642,7 +662,7 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
     musicianPartnershipText = document.getElementById('musician_partnership_text');
 
-    validateDate();
+    validateDate(calendar);
     validateTime();
     validatePreferences();
     alcoholChoiceHelper();
@@ -674,23 +694,25 @@ document.addEventListener('turbolinks:load', () => {
         vendorPartnershipButton.click();
     }
 
+
+
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
         if (document.getElementById("temp_event_start_time").checkValidity()
             && document.getElementById("temp_event_end_time").checkValidity()
-            && document.getElementById("temp_event_date").checkValidity()
+            && calendar[1].checkValidity()
             && validNumAttendees()) {
-            transferContent(true);
-            transferInfo();
+            transferContent(true, calendar[1]);
+            transferInfo(calendar[1]);
             toggleVisibility(eventFormScreen);
             priceTool.setPrices();
 
-            hideOnClickOutside(eventFormScreen, eventFormContainer);
+            hideOnClickOutside(eventFormScreen, eventFormContainer, calendar);
 
         } else {
             document.getElementById("temp_event_start_time").reportValidity()
             document.getElementById("temp_event_end_time").reportValidity()
-            document.getElementById("temp_event_date").reportValidity()
+            calendar[1].reportValidity()
         }
 
         //   validate inputs
