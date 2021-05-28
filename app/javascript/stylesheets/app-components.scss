@@ -83,6 +83,10 @@
   }
 
   .line-item {
-    @apply group flex justify-between mb-1;
+    @apply flex relative justify-between mb-1;
+  }
+
+  .line-item-text:hover ~ .line-item-target {
+    opacity: 100;
   }
 }
