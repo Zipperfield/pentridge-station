@@ -72,7 +72,7 @@ function hideOnClickOutside(parent, child, calendar) {
 
     const removeClickListener = () => {
         toggleVisibility(parent);
-        transferContent(false, calendar[1]);
+        transferContent(false, calendar);
         document.removeEventListener('click', outsideClickListener);
         document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
         document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
@@ -245,18 +245,23 @@ function validateTime() {
     startTime.addEventListener('input', startBeforeFinish);
     endTime.addEventListener('input', startBeforeFinish);
 }
-function validateDate(calendar) {
+
+
+function dontOverbook(calendar) {
+    console.log('HELLLO')
     excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
-    function dontOverbook(e) {
-        if (excludedDates.indexOf(calendar[1].value) > -1) {
-            calendar[1].setCustomValidity('This date is already booked. Please select another date.');
-            calendar[1].reportValidity();
-        } else {
-            calendar[1].setCustomValidity('');
-        }
+    console.log(calendar.value);
+    console.log(excludedDates.indexOf(calendar.value));
+    if (excludedDates.indexOf(calendar.value) > -1) {
+        calendar.setCustomValidity('This date is already booked. Please select another date.');
+        calendar.reportValidity();
+        return false;
+    } else {
+        calendar.setCustomValidity('');
+        return true;
     }
-    calendar[1].addEventListener('input', dontOverbook);
 }
+
 
 function toggleText(element, from, to) {
     if (element.textContent == from) {
@@ -632,11 +637,18 @@ function whichCalendar() {
     if (test.type === 'text') {
         document.getElementById('date_backup_section').classList.remove('hidden');
         document.getElementById('temp_event_date').classList.add('hidden');
-        return [document.getElementById('date_backup_input'),
-        document.getElementById('date_backup_value')];
+        return document.getElementById('date_backup_value');
     } else {
-        return [document.getElementById('temp_event_date'),
-        document.getElementById('temp_event_date')];
+        return document.getElementById('temp_event_date');
+    }
+}
+
+function manuallyValidateBackupCalendar(calendar) {
+
+    if (calendar == document.getElementById('date_backup_value')) {
+        return dontOverbook(calendar);
+    } else {
+        return true;
     }
 }
 
@@ -647,9 +659,19 @@ document.addEventListener('turbolinks:load', () => {
     priceTool = new PriceTool();
     priceTool.addLineItemListeners();
     calendar = whichCalendar();
-    console.log('calendar value');
+    calendar.addEventListener('input', event => {
+        dontOverbook(calendar);
+    });
+    document.getElementById('date_backup_input').addEventListener('click', event => {
+        dontOverbook(calendar)
+    });
+    // backupInput = document.getElementById('date_backup_input');
+    // document.body.addEventListener('click', function (e) {
+    //     if (backupInput.contains(e.target)) {
+    //         console.log('clicked inside');
+    //     }
+    // })
 
-    console.log("asdfasd")
 
     tempSubmit = document.getElementById("temp_submit");
     eventFormScreen = document.getElementById('event_form_screen');
@@ -662,7 +684,6 @@ document.addEventListener('turbolinks:load', () => {
     musicianPartnershipForm = document.getElementById('musician_partnership_form');
     musicianPartnershipText = document.getElementById('musician_partnership_text');
 
-    validateDate(calendar);
     validateTime();
     validatePreferences();
     alcoholChoiceHelper();
@@ -698,12 +719,14 @@ document.addEventListener('turbolinks:load', () => {
 
     tempSubmit.addEventListener("click", (event) => {
         event.preventDefault();
+
+
         if (document.getElementById("temp_event_start_time").checkValidity()
-            && document.getElementById("temp_event_end_time").checkValidity()
-            && calendar[1].checkValidity()
-            && validNumAttendees()) {
-            transferContent(true, calendar[1]);
-            transferInfo(calendar[1]);
+            && calendar.checkValidity()
+            && validNumAttendees()
+            && manuallyValidateBackupCalendar(calendar)) {
+            transferContent(true, calendar);
+            transferInfo(calendar);
             toggleVisibility(eventFormScreen);
             priceTool.setPrices();
 
@@ -711,8 +734,7 @@ document.addEventListener('turbolinks:load', () => {
 
         } else {
             document.getElementById("temp_event_start_time").reportValidity()
-            document.getElementById("temp_event_end_time").reportValidity()
-            calendar[1].reportValidity()
+            calendar.reportValidity()
         }
 
         //   validate inputs
