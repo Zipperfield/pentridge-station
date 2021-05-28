@@ -115,9 +115,19 @@ function changeValueToDate(element) {
     return new Date(element.value.replace(/-/g, '\/'))
 }
 
+function backupCalendarVisible() {
+    return (!document.getElementById('date_backup_section').classList.contains('hidden'));
+
+}
+
 function transferInfo() {
-    document.getElementById('info_date').textContent =
-        formatDateForInfo(changeValueToDate(document.getElementById('temp_event_date')));
+    if (backupCalendarVisible()) {
+        document.getElementById('info_date').textContent =
+            formatDateForInfo(changeValueToDate(document.getElementById('date_backup_input')));
+    } else {
+        document.getElementById('info_date').textContent =
+            formatDateForInfo(changeValueToDate(document.getElementById('temp_event_date')));
+    }
     document.getElementById('info_start_time').textContent =
         getSelectedOptionText(document.getElementById('temp_event_start_time'));
     document.getElementById('info_end_time').textContent =
@@ -340,7 +350,7 @@ class UserPriceInput {
         this.eventType = document.getElementById('event_event_type');
         this.startHour = document.getElementById('temp_event_start_time');
         this.endHour = document.getElementById('temp_event_end_time');
-        this.date = document.getElementById('temp_event_date');
+        this.date = document.getElementById('event_date');
         // this.numHours = ((this.endHour - this.startHour) / 3600000)
 
         this.numAttendees = function () {
@@ -364,6 +374,8 @@ class UserPriceInput {
         }
 
         this.dateIsBusinessDay = function () {
+            console.log('business date');
+            console.log(this.date);
             switch (changeValueToDate(this.date).getDay()) {
                 case 0:
                     return true;
