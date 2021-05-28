@@ -249,14 +249,11 @@ function dontOverbook(calendar) {
     if (excludedDates.indexOf(calendar.value) > -1) {
         calendar.setCustomValidity('This date is already booked. Please select another date.');
         calendar.reportValidity();
-        return false;
     } else if (changeValueToDate(calendar) < new Date()) {
-        calendar.setCustomValidity('Date must be in the future');
+        calendar.setCustomValidity('Date cannot be in the past.');
         calendar.reportValidity();
-        return false;
     } else {
         calendar.setCustomValidity('');
-        return true;
     }
 }
 
@@ -638,14 +635,6 @@ function whichCalendar() {
     }
 }
 
-function manuallyValidateBackupCalendar(calendar) {
-
-    if (calendar == document.getElementById('date_backup_value')) {
-        return dontOverbook(calendar);
-    } else {
-        return true;
-    }
-}
 
 document.addEventListener('turbolinks:load', () => {
     if (document.getElementById('header').getAttribute('page') != 'book') {
@@ -718,8 +707,7 @@ document.addEventListener('turbolinks:load', () => {
 
         if (document.getElementById("temp_event_start_time").checkValidity()
             && calendar.checkValidity()
-            && validNumAttendees()
-            && manuallyValidateBackupCalendar(calendar)) {
+            && validNumAttendees()) {
             transferContent(true, calendar);
             transferInfo(calendar);
             toggleVisibility(eventFormScreen);
