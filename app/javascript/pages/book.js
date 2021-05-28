@@ -123,9 +123,6 @@ function backupCalendarVisible() {
 
 
 function transferInfo(calendarValue) {
-    console.log('transfer info');
-    console.log(calendarValue);
-    console.log(calendarValue.value);
     document.getElementById('info_date').textContent =
         formatDateForInfo(changeValueToDate(calendarValue));
     document.getElementById('info_start_time').textContent =
@@ -248,10 +245,7 @@ function validateTime() {
 
 
 function dontOverbook(calendar) {
-    console.log('HELLLO')
     excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
-    console.log(calendar.value);
-    console.log(excludedDates.indexOf(calendar.value));
     if (excludedDates.indexOf(calendar.value) > -1) {
         calendar.setCustomValidity('This date is already booked. Please select another date.');
         calendar.reportValidity();
@@ -460,7 +454,6 @@ class PriceTool {
         }
 
         this.alcoholSpecificAfterClick = function () {
-            console.log('toggleAlcoholText');
             e = document.getElementById("event_alcohol_text");
             if (e.textContent == "NOT") {
                 e.textContent = "";
@@ -511,7 +504,6 @@ class PriceTool {
 
         this.addLineItemListener = function (lineItem, func, specificFunc = function () { }) {
             if (!!lineItem.controllingButton) {
-                console.log('addding listener')
                 lineItem.controllingButton.addEventListener('click', function () {
                     lineItem.toggleVisibility();
                     func();
@@ -519,7 +511,6 @@ class PriceTool {
                 });
             }
             if (!!lineItem.altControllingButton) {
-                console.log('addding listener')
                 lineItem.altControllingButton.addEventListener('click', function () {
                     lineItem.toggleVisibility();
                     func();
