@@ -1,12 +1,14 @@
 <%= render 'shared/navbar'  %>
 <div class="mx-6 sm:mx-12">
   <div class="flex flex-col sm:flex-row justify-between w-full max-h-96 mt-16">
-    <a href="<%= musicians_path%>" class="bg-red-300 h-96  sm:w-1/2 sm:mr-4  mb-8  sm:mb-0">
-      <h3 class="text-3xl">Muscians</h3>
-    </a>
-    <a href="<%= vendors_path%>" class="bg-blue-300 h-96 sm:w-1/2 sm:ml-4">
-      <h3 class="text-3xl">Food Vendors</h3>
-    </a>
+    <%= render 'index_panel',
+      destination: musicians_path,
+      title: 'Musicians',
+      backgroundColor: 'bg-red-300' %>
+    <%= render 'index_panel',
+      destination: vendors_path,
+      title: 'Food Vendors',
+      backgroundColor: 'bg-blue-300' %>
   </div>
   <div class="mt-10 sm:w-2/3">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis. 

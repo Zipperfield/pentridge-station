@@ -89,4 +89,8 @@
   .line-item-text:hover ~ .line-item-target {
     display: block;
   }
+
+  .partners-index-panel {
+    @apply h-96  sm:w-1/2 sm:mr-4  mb-8  sm:mb-0;
+  }
 }
