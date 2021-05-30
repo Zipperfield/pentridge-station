@@ -94,6 +94,6 @@
     @apply h-96 sm:w-1/2 sm:mr-4 mb-8 sm:mb-0 flex;
   }
   .partner-panel {
-    @apply w-60 mr-8 h-80;
+    @apply w-60 mr-8 h-80 relative;
   }
 }
