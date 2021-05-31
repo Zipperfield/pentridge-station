@@ -1,13 +1,15 @@
 <div class="<%= class_names(backgroundColor, 'partner-panel') %>"
     style=  "background-image: url(<%= partner.photo.attached? ? url_for(partner.photo) : ""%>)"
-  bio = <%= partner.bio %>
+  bio = "<%= partner.bio %>"
   facebook = <%= partner.facebook %>
   instagram = <%= partner.instagram %>
   twitter = <%= partner.twitter %>
   website = <%= partner.website %>
 >
-  <p class="">
-    <%= partner.tagline %>
-  </p>
-  <div class="absolute left-5 bottom-4 bg-white py-2 px-5"><%= partner.name %></div>
+  <div class="absolute left-5 bottom-4 bg-white py-2 px-5">
+    <p class="text-sm md:text-base"><%= partner.name %></p>
+    <p class="hidden md:flex ml-2 text-xs">
+      "<%= partner.tagline %>"
+    </p>
+  </div>
 </div>
