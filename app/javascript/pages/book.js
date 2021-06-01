@@ -194,7 +194,7 @@ function validNumAttendees() {
         tempNumAttendees.reportValidity();
         return false;
     }
-    if (tempNumAttendees.value < 1 || tempNumAttendees > 300) {
+    if (tempNumAttendees.value < 1 || tempNumAttendees.value > 300) {
         tempNumAttendees.setCustomValidity('You may have between 1 and 300 guests.');
         tempNumAttendees.reportValidity();
         return false;
