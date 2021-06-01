@@ -7,6 +7,22 @@ function openPopUp(e) {
         t = e.target.parentElement.parentElement;
     }
     console.log(t.getAttribute('bio'));
+    transferPartnerContent(t);
+}
+function transferPartnerContent(panel) {
+    document.getElementById('popup_partner_name').textContent =
+        document.getElementById('partner_name').textContent;
+    document.getElementById('popup_partner_bio').textContent =
+        panel.getAttribute('bio');
+    document.getElementById('popup_partner_twitter').setAttribute('href',
+        panel.getAttribute('twitter'));
+    document.getElementById('popup_partner_facebook').setAttribute('href',
+        panel.getAttribute('facebook'));
+    document.getElementById('popup_partner_instagram').setAttribute('href',
+        panel.getAttribute('instagram'));
+    document.getElementById('popup_partner_website').setAttribute('href',
+        panel.getAttribute('website'));
+
 }
 
 document.addEventListener('turbolinks:load', () => {
