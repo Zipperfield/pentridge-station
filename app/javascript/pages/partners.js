@@ -43,20 +43,33 @@ function openPopUp(e) {
         document.getElementById('popup_partner_container'));
 
 }
+function setLink(attr, panel) {
+    link = document.getElementById("popup_partner_" + attr);
+    val = panel.getAttribute(attr);
+    if (val === null) {
+        console.log('attr is null')
+        if (!link.classList.contains("pointer-events-none")) {
+            link.classList.add("pointer-events-none");
+        }
+        link.setAttribute('href', "javascript:void(0)");
+    } else {
+        if (link.classList.contains("pointer-events-none")) {
+            link.classList.remove("pointer-events-none");
+        }
+        console.log('attr is there')
+        link.setAttribute('href', val);
+    }
+}
+
 function transferPartnerContent(panel) {
     document.getElementById('popup_partner_name').textContent =
         panel.getAttribute('name');
     document.getElementById('popup_partner_bio').textContent =
         panel.getAttribute('bio');
-    document.getElementById('popup_partner_twitter').setAttribute('href',
-        panel.getAttribute('twitter'));
-    document.getElementById('popup_partner_facebook').setAttribute('href',
-        panel.getAttribute('facebook'));
-    document.getElementById('popup_partner_instagram').setAttribute('href',
-        panel.getAttribute('instagram'));
-    document.getElementById('popup_partner_website').setAttribute('href',
-        panel.getAttribute('website'));
-
+    setLink('twitter', panel);
+    setLink('facebook', panel);
+    setLink('instagram', panel);
+    setLink('website', panel);
 }
 
 document.addEventListener('turbolinks:load', () => {

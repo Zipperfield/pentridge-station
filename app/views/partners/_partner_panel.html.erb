@@ -2,15 +2,17 @@
     style=  "background-image: url(<%= partner.photo.attached? ? url_for(partner.photo) : ""%>)"
   name ="<%=partner.name%>"
   bio = "<%= partner.bio %>"
-  facebook = <%= partner.facebook %>
-  instagram = <%= partner.instagram %>
-  twitter = <%= partner.twitter %>
-  website = <%= partner.website %>
+  <%="facebook=#{partner.facebook}" unless partner.facebook.empty?  %>
+  <%= "instagram=#{partner.instagram}" unless partner.instagram.empty? %>
+  <%= "twitter=#{partner.twitter}" unless partner.twitter.empty? %>
+  <%= "website=#{partner.website}" unless partner.website.empty? %>
 >
   <div class="absolute left-5 bottom-4 bg-white py-2 px-5">
     <p class="text-sm md:text-base"><%= partner.name %></p>
     <p class="hidden md:flex ml-2 text-xs">
       "<%= partner.tagline %>"
+      <%= partner.facebook %>
+      <%= partner.facebook.empty?%>
     </p>
   </div>
 </div>
