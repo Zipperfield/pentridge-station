@@ -1,8 +1,8 @@
 <footer class="">
   <div class="mx-6 sm:mx-12">
-    <div class="bg-blue-200 h-12 my-12"></div>
+    <div class="bg-blue-200 h-12 mt-12 mb-6 md:mb-12"></div>
     <div class="flex flex-col justify-between md:flex-row">
-      <div class="w-52">
+      <div class="w-52 mb-3 md:mb-0">
         <div>
           <p>5116 Pentridge Street</p>
           <p>Philadelphia, PA</p>
@@ -11,8 +11,8 @@
       </div>
       <div class="w-52">
         <p class="underline">(215) 123-1234</p>
-        <p class="underline mt-2">email@pentridgestation.com</p>
-        <div class="flex flex-row mt-3 ">
+        <p class="underline md:mt-2">email@pentridgestation.com</p>
+        <div class="flex flex-row mb-4 md:mb-0 mt-3 ">
           <a href="">
             <%= inline_svg_tag "twitter.svg", class:'w-5 ' %>
           </a>
@@ -24,22 +24,22 @@
           </a>
         </div>
       </div>
-      <div class="w-52 text-right">
+      <div class="w-52 md:text-right">
         <a href="#top">
-          <%= inline_svg_tag "up-arrow.svg", class:'w-8 fill-current text-white ml-44 animate-bounce' %>
+          <%= inline_svg_tag "up-arrow.svg", class:'hidden md:flex w-8 fill-current text-white ml-44 animate-bounce' %>
+          <p>go to <span class="font-bold">top</span></p>
         </a>
-        <p>go to <span class="font-bold">top</span></p>
       </div>
     </div>
     <div class="mt-3">
-      <button id="newsletterButton">subscribe to our newsletter</button>
+      <button class="border-gray-400 pb-2 md:pb-0 border-b md:border-none" id="newsletterButton">subscribe to our newsletter</button>
       <%= render 'contacts/form' %>
     </div>
     <div class="flex flex-col md:flex-row font-extralight text-gray-800 justify-between mt-6">
-      <a href="https://www.zipperfield.com/" class="md:w-96">
+      <a href="https://www.zipperfield.com/" class="md:w-96 mb-4">
         <p>design by <span class="font-light text-gray-800">Zipperfield</span></p>
       </a>
-      <div class="md:w-96 text-right">
+      <div class="md:w-96 md:text-right mb-6">
         <p>Copyright @ Pentridge Station 2021</p>
         <p> Terms of service apply to site use</p>
       </div>
