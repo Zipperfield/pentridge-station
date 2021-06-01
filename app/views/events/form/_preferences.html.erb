@@ -29,7 +29,7 @@
                             click_again: (!@event.preferences[pref.index].requested.nil? && 
                                             !@event.preferences[pref.index].requested?) ? 'true' : 'false')
                              %>
-        <p class="ml-2 mb-2" id= <%= partner_type+"_partnership_text"%>>I am requesting to book these <%=partner_type.pluralize%>:</p>
+        <p class="ml-2 mb-2" id= <%= partner_type+"_partnership_text"%>>I am requesting to book one of these three <%=partner_type.pluralize%>:</p>
       </div>
       <div id=<%=partner_type+"_partnership_form"%> class="flex flex-col">
         <%= pref.hidden_field :preference_type , value: partner_type%>

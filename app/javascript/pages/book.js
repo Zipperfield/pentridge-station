@@ -677,7 +677,7 @@ document.addEventListener('turbolinks:load', () => {
         // event.preventDefault();
         toggleVisibility(vendorPartnershipForm);
         toggleText(vendorPartnershipText,
-            "I am requesting to book these vendors:",
+            "I am requesting to book one of these three vendors:",
             "I will bring my own food.")
     });
 
@@ -686,7 +686,7 @@ document.addEventListener('turbolinks:load', () => {
         // event.preventDefault();
         toggleVisibility(musicianPartnershipForm);
         toggleText(musicianPartnershipText,
-            "I am requesting to book these musicians:",
+            "I am requesting to book one of these three musicians:",
             "I will bring my own music.")
     });
     // this is a janky solution but should work.
