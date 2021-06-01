@@ -7,6 +7,8 @@ function hideOnClickOutside(parent, child) {
 
     const removeClickListener = () => {
         toggleVisibility(parent);
+        document.getElementById('up-arrow').classList.add('md:flex');
+
         document.removeEventListener('click', outsideClickListener);
 
     }
@@ -41,6 +43,8 @@ function openPopUp(e) {
     toggleVisibility(partnerPopup);
     hideOnClickOutside(partnerPopup,
         document.getElementById('popup_partner_container'));
+    document.getElementById('up-arrow').classList.remove('md:flex');
+
 
 }
 function setLink(attr, panel) {

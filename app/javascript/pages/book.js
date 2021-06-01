@@ -71,7 +71,9 @@ function hideOnClickOutside(parent, child, calendar) {
     }
 
     const removeClickListener = () => {
-        tempSubmit.classList.remove('hidden');
+        document.getElementById('temp_submit').classList.remove('hidden');
+        document.getElementById('up-arrow').classList.add('md:flex');
+
         toggleVisibility(parent);
         transferContent(false, calendar);
         document.removeEventListener('click', outsideClickListener);
@@ -713,6 +715,8 @@ document.addEventListener('turbolinks:load', () => {
             transferInfo(calendar);
             toggleVisibility(eventFormScreen);
             tempSubmit.classList.add('hidden');
+            document.getElementById('up-arrow').classList.remove('md:flex');
+
             priceTool.setPrices();
 
             hideOnClickOutside(eventFormScreen, eventFormContainer, calendar);
