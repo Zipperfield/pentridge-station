@@ -15,6 +15,8 @@ import "stylesheets/app-utilities"
 
 import "pages/header-footer"
 import "pages/book"
+import "pages/partners"
+
 
 Rails.start()
 Turbolinks.start()
