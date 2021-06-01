@@ -637,7 +637,7 @@ function whichCalendar() {
 
 
 document.addEventListener('turbolinks:load', () => {
-    if (document.getElementById('header').getAttribute('page') != 'book') {
+    if (document.getElementById('navbar').getAttribute('page') != 'book') {
         return
     }
     priceTool = new PriceTool();

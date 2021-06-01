@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', () => {
-    if (document.getElementById('header').getAttribute('page') != 'home') {
+    if (document.getElementById('navbar').getAttribute('page') != 'home') {
         return
     }
 

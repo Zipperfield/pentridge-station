@@ -1,7 +1,6 @@
 <header id="header" class="bg-blue-300 bg-fixed bg-center bg-cover"
-    style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)",
-    page=<%=pageName%>>
-  <%= render 'shared/navbar'%>
+    style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)">
+  <%= render 'shared/navbar', page: page %>
   <div class="mx-3 sm:w-96 mt-12 sm:ml-16 md:ml-24 text-white pb-8">
     <div class="text-4xl sm:text-7xl font-extrabold">
       <%= get_text_content(:pageTitle, 'Page Title')%>
