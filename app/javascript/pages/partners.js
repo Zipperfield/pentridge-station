@@ -1,4 +1,34 @@
+function hideOnClickOutside(parent, child) {
+    const outsideClickListener = event => {
+        if (!(event.defaultPrevented) && !child.contains(event.target) && isVisible(child)) {
+            removeClickListener();
+        }
+    }
+
+    const removeClickListener = () => {
+        toggleVisibility(parent);
+        document.removeEventListener('click', outsideClickListener);
+
+    }
+    document.addEventListener('click', outsideClickListener);
+
+}
+const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
+
+
+function toggleVisibility(element) {
+    if (element.classList.contains('flex')) {
+        element.classList.remove('flex');
+        element.classList.add('hidden');
+    } else if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+        element.classList.add('flex');
+    } else {
+        console.log("Error: Element neither hidden or flex")
+    }
+}
 function openPopUp(e) {
+    e.preventDefault();
     if (e.target.classList.contains('partner-panel')) {
         t = e.target;
     } else {
@@ -6,8 +36,12 @@ function openPopUp(e) {
         console.log(e.target);
         t = e.target.parentElement.parentElement;
     }
-    console.log(t.getAttribute('bio'));
     transferPartnerContent(t);
+    partnerPopup = document.getElementById('popup_partner_screen');
+    toggleVisibility(partnerPopup);
+    hideOnClickOutside(partnerPopup,
+        document.getElementById('popup_partner_container'));
+
 }
 function transferPartnerContent(panel) {
     document.getElementById('popup_partner_name').textContent =
