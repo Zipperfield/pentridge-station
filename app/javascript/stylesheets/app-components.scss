@@ -90,6 +90,10 @@
     display: block;
   }
 
+  .question-mark:hover ~ .question-mark-info {
+    display: block;
+  }
+
   .partners-index-panel {
     @apply h-96 sm:w-1/2 sm:mr-4 mb-8 sm:mb-0 flex;
   }

@@ -2,11 +2,18 @@
   <p class="mt-1 lg:w-3/4 font-semibold">
     Do you want to partner with Pentridge food vendors and/or musicans?
   </p>
-  <%= link_to partners_path, target: :_blank do %>
-    <%= inline_svg_tag "question-mark.svg",
-                      class:'absolute -left-7 top-2',
+  <div class="absolute -left-7 top-2">
+    <%= link_to partners_path, target: :_blank do %>
+      <div class="relative">
+        <%= inline_svg_tag "question-mark.svg",
+                      class: 'question-mark',
                       id: 'question_mark' %>
-  <% end %>
+        <p class="question-mark-info hidden bg-popup-gray py-3 px-4 w-44 shadow-md absolute top-6">
+          Click to learn more.
+        </p>
+      </div>
+    <% end %>
+  </div>
 </a>
 </div>
 <div class="flex flex-col sm:flex-row justify-around">
