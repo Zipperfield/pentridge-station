@@ -71,6 +71,7 @@ function hideOnClickOutside(parent, child, calendar) {
     }
 
     const removeClickListener = () => {
+        tempSubmit.classList.remove('hidden');
         toggleVisibility(parent);
         transferContent(false, calendar);
         document.removeEventListener('click', outsideClickListener);
@@ -711,6 +712,7 @@ document.addEventListener('turbolinks:load', () => {
             transferContent(true, calendar);
             transferInfo(calendar);
             toggleVisibility(eventFormScreen);
+            tempSubmit.classList.add('hidden');
             priceTool.setPrices();
 
             hideOnClickOutside(eventFormScreen, eventFormContainer, calendar);
