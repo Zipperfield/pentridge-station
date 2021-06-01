@@ -45,7 +45,7 @@ function openPopUp(e) {
 }
 function transferPartnerContent(panel) {
     document.getElementById('popup_partner_name').textContent =
-        document.getElementById('partner_name').textContent;
+        panel.getAttribute('name');
     document.getElementById('popup_partner_bio').textContent =
         panel.getAttribute('bio');
     document.getElementById('popup_partner_twitter').setAttribute('href',
