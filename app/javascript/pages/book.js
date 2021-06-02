@@ -743,7 +743,7 @@ document.addEventListener('turbolinks:load', () => {
     if (eventFormScreen.getAttribute('alert') == 'true') {
         tempSubmit.click();
     }
-    embedMap();
+    // embedMap();
 
 
 });

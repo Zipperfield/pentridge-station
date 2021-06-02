@@ -19,7 +19,7 @@
     @apply border w-full border-gray-300 text-gray-600;
   }
   .underlined-form-style {
-    @apply border-0 border-b-2 border-blue-400;
+    @apply border-0 border-b border-white border-opacity-30;
   }
   input:checked ~ .dot {
     transform: translateX(135%);
