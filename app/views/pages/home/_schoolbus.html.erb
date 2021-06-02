@@ -8,9 +8,11 @@
       <p class="text-3xl md:text-4xl">
         An <span class="font-bold"> unforgettable dinner experience</span> in a school bus
       </p>
-      <button class="bg-white text-blue-400 text-xs w-36 py-2">
-        LEARN MORE
-      </button>
+      <%= link_to root_path(anchor: 'connect') do %>
+        <button class="bg-white text-blue-400 text-xs w-36 py-2">
+          LEARN MORE
+        </button>
+      <% end%>
     </div>
   </div>
   <div id="bus-photo"
