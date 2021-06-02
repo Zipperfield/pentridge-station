@@ -1,8 +1,5 @@
 @import "tailwindcss/components";
 @layer components {
-  .nav-item {
-    @apply py-2 px-4 text-blue-400;
-  }
   .square-photo {
     object-fit: cover;
   }
@@ -47,7 +44,7 @@
     @apply text-2xl font-bold self-center text-center;
   }
   .press-line {
-    @apply h-1 w-12 my-3 bg-blue-400 self-center;
+    @apply h-1 w-12 my-3 bg-teal-figma self-center;
   }
   .press-quote {
     @apply w-2/3 italic text-lg self-center text-center;

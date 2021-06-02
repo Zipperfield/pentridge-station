@@ -1,7 +1,7 @@
 <%# Quote Panel %>
 <div class="relative flex flex-col md:flex-row">
-  <div class="md:w-1/2 bg-blue-400 flex justify-center">
-    <%= inline_svg_tag "quote.svg", class: 'stroke-current fill-current text-white opacity-20 absolute left-24 md:left-12 lg:left-24 w-36 h-36 top-1 md:top-16 ' %>
+  <div class="md:w-1/2 bg-teal-readable flex justify-center">
+    <%= inline_svg_tag "quote.svg", class: 'stroke-current fill-current text-teal-lightest opacity-30 absolute left-24 md:left-12 lg:left-24 w-36 h-36 top-1 md:top-16 ' %>
     <div class=" w-96 mt-10 md:my-32 mx-4">
       <p class="text-white text-3xl sm:text-4xl my-4 ">Pentridge is the hidden gem of West Philly. Fun for the whole family.</p>
       <p class="text-white mt-2 left-16">- Julian DeGroot-Lutzner</p>
@@ -9,8 +9,8 @@
   </div>
   <div class="h-60 md:h-auto md:w-1/2 bg-center bg-cover"
    style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)" >
-    <div class="w-full md:w-1/2 h-12 md:h-full bg-gradient-to-b md:bg-gradient-to-r from-blue-400 ">
+    <div class="w-full md:w-1/2 h-12 md:h-full bg-gradient-to-b md:bg-gradient-to-r from-teal-readable ">
     </div>
-    <div class="bg-gradient-to-t from-blue-400 w-full mt-44 md:hidden h-4"></div>
+    <div class="bg-gradient-to-t from-teal-readable w-full mt-44 md:hidden h-4"></div>
   </div>
 </div>
