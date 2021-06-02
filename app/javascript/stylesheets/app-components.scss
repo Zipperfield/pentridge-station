@@ -41,7 +41,10 @@
     -webkit-clip-path: polygon(0% 90%, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(0% 90%, 100% 0%, 100% 100%, 0% 100%);
   }
-
+  #schoolbus-cut-detail {
+    -webkit-clip-path: polygon(0% 70%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 70%, 100% 0%, 100% 100%, 0% 100%);
+  }
   .press-screen {
     @apply w-full h-full bg-black bg-opacity-0 hover:bg-opacity-60 flex justify-center;
   }
