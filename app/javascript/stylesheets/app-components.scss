@@ -108,4 +108,7 @@
   .partner-panel {
     @apply w-5/12 md:w-72 mb-8 cursor-pointer h-52 relative bg-center bg-cover;
   }
+  .transparent-button-transition {
+    @apply transition duration-1000 hover:border-opacity-0 hover:underline;
+  }
 }
