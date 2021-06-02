@@ -11,11 +11,11 @@
   <% end %>
   <div class="field">
     <%= form.label 'Name:' %>
-    <%= form.text_field :first_name, class: "form_input underlined-form-style w-80", required: true, maxlength: 32  %>
+    <%= form.text_field :first_name, class: "form_input border-0 border-b border-teal-lightest w-80", required: true, maxlength: 32  %>
   </div>
   <div class="field">
     <%= form.label 'Email:  ' %>
-    <%= form.email_field :email, class: "form_input underlined-form-style  w-80", required: true, maxlength: 42  %>
+    <%= form.email_field :email, class: "form_input border-0 border-b border-teal-lightest w-80", required: true, maxlength: 42  %>
   </div>
   <%= form.hidden_field :entry_process , value: "Newsletter" %>
   <div class="actions">
