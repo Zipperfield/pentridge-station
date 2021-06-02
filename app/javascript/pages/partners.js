@@ -33,9 +33,11 @@ function openPopUp(e) {
     e.preventDefault();
     if (e.target.classList.contains('partner-panel')) {
         t = e.target;
-    } else {
+    } else if (e.target.classList.contains('absolute')) {
+        t = e.target.parentElement;
+    }
+    else {
         // we are in text and need to set it to the granparent
-        console.log(e.target);
         t = e.target.parentElement.parentElement;
     }
     transferPartnerContent(t);
