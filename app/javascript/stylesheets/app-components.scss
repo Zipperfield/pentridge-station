@@ -111,4 +111,7 @@
   .transparent-button-transition {
     @apply transition duration-1000 hover:border-opacity-0 hover:underline;
   }
+  .navbar-hover {
+    @apply hover:text-teal-darker transition-colors duration-200;
+  }
 }

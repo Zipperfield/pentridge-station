@@ -7,7 +7,7 @@ page=<%=page%>
     <div > Website Logo</div>
   </a>
   <div class='flex'>
-    <%= link_to "RENT SPACE", book_path, class: "w-auto bg-teal-lightest text-white px-3 h-9 pt-2" %>
+    <%= link_to "RENT SPACE", book_path, class: "w-auto bg-teal-lightest text-white px-3 h-9 pt-2 hover:bg-teal-lighter transition-colors duration-200" %>
     <details id="navbar-details" class="ml-4">
       <summary class='inline '>
         <div class="tham tham-e-squeeze tham-w-4  bg-gray-600 w-9 h-9 rounded-full ">
@@ -18,13 +18,13 @@ page=<%=page%>
         </div>
       </summary>
       <nav class="z-50 shadow-2xl bg-white text-teal-lighter flex flex-col absolute right-0 text-6xl pl-14 pr-8 py-12 mt-1 text-right rounded-l-full ">
-        <%= link_to 'Home.', root_path %>
-        <%= link_to 'About', about_path %>
-        <%= link_to 'Contact', root_path(anchor: 'connect') %>
-        <%= link_to 'Press', root_path(anchor: 'press') %>
-        <%= link_to 'Partners', partners_path %>
+        <%= link_to 'Home.', root_path, class: "navbar-hover" %>
+        <%= link_to 'About', about_path, class: "navbar-hover" %>
+        <%= link_to 'Contact', root_path(anchor: 'connect'), class: "navbar-hover" %>
+        <%= link_to 'Press', root_path(anchor: 'press'), class: "navbar-hover" %>
+        <%= link_to 'Partners', partners_path, class: "navbar-hover" %>
         <%= link_to "RENT SPACE", book_path,
-         class: "mt-4 bg-teal-lighter ml-32 text-2xl text-center text-white w-32 py-1" %>
+         class: "mt-4 bg-teal-lighter ml-32 text-2xl text-center text-white w-32 py-1 hover:bg-teal-lightest transition-colors duration-200" %>
       </nav>
     </details>
   </div>
