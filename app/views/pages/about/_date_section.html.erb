@@ -1,0 +1,21 @@
+<div class="border-l-4 border-gray-500 pl-6 pb-6">
+  <div>
+    <div class="relative">
+      <p class="font-bold text-lg"><%= date %></p>
+      <% if keep_open=="open" %>
+        <div class="w-7 h-7  rounded-full border-2 border-gray-500 bg-gray-300 absolute -left-10 top-0"></div>
+      <% else %>
+        <div class="w-5 h-5 rounded-full border-4 border-gray-500 bg-white absolute -left-9 top-1"></div>
+      <% end %>
+    </div>
+    <p class="text-3xl">
+      <%= title %>
+    </p>
+  </div>
+  <details <%= keep_open%> class="w-60 sm:w-96 md:w-72 ">
+    <summary class="text-lg font-bold mt-3"></summary>
+    <p class="leading-5  pl-5 mt-1">
+      <%= text %>
+    </p>
+  </details>
+</div>
