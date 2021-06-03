@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def about
-    @cms = Comfy::Cms::Page.find_by_full_path('/home')
+    @cms = Comfy::Cms::Page.find_by_full_path('/about')
   end
 
   private
