@@ -1,15 +1,17 @@
 <div id="article-5" 
-    class="col-span-11 md:col-span-6 bg-teal-darkest h-72 hidden md:inline bg-center bg-cover" 
-      style=  "background-image: url(<%= get_photo_url(:titlePhoto)%>)">
-  <div class="press-screen group">
-    <div class="press-text-container">
-      <h5 class="press-header">
-        Philadelphia Eater
-      </h5>
-      <div class="press-line"></div>
-      <p class="press-quote lg:w-1/2">
-        How to open a Philly beer garden without pissing off the neighbors 
-      </p>
+    class="col-span-11 md:col-span-6 bg-teal-darkest h-72 hidden md:inline bg-center bg-cover cursor-pointer" 
+      style=  "background-image: url(<%= get_photo_url(:articleFivePhoto)%>)">
+  <a <%=get_article_href(:articleFiveLink) %>>
+    <div class="press-screen group">
+      <div class="press-text-container">
+        <h5 class="press-header">
+          <%=get_text_content(:articleFivePublisher, 'Article Five Publisher')%>
+        </h5>
+        <div class="press-line"></div>
+        <p class="press-quote lg:w-1/2">
+          <%=get_text_content(:articleFivePublisher, 'A headline or quote from article five to build social proof.')%>
+        </p>
+      </div>
     </div>
-  </div>
+  </a>
 </div>

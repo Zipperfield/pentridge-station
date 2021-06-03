@@ -12,4 +12,11 @@ module CmsHelper
     content = cms_fragment_render(name, @cms)
     content.empty? ? backup : content
   end
+
+  def get_article_href(name)
+    return 'href=javascript:void(0)' if @cms.nil?
+
+    link = cms_fragment_render(name, @cms)
+    link.empty? ? 'href=javascript:void(0)' : "href=#{link} target= _blank"
+  end
 end

@@ -1,9 +1,12 @@
 <div class="flex flex-col justify-center">
-  <div class="font-bold mb-3">OUR STORY</div>
-  <div class="font-semibold text-4xl mb-3">Good food, good drinks, and good people</div>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <div class="font-bold mb-3"><%= get_text_content :gridOneParagraphOne, 'SHORT TITLE'%></div>
+  <div class="font-semibold text-4xl mb-3"><%= get_text_content :gridOneParagraphOne, 'A longer title can go in this spot'%></div>
+  <p><%= get_text_content :gridOneParagraphOne, 
+  'Grid one paragraph one. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' %> </p>
+  <p><%= get_text_content :gridOneParagraphTwo, 
+  'Grid one paragraph two. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' %>
+  </p>
   <a href=<%= about_path %>>
     <button class="bg-teal-lightest text-white w-44 py-3 text-xs mt-3 transition-colors hover:bg-teal-lighter duration-300">LEARN MORE</button>
   </a>
