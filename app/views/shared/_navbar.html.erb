@@ -3,8 +3,9 @@ id ='navbar'
 class=" flex flex-row justify-between pt-6 mx-2 sm:mx-10"
 page=<%=page%>
 >
-  <a href=<%= root_path%> class="bg-white text-black bg-opacity-90">
-    <div > Website Logo</div>
+  <div></div>
+  <a href=<%= root_path%> class="w-28 absolute">
+    <%= image_tag('logo.png') %>
   </a>
   <div class='flex'>
     <%= link_to "RENT SPACE", book_path, class: "w-auto bg-teal-lightest text-white px-3 h-9 pt-2 hover:bg-teal-lighter transition-colors duration-200" %>
