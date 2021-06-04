@@ -15,7 +15,7 @@
       placeholder: 'Email', required: true, 
       maxlength: 42, size: '', 
       class: 'sm:w-5/12 sm:mr-3 border-gray-400 mb-2'%>
-    <%= c.telephone_field :phone_number,  
+    <%= c.text_field :phone_number,  
       pattern: '[0-9]{10}', placeholder: 'Phone Number',
        required: true, maxlength: 10, size: '', 
        class: 'sm:w-7/12 border-gray-400 mb-2'%>
