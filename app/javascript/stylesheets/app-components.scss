@@ -114,4 +114,10 @@
   .navbar-hover {
     @apply hover:text-teal-darker transition-colors duration-200;
   }
+  .bigger-icon {
+    @apply w-6 fill-current stroke-current text-gray-700;
+  }
+  .beer-icon {
+    @apply w-4 fill-current stroke-current text-gray-700;
+  }
 }

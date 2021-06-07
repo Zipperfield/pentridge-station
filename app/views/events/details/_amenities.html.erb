@@ -1,36 +1,49 @@
 <h4 class="font-bold my-4 text-xl">Amenities</h4>
 <div class="my-4 flex flex-wrap justify-between">
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "speaker.svg", class:'w-5 mx-3' %>
-    <p>Sound System</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
-  <div class="flex w-32 mr-5 my-2">
-    <%= inline_svg_tag "tables.svg", class:'w-5 mx-3' %>
-    <p>10xTables</p>
-  </div>
+  <%= render 'events/details/amenity',
+    svg_name: 'speaker.svg',
+    attribution: '',
+    className: 'w-5',
+    name: 'PA & Sound System' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'stage.svg',
+    attribution: "stage by Adrien Coquet from the Noun Project",
+    className: 'bigger-icon',
+    name: 'Stage' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'speaker.svg',
+    attribution: '',
+    className: 'w-5',
+    name: '2 Bathrooms' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'tables.svg',
+    attribution: '',
+    className: 'w-5',
+    name: 'Seating for 100+' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'canopy.svg',
+    attribution: 'canopy by iconcheese from the Noun Project',
+    className: 'bigger-icon',
+    name: 'Covered Seating for 75' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'bar.svg',
+    attribution: 'Bar by Lagot Design from the Noun Project',
+    className: 'bigger-icon',
+    name: 'Full Bar' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'hammock.svg',
+    attribution: 'Hammock by Nawicon from the Noun Project',
+    className: 'bigger-icon',
+    name: 'Hammocks' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'beer-pong.svg',
+    attribution: 'Beer Pong by Ryan Houk from the Noun Project',
+    className: 'beer-icon',
+    name: 'Lawn Games' %>
+  <%= render 'events/details/amenity',
+    svg_name: 'school-bus.svg',
+    attribution: '',
+    className: 'bigger-icon',
+    name: 'Converted School Bus Dining Area' %>
 </div>
-<button class="border-2 border-gray-600 px-10 py-1">SEE ALL</button>
+<%# <button class="border-2 border-gray-600 px-10 py-1">SEE ALL</button> %>
