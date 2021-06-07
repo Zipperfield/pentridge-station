@@ -1,6 +1,6 @@
 function embedMap() {
     // create map and set center and zoom level
-    publicMapboxApiKey = document.getElementById('map').getAttribute('public-api-key');
+    const publicMapboxApiKey = document.getElementById('map').getAttribute('public-api-key');
     var map = new L.map("map");
     map.setView([39.948021, -75.220581], 15);
 
@@ -33,8 +33,8 @@ function embedMap() {
 
 
 function alcoholChoiceHelper() {
-    openInput = document.getElementById('event_open_bar');
-    byobInput = document.getElementById('event_byob');
+    const openInput = document.getElementById('event_open_bar');
+    const byobInput = document.getElementById('event_byob');
 
     function switchCheck(value) {
         if (value == false) {
@@ -61,39 +61,31 @@ function hideOnClickOutside(parent, child, calendar) {
             removeClickListener();
         }
     }
-
     const submitOnEnter = event => {
-
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById('event_submit').click();
         }
     }
-
     const removeClickListener = () => {
         document.getElementById('temp_submit').classList.remove('hidden');
         document.getElementById('up-arrow').classList.add('md:flex');
-
         toggleVisibility(parent);
         transferContent(false, calendar);
         document.removeEventListener('click', outsideClickListener);
         document.getElementById('edit_event_type').removeEventListener('click', removeClickListener);
         document.getElementById('edit_event_date').removeEventListener('click', removeClickListener);
         document.getElementById('left_chevron').removeEventListener('click', removeClickListener);
-
         document.removeEventListener('keydown', submitOnEnter);
-
     }
 
     document.addEventListener('click', outsideClickListener);
     document.getElementById('edit_event_type').addEventListener('click', removeClickListener);
     document.getElementById('edit_event_date').addEventListener('click', removeClickListener);
     document.getElementById('left_chevron').addEventListener('click', removeClickListener);
-
     document.addEventListener('keydown', submitOnEnter);
 }
 
-// || elem.getClientRects().length
 const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
 
 function getSelectedOptionText(e) {
@@ -140,18 +132,13 @@ function transferInfo(calendarValue) {
 }
 
 function transferValue(eventValueName, openingForm, target = document.getElementById("temp_" + eventValueName)) {
-    // Takes an event value name 
     if (openingForm) {
         document.getElementById(eventValueName).value =
             target.value;
     } else {
-        // closing formf
         target.value =
             document.getElementById(eventValueName).value;
-
     }
-
-
 }
 
 function transferContent(openingForm, calendarValue) {
@@ -176,9 +163,7 @@ function toggleVisibility(element) {
 
 
 function toggleFormVisibility() {
-    // tempFormClassList = document.getElementById('temp_event_form_container').classList;
     formClassList = document.getElementById('event_form_container').classList;
-    // toggleClassListVisibility(tempFormClassList);
     toggleClassListVisibility(formClassList);
 }
 
@@ -207,18 +192,16 @@ function validNumAttendees() {
 }
 
 
-
-
 function validateTime() {
     var startTime = document.getElementById('temp_event_start_time');
     var endTime = document.getElementById('temp_event_end_time');
-    sixHours = 21600000;
+    const sixHours = 21600000;
     function startBeforeFinish(e) {
         endTime.setCustomValidity('');
         startTime.setCustomValidity('');
         if ((endTime.value != '') && (startTime != '')) {
-            end = getDateFromHours(endTime.value);
-            start = getDateFromHours(startTime.value);
+            let end = getDateFromHours(endTime.value);
+            let start = getDateFromHours(startTime.value);
 
             if (end - start <= 0) {
                 e.target.setCustomValidity('You must start before you finish!');
@@ -237,18 +220,16 @@ function validateTime() {
     }
 
     function setTime(e) {
-        start = getDateFromHours(startTime.value);
+        let start = getDateFromHours(startTime.value);
         endTime.value = `${checkTime(start.getHours() + 6)}:00:00`;
     }
-
     startTime.addEventListener('input', setTime);
     startTime.addEventListener('input', startBeforeFinish);
     endTime.addEventListener('input', startBeforeFinish);
 }
 
-
 function dontOverbook(calendar) {
-    excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
+    const excludedDates = document.getElementById('excluded_dates').getAttribute('dates').split(',');
     if (excludedDates.indexOf(calendar.value) > -1) {
         calendar.setCustomValidity('This date is already booked. Please select another date.');
         calendar.reportValidity();
@@ -259,7 +240,6 @@ function dontOverbook(calendar) {
         calendar.setCustomValidity('');
     }
 }
-
 
 function toggleText(element, from, to) {
     if (element.textContent == from) {
@@ -350,11 +330,8 @@ class UserPriceInput {
         this.startHour = document.getElementById('temp_event_start_time');
         this.endHour = document.getElementById('temp_event_end_time');
         this.date = document.getElementById('event_date');
-        // this.numHours = ((this.endHour - this.startHour) / 3600000)
 
         this.numAttendees = function () {
-            // console.log('pls');
-            // console.log(this.numberAttendees);
             return (Number(this.numberAttendees.value));
         }
 
@@ -413,7 +390,7 @@ class PriceTool {
         }
 
 
-        this.businessLineItem.setPrice('*', lead = '');
+        this.businessLineItem.setPrice('*', '');
 
 
         this.setEstimatedPrice = function (newPrice) {
@@ -449,7 +426,7 @@ class PriceTool {
 
 
         this.doorpersonSpecificAfterClick = function () {
-            e = document.getElementById("event_doorperson_text");
+            const e = document.getElementById("event_doorperson_text");
             if (e.textContent == "Pentridge Station will provide a doorperson.") {
                 e.textContent = "I will provide a doorperson for my event.";
             } else {
@@ -458,7 +435,7 @@ class PriceTool {
         }
 
         this.alcoholSpecificAfterClick = function () {
-            e = document.getElementById("event_alcohol_text");
+            const e = document.getElementById("event_alcohol_text");
             if (e.textContent == "NOT") {
                 e.textContent = "";
             } else {
@@ -502,8 +479,6 @@ class PriceTool {
             this.checkBusinessHours();
             this.setEstimatedPrice(this.calculateEstimatePrice());
         }
-        // this.bartenderPrice = this.bartenderPrice.bind(this);
-
         this.setPrices = this.setPrices.bind(this);
 
         this.addLineItemListener = function (lineItem, func, specificFunc = function () { }) {
@@ -593,11 +568,11 @@ class Preference {
 
 function validatePreferences() {
 
-    vendorPreference = new Preference('event_vendor_partnership',
+    const vendorPreference = new Preference('event_vendor_partnership',
         'event_preferences_attributes_0_first_choice_id',
         'event_preferences_attributes_0_second_choice_id',
         'event_preferences_attributes_0_third_choice_id')
-    musicianPreference = new Preference('event_musician_partnership',
+    const musicianPreference = new Preference('event_musician_partnership',
         'event_preferences_attributes_1_first_choice_id',
         'event_preferences_attributes_1_second_choice_id',
         'event_preferences_attributes_1_third_choice_id')
@@ -643,42 +618,30 @@ document.addEventListener('turbolinks:load', () => {
     if (document.getElementById('navbar').getAttribute('page') != 'book') {
         return
     }
-    priceTool = new PriceTool();
+    const priceTool = new PriceTool();
     priceTool.addLineItemListeners();
-    calendar = whichCalendar();
+    const calendar = whichCalendar();
     calendar.addEventListener('input', event => {
         dontOverbook(calendar);
     });
     document.getElementById('date_backup_input').addEventListener('click', event => {
         dontOverbook(calendar)
     });
-    // backupInput = document.getElementById('date_backup_input');
-    // document.body.addEventListener('click', function (e) {
-    //     if (backupInput.contains(e.target)) {
-    //         console.log('clicked inside');
-    //     }
-    // })
 
+    const tempSubmit = document.getElementById("temp_submit");
+    const eventFormScreen = document.getElementById('event_form_screen');
+    const eventFormContainer = document.getElementById('event_form_container');
+    const vendorPartnershipButton = document.getElementById('event_vendor_partnership');
 
-    tempSubmit = document.getElementById("temp_submit");
-    eventFormScreen = document.getElementById('event_form_screen');
-    eventFormContainer = document.getElementById('event_form_container');
-    vendorPartnershipButton = document.getElementById('event_vendor_partnership');
-    vendorPartnershipForm = document.getElementById('vendor_partnership_form');
-    vendorPartnershipText = document.getElementById('vendor_partnership_text');
-
-    musicianPartnershipButton = document.getElementById('event_musician_partnership');
-    musicianPartnershipForm = document.getElementById('musician_partnership_form');
-    musicianPartnershipText = document.getElementById('musician_partnership_text');
+    const musicianPartnershipButton = document.getElementById('event_musician_partnership');
 
     validateTime();
     validatePreferences();
     alcoholChoiceHelper();
-    // vendorPartnershipForm.getElementsByTagName('select').addEventListener
     vendorPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
-        toggleVisibility(vendorPartnershipForm);
-        toggleText(vendorPartnershipText,
+        toggleVisibility(document.getElementById('vendor_partnership_form'));
+        toggleText(document.getElementById('vendor_partnership_text'),
             "I am requesting to book one of these three vendors:",
             "I will bring my own food.")
     });
@@ -686,15 +649,11 @@ document.addEventListener('turbolinks:load', () => {
 
     musicianPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
-        toggleVisibility(musicianPartnershipForm);
-        toggleText(musicianPartnershipText,
+        toggleVisibility(document.getElementById('musician_partnership_form'));
+        toggleText(document.getElementById('musician_partnership_text'),
             "I am requesting to book one of these three musicians:",
             "I will bring my own music.")
     });
-    // this is a janky solution but should work.
-    //  always set to one on server side
-    // pass the value of button to view through html value
-    // If param not one then artificially click on button
     if (musicianPartnershipButton.getAttribute('click_again') == 'true') {
         musicianPartnershipButton.click();
     }
@@ -725,25 +684,10 @@ document.addEventListener('turbolinks:load', () => {
             document.getElementById("temp_event_start_time").reportValidity()
             calendar.reportValidity()
         }
-
-        //   validate inputs
-        // transfer content
-        // toggle visibility
-        // if (timeValidated()) {
-
-        // } else {
-        // alert
-        // }
-
-        // formClassList = document.getElementById('event_form_container');
-        // formClassList.style.display = 
     });
-    console.log(eventFormScreen.getAttribute('alert'));
 
     if (eventFormScreen.getAttribute('alert') == 'true') {
         tempSubmit.click();
     }
     embedMap();
-
-
 });

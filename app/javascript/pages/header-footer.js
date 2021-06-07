@@ -1,27 +1,20 @@
-
-
-
 function toggleForm(button) {
-  form = document.getElementById("new_contact");
   button.classList.add('hidden');
-  form.classList.remove('hidden');
+  document.getElementById("new_contact").classList.remove('hidden');
 
 }
 
-
 document.addEventListener('turbolinks:load', () => {
-
-  newsletterButton = document.getElementById("newsletterButton");
+  const newsletterButton = document.getElementById("newsletterButton");
 
   newsletterButton.addEventListener("click", (event) => {
     event.preventDefault();
     toggleForm(newsletterButton);
   });
 
-  hamburger = document.querySelector(".tham");
+  const hamburger = document.querySelector(".tham");
   hamburger.addEventListener("click", (event) => {
     // event.preventDefault();
     hamburger.classList.toggle('tham-active');
   });
 });
-

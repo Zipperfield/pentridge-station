@@ -31,6 +31,7 @@ function toggleVisibility(element) {
 }
 function openPopUp(e) {
     e.preventDefault();
+    let t = null;
     if (e.target.classList.contains('partner-panel')) {
         t = e.target;
     } else if (e.target.classList.contains('absolute')) {
@@ -41,7 +42,7 @@ function openPopUp(e) {
         t = e.target.parentElement.parentElement;
     }
     transferPartnerContent(t);
-    partnerPopup = document.getElementById('popup_partner_screen');
+    const partnerPopup = document.getElementById('popup_partner_screen');
     toggleVisibility(partnerPopup);
     hideOnClickOutside(partnerPopup,
         document.getElementById('popup_partner_container'));
@@ -50,8 +51,8 @@ function openPopUp(e) {
 
 }
 function setLink(attr, panel) {
-    link = document.getElementById("popup_partner_" + attr);
-    val = panel.getAttribute(attr);
+    let link = document.getElementById("popup_partner_" + attr);
+    let val = panel.getAttribute(attr);
     if (val === null) {
         console.log('attr is null')
         if (!link.classList.contains("pointer-events-none")) {
@@ -79,19 +80,13 @@ function transferPartnerContent(panel) {
 }
 
 document.addEventListener('turbolinks:load', () => {
-    page = document.getElementById('navbar').getAttribute('page');
+    const page = document.getElementById('navbar').getAttribute('page');
     if (!((page == 'musicians') || (page == "vendors"))) {
         return
     }
-    panels = [...document.getElementsByClassName('partner-panel')];
-    console.log(panels);
+    const panels = [...document.getElementsByClassName('partner-panel')];
     panels.forEach(panel => {
         panel.addEventListener('click', openPopUp)
 
     });
-    // get each panel element 
-    // for each panel element add event listener for click 
-    //  sets values
-    //  that pops up screen 
-    //  and adds another listener for outside click of popup
 });
