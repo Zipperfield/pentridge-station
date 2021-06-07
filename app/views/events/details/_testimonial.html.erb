@@ -1,14 +1,14 @@
 <div class="w-auto sm:w-64 mr-3 lg:mr-8 mb-8">
   <div class="flex mb-3">
-    <div class="border-4 border-teal-lighter w-16 h-16 mr-3 bg-cover bg-center"
+    <div class="border-8 border-teal-lighter w-16 h-16 mr-3 bg-cover bg-center"
        style="background-image: url(<%= get_photo_url(photo)%>)" >
     </div>
     <div>
       <p class="font-bold text-lg">
-        <%=name%></p>
-      <div><%=description%></div>
+        <%=get_text_content(name, 'Name')%></p>
+      <div><%=get_text_content(description, 'Event Description for #')%></div>
     </div>
   </div>
   <p class="text-gray-600">
-    "<%=quote%>"</p>
+    "<%=get_text_content(quote, 'Here is a quote from a guest that shows how good of a time they had.')%>"</p>
 </div>
