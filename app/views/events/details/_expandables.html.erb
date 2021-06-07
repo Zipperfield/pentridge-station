@@ -4,7 +4,8 @@
       Cleaning Protocol
       <%= inline_svg_tag "broom.svg", class:'w-5 ml-2' %>
     </summary>
-    <p class="ml-10 mt-4">Another message in here that explains the details of the description above this!
+    <p class="ml-10 mt-4">
+      <%= get_text_content(:cleaningProtocol,'This is a message that describes the cleaning protocol')%>
     </p>
   </details>
   <details class="border-t border-gray-400 py-4">
@@ -12,7 +13,8 @@
       Parking
       <%= inline_svg_tag "parking.svg", class:'w-5 ml-2' %>
     </summary>
-    <p class="ml-10 mt-4">Another message in here !
+    <p class="ml-10 mt-4">
+      <%= get_text_content(:parkingProtocol,'This is a message that describes the parking')%>
     </p>
   </details>
   <details class="border-t border-gray-400 py-4">
@@ -20,7 +22,8 @@
       Host Rules
       <%= inline_svg_tag "rules.svg", class:'w-5 ml-2' %>
     </summary>
-    <p class="ml-10 mt-4">Another message in here !
+    <p class="ml-10 mt-4">
+      <%= get_text_content(:parkingProtocol,'This is a message that describes the house rules')%>
     </p>
   </details>
 </div>

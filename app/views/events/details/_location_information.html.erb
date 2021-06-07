@@ -1,12 +1,13 @@
 <h4 class="font-bold my-8 text-xl">About the Location</h4>
 <div id="map" class="w-auto h-96 mb-8 z-0" public-api-key= <%=ENV['mapbox_public_api_key']%>></div>
 <p class="text-lg">
-  Lorem ipsum dolor sit amet, consectetur 
+  <%= get_text_content(:locationBlurb,
+  "This is the location blurb, consectetur 
   adipiscing elit, sed do eiusmod tempor incididunt ut labore 
   et dolore magna aliqua. Pellentesque id nibh tortor id aliquet.
   Felis eget nunc lobortis mattis aliquam faucibus. Feugiat nibh
   sed pulvinar proin. Justo nec ultrices dui sapien eget mi 
   proin sed libero.Mi ipsum faucibus vitae aliquet nec 
   ullamcorper sit amet. Quis hendrerit dolor magna eget est 
-  lorem ipsum dolor sit. Iaculis nunc sed augue lacus.
+  lorem ipsum dolor sit. Iaculis nunc sed augue lacus.") %>
 </p>
