@@ -1,22 +1,20 @@
 class Event < ApplicationRecord
   belongs_to :contact
   has_many :preferences, dependent: :destroy
-  enum event_type: { wedding: 0, party: 1, music: 2, meeting: 3 }
+  enum event_type: { 'wedding/wedding reception' => 0,
+                     'day party' => 1,
+                     'music festival' => 2,
+                     'cultural festival' => 3,
+                     'private dinner' => 4,
+                     fundraiser: 5,
+                     conference: 6,
+                     celebration: 7,
+                     'birthday party' => 8,
+                     'baby shower' => 9,
+                     other: 10 }
   accepts_nested_attributes_for :contact
   accepts_nested_attributes_for :preferences
 
-  # after_save :conditonally_remove_preferences
-
-  # def no_preferences_desired(attributed)
-  #   puts attributed
-  #   (!vendor_partnership && attributed['preference_type'] == 'vendor') ||
-  #     (!musician_partnership && attributed['preference_type'] == 'musician')
-  # end
-
-  # def conditonally_remove_preferences
-  #   preferences.destroy(preferences.vendor.first.id) unless vendor_partnership
-  #   preferences.destroy(preferences.musician.first.id) unless musician_partnership
-  # end
   validates :start_time, :end_time, :event_type, :num_attendees, presence: true
   validates_numericality_of :num_attendees
   validates :num_attendees, inclusion: 1..300
