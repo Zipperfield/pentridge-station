@@ -18,14 +18,18 @@ page=<%=page%>
           </div>
         </div>
       </summary>
-      <nav class="z-50 shadow-2xl bg-white text-teal-lighter flex flex-col absolute right-0 text-6xl pl-14 pr-8 py-12 mt-1 text-right rounded-l-full ">
+      <nav class="z-50 shadow-2xl bg-white text-teal-lighter flex flex-col absolute right-0 text-5xl pl-10 pr-6 py-12 mt-1 text-right rounded-l-full ">
         <%= link_to 'Home.', root_path, class: "navbar-hover" %>
         <%= link_to 'About', about_path, class: "navbar-hover" %>
         <%= link_to 'Contact', root_path(anchor: 'connect'), class: "navbar-hover" %>
         <%= link_to 'Press', root_path(anchor: 'press'), class: "navbar-hover" %>
-        <%= link_to 'Partners', partners_path, class: "navbar-hover" %>
-        <%= link_to "RENT SPACE", book_path,
-         class: "mt-4 bg-teal-lighter ml-32 text-2xl text-center text-white w-32 py-1 hover:bg-teal-lightest transition-colors duration-200" %>
+        <%= link_to 'Community', partners_path, class: "navbar-hover" %>
+        <div class="flex justify-end">
+          <%= link_to "Rent Space", book_path,
+          class: "font-semibold border-opacity-50 ring-opacity-50 self-end px-4 border text-teal-lightest mt-3 text-3xl border-red-400 ring-2 py-1 ring-red-200 hover:bg-teal-lightest hover:text-teal-backup hover:bg-opacity-10 " 
+          %>
+          <%# class: "border-opacity-50 ring-opacity-50 self-end px-4 border text-teal-lighter mt-3 text-3xl border-red-400 ring-2 py-1 ring-red-200 hover:bg-teal-backup hover:text-teal-backup hover:bg-opacity-10 " %>
+        </div>
       </nav>
     </details>
   </div>
