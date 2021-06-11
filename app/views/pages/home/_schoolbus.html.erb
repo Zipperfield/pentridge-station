@@ -1,23 +1,23 @@
 <%# School Bus Section %>
-<div class="mt-16 text-white z-10 ">
-  <div class="z-10 bg-opacity-80 group hover:bg-opacity-100 sm:opacity-100 bg-teal-backup w-80 md:w-1/2 absolute right-2 md:right-20 mt-64 ">
-    <div class="p-16 relative z-30">
-      <p class="font-bold">
-        <%= get_text_content(:busShortTitle, "A SHORT TITLE")%>
-      </p>
-      <p class="text-3xl md:text-4xl">
-        <%= get_text_content(:busLongTitle, 'Here is a longer title for the school bus section')%>
-      </p>
-      <%= link_to root_path(anchor: 'connect') do %>
+<%= link_to root_path(anchor: 'connect') do %>
+  <div class="mt-16 text-white z-10 ">
+    <div class="z-10 bg-opacity-80 transtion duration-500 group hover:bg-opacity-100 sm:opacity-100 bg-teal-backup w-80 md:w-1/2 absolute right-2 md:right-20 mt-64 ">
+      <div class="p-16 relative z-30">
+        <p class="font-bold">
+          <%= get_text_content(:busShortTitle, "A SHORT TITLE")%>
+        </p>
+        <p class="text-3xl md:text-4xl">
+          <%= get_text_content(:busLongTitle, 'Here is a longer title for the school bus section')%>
+        </p>
         <button class="bg-white text-teal-backup text-xs w-36 py-2">
           LEARN MORE
         </button>
-      <% end%>
+      </div>
+      <div id="schoolbus-cut-detail" class="w-full h-5/6 bottom-0 absolute transition duration-500 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-teal-lighter to-teal-backup z-20"></div>
     </div>
-    <div id="schoolbus-cut-detail" class="w-full h-5/6 bottom-0 absolute opacity-0 group-hover:opacity-100 bg-gradient-to-t from-teal-lighter to-teal-backup z-20"></div>
-  </div>
-  <div id="bus-photo"
+    <div id="bus-photo"
   class="z-0 bg-teal-lighter ml-3 md:ml-24 w-72 sm:w-2/3 md:w-1/2 h-80 py-96 bg-center bg-cover" 
   style=  "background-image: url(<%= get_photo_url(:busPhoto)%>)" >
+    </div>
   </div>
-</div>
+<% end%>
