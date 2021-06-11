@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: %i[create]
-  resources :partners, only: %i[index]
   resources :contacts, only: %i[create]
   resources :messages, only: %i[create]
 
-  get '/partners/musicians', to: 'partners#musicians', as: :musicians
-  get '/partners/vendors', to: 'partners#vendors', as: :vendors
+  get '/community', to: 'partners#index', as: :community
+  get '/community/musicians', to: 'partners#musicians', as: :musicians
+  get '/community/vendors', to: 'partners#vendors', as: :vendors
 
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
