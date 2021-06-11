@@ -49,7 +49,7 @@ gem 'figaro'
 gem 'inline_svg'
 
 # aws s3 bucket gem
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -77,3 +77,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# for deployment on digital ocean droplet
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
