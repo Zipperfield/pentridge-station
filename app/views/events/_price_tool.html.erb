@@ -1,4 +1,4 @@
-<div class="m-4 mb-36 md:mb-0 sm:ml-12 md:ml-8 ">
+<div class="m-4 mb-4 md:mb-0">
   <div class="md:sticky md:top-10 md:mt-40 self-start border border-gray-300 w-full p-4 md:p-8 ">
     <h3 class="text-2xl lg:text-3xl font-light md:font-semibold ">Total Estimated Cost</h3>
     <h3 class="text-xl sm:text-2xl my-3">$<span id="estimated_price"></span></h3>
@@ -51,5 +51,9 @@
           visible: true,
           details: "Food vendor pricing is based on your requested menu. Options range from $10 per person for a simpler dish to $200 per person for a full course meal."
       %>
+    <input type="submit" name="commit" value="REQUEST TO BOOK" 
+            id="event_submit" 
+            class="md:hidden w-full mt-8 text-white bg-teal-lightest py-3 mb-3 transition-colors duration-200 hover:bg-teal-lighter cursor-pointer"
+            form="event_form">
   </div>
 </div>
