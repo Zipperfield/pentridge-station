@@ -31,6 +31,30 @@ function embedMap() {
 
 }
 
+function myLoop(slot, eventTypes, index, counter) {
+    setTimeout(function () {
+        slot.textContent = eventTypes[index].replace('_', ' ').replace('\'', "").replace('\'', "");
+        if (counter == 2) {
+            return;
+        } else if (index == eventTypes.length - 1) {
+            index = 0;
+            counter = counter + 1;
+        } else {
+            index = index + 1;
+        }
+        myLoop(slot, eventTypes, index, counter);
+    }, 3333)
+}
+
+async function alternateTitleEvents() {
+    const slot = document.getElementById('changing_event');
+    let index = 1;
+    let counter = 0;
+    const eventTypes = document.getElementById('event_types_for_header').getAttribute('events').split(',');
+    myLoop(slot, eventTypes, index, counter);
+
+}
+
 
 function alcoholChoiceHelper() {
     const openInput = document.getElementById('event_open_bar');
@@ -690,4 +714,5 @@ document.addEventListener('turbolinks:load', () => {
         tempSubmit.click();
     }
     embedMap();
+    alternateTitleEvents();
 });

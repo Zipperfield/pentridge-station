@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     @event.preferences.build(preference_type: 'musician')
     @excluded_dates = Schedule.pluck(:date).map { |d| d.strftime('%F') }.join(',')
     # @event.preferences.build
+    get_event_types
     set_choices
     @cms = Comfy::Cms::Page.find_by_full_path('/book')
   end
@@ -35,6 +36,10 @@ class EventsController < ApplicationController
                                   :num_attendees, :doorperson, :alcohol, :open_bar,
                                   contact_attributes: %i[first_name last_name email entry_process phone_number],
                                   preferences_attributes: %i[requested preference_type first_choice_id second_choice_id third_choice_id])
+  end
+
+  def get_event_types
+    @event_types = Event.event_types.keys[0...-1].map { |t| "\'#{t.split('/')[0].tr(' ', '_')}.\'" }.join(',')
   end
 
   def set_newsletter_form
