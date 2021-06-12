@@ -43,7 +43,7 @@ function myLoop(slot, eventTypes, index, counter) {
             index = index + 1;
         }
         myLoop(slot, eventTypes, index, counter);
-    }, 3333)
+    }, 2500)
 }
 
 async function alternateTitleEvents() {
