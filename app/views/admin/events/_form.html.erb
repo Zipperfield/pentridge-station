@@ -1,12 +1,52 @@
 <%= form.date_field :date %>
-<%= form.select :start_time, options_for_select(@event.hourly_choices(8,17),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T"))%>
-<%= form.select :end_time, options_for_select(@event.hourly_choices(14,23),  @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T"))%>
-<%= form.select :event_type, options_for_select(Event.event_types)%>
-<%= form.number_field :num_attendees %>
-<%= form.check_box :doorperson %>
-<%= form.check_box :alcohol %>
-<%= form.check_box :open_bar%>
+<div class="row">
+  <%= form.select :start_time, options_for_select(@event.hourly_choices(8,17),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T"))%>
+  <%= form.select :end_time, options_for_select(@event.hourly_choices(14,23),  @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T"))%>
+</div>
+<div class="row">
+  <%= form.select :event_type, options_for_select(Event.event_types)%>
+  <%= form.number_field :num_attendees %>
+</div>
+<div class="row">
+  <div class="col-md-2">Ammenities: </div>
+  <div class="col-md-2">
+    <%= form.check_box :doorperson %>
+  </div>
+  <div class="col-md-2">
+    <%= form.check_box :alcohol, class: 'col-md-2' %>
+  </div>
+  <div class="col-md-2">
+    <%= form.check_box :open_bar, class: 'col-md-2'%>
+  </div>
+</div>
+<% if @event.preferences.first.requested %>
+  Food Vendor Request
+  <div class="row">
+    <div class="col-md-4">First Choice</div>
+    <div class="col-md-4">Second Choice </div>
+    <div class="col-md-4">Third Choice</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= @event.preferences.first.first_choice.name%></div>
+    <div class="col-md-4"><%= @event.preferences.first.second_choice.name%></div>
+    <div class="col-md-4"><%= @event.preferences.first.third_choice.name%></div>
+  </div>
+<% end %>
+<% if @event.preferences.second.requested %>
+  Musician Request
+  <div class="row">
+    <div class="col-md-4">First Choice</div>
+    <div class="col-md-4">Second Choice </div>
+    <div class="col-md-4">Third Choice</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= @event.preferences.second.first_choice.name%></div>
+    <div class="col-md-4"><%= @event.preferences.second.second_choice.name%></div>
+    <div class="col-md-4"><%= @event.preferences.second.third_choice.name%></div>
+  </div>
+<% end %>
 <%= form.fields_for :contact do |c| %>
+  Contact
   <div class="row">
     <%= c.text_field :first_name%>
     <%= c.text_field :last_name%>

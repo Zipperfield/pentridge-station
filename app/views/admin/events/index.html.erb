@@ -40,7 +40,7 @@
         <div class="col-md-4 d-flex align-items-center justify-content-md-end">
           <div class="btn-group btn-group-sm">
             <%= render 'admin/schedules/confirmation_form', event_date: event.date, event_description: event.event_type %>
-            <%= link_to 'Edit/View Details', edit_admin_event_path(event), class: 'btn btn-outline-secondary' %>
+            <%= link_to 'Edit/View', edit_admin_event_path(event), class: 'btn btn-outline-secondary' %>
             <%= link_to 'Delete', admin_event_path(event), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </div>
         </div>
