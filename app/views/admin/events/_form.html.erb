@@ -1,17 +1,20 @@
 <%= form.date_field :date %>
-<%= form.select :start_time, [["10:00 AM", 10],["11:00 AM", 11]]%>
-<%= form.select :end_time, [["11:00 AM",11],["12:00 PM",12]]%>
+<%= form.select :start_time, options_for_select(@event.hourly_choices(8,17),  @event[:start_time].nil? ? '' : @event[:start_time].strftime("%T"))%>
+<%= form.select :end_time, options_for_select(@event.hourly_choices(14,23),  @event[:end_time].nil? ? '' : @event[:end_time].strftime("%T"))%>
 <%= form.select :event_type, options_for_select(Event.event_types)%>
 <%= form.number_field :num_attendees %>
 <%= form.check_box :doorperson %>
 <%= form.check_box :alcohol %>
 <%= form.check_box :open_bar%>
 <%= form.fields_for :contact do |c| %>
-  Contact
-  <%= c.text_field :first_name%>
-  <%= c.text_field :last_name%>
-  <%= c.text_field :email%>
-  <%= c.text_field :phone_number%>
+  <div class="row">
+    <%= c.text_field :first_name%>
+    <%= c.text_field :last_name%>
+  </div>
+  <div class="row">
+    <%= c.text_field :email%>
+    <%= c.text_field :phone_number%>
+  </div>
   <%= c.hidden_field :entry_process , value: "Event" %>
 <% end %>
 <%= form.form_actions do %>
