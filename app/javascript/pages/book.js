@@ -31,19 +31,20 @@ function embedMap() {
 
 }
 
-function myLoop(slot, eventTypes, index, counter) {
+function myLoop(slot, eventTypes, index, counter, delay) {
     setTimeout(function () {
         slot.textContent = eventTypes[index].replace('_', ' ').replace('\'', "").replace('\'', "");
-        if (counter == 2) {
+        if (counter == 5) {
             return;
         } else if (index == eventTypes.length - 1) {
             index = 0;
             counter = counter + 1;
+            // delay = delay + 150;
         } else {
             index = index + 1;
         }
-        myLoop(slot, eventTypes, index, counter);
-    }, 2500)
+        myLoop(slot, eventTypes, index, counter, delay);
+    }, delay)
 }
 
 async function alternateTitleEvents() {
@@ -51,7 +52,7 @@ async function alternateTitleEvents() {
     let index = 1;
     let counter = 0;
     const eventTypes = document.getElementById('event_types_for_header').getAttribute('events').split(',');
-    myLoop(slot, eventTypes, index, counter);
+    myLoop(slot, eventTypes, index, counter, 1500);
 
 }
 
