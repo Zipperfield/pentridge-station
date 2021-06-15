@@ -18,6 +18,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
+      EventMailer.with(event: @event).event_request_email.deliver_later
+
       redirect_to '/book', notice: 'Event was successfully created.'
     else
       @cms = Comfy::Cms::Page.find_by_full_path('/book')

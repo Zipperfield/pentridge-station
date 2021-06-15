@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>A new event request was created.</p>
+    <div>Date   : <%= @event.date.strftime("%B %d, %Y")%></div>
+    <div>Start  : <%= @event.start_time.strftime("%T")%></div>
+    <div>Guests : <%= @event.num_attendees %></div>
+    <div>Type   : <%= @event.event_type %></div>
+    <%= link_to 'View more details', @url %>
+  </body>
+</html>
