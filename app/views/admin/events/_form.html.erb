@@ -31,6 +31,7 @@
     <div class="col-md-4"><%= @event.preferences.first.second_choice.name%></div>
     <div class="col-md-4"><%= @event.preferences.first.third_choice.name%></div>
   </div>
+  <div class="row">.</div>
 <% end %>
 <% if @event.preferences.second.requested %>
   Musician Request
@@ -44,6 +45,7 @@
     <div class="col-md-4"><%= @event.preferences.second.second_choice.name%></div>
     <div class="col-md-4"><%= @event.preferences.second.third_choice.name%></div>
   </div>
+  <div class="row">.</div>
 <% end %>
 <%= form.fields_for :contact do |c| %>
   Contact
