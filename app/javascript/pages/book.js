@@ -474,6 +474,10 @@ class PriceTool {
             } else {
                 e.textContent = "NOT";
             }
+            let openBarButton = document.getElementById('event_open_bar');
+            if (openBarButton.checked == 1) {
+                openBarButton.click();
+            }
             document.getElementById('open_bar_toggle_section').classList.toggle('hidden');
         }
 
