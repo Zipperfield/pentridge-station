@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_newsletter_form, only: %i[home about]
+  before_action :set_newsletter_form, only: %i[home about calendar]
   def home
     @message = Message.new
     @message.build_contact
@@ -9,6 +9,8 @@ class PagesController < ApplicationController
   def about
     @cms = Comfy::Cms::Page.find_by_full_path('/about')
   end
+
+  def calendar; end
 
   private
 

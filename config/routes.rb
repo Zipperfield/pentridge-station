@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/community/entertainers', to: 'partners#entertainers', as: :entertainers
   get '/community/vendors', to: 'partners#vendors', as: :vendors
 
+  get '/calendar', to: 'pages#calendar'
   get '/home', to: 'pages#home'
   get '/about', to: 'pages#about'
   get '/book', to: 'events#new', as: :book
