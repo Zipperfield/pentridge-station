@@ -1,11 +1,11 @@
-<header id="header" class="bg-teal-readable bg-center bg-cover"
+<header id="header" class="bg-teal-readable bg-center bg-cover "
     style=  "background-image: url(<%= get_photo_url(:headerPhoto)%>)">
   <%= render 'shared/navbar', page: page %>
   <div class="mx-3 sm:w-96 mt-12 sm:ml-16 md:ml-24 text-white pb-8">
     <div class="text-4xl sm:text-7xl font-extrabold">
       <%= get_text_content(:headerTitle, 'Page Title')%>
     </div>
-    <div class="my-6 sm:w-80">
+    <div class="my-6 sm:w-80 text-shadow">
       <%= get_text_content :headerSubtitle, 
       'Header Subtitle. Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.'
       %>
