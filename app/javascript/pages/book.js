@@ -313,7 +313,15 @@ class LineItem {
 
         this.calculateHourlyPrice = function (userInput, hoursReduced = 2) {
             return (this.visible() *
-                (userInput.numHours() - hoursReduced) * this.hourly * (userInput.isLarge() + 1));
+                (userInput.numHours() - hoursReduced) * this.hourly);
+        }
+
+        this.largeMultiplier = function (userInput, limit) {
+            return ((userInput.numAttendees() > 25) + 1);
+        }
+
+        this.calculateBartenderPrice = function (userInput, hoursReduced = 2) {
+            return (this.calculateHourlyPrice(userInput, hoursReduced) * this.largeMultiplier(userInput, 25));
         }
 
         this.calculatePerPersonPrice = function (userInput) {
@@ -476,13 +484,10 @@ class PriceTool {
 
         this.bartenderPrice = function () {
             this.pluralizeBartenderText();
-            return (this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateHourlyPrice(this.userPriceInput)));
+            return (this.bartenderLineItem.setPrice(this.bartenderLineItem.calculateBartenderPrice(this.userPriceInput)));
         }
 
-
-
         this.doorpersonPrice = function () {
-            this.pluralizeDoorPersonText();
             return (this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput)));
         }
         this.openBarPrice = function () {
