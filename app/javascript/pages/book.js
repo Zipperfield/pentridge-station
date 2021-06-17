@@ -413,6 +413,28 @@ class PriceTool {
         this.userPriceInput = new UserPriceInput();
 
 
+        this.toggleAddOnTitle = function () {
+            let addOnTitle = document.getElementById('optional_add_ons');
+            console.log(`
+            bartender ${this.bartenderLineItem.visible()},
+                doorperson ${this.doorpersonLineItem.visible()},
+               openbar ${this.openBarLineItem.visible()},
+                entertainer ${this.entertainerLineItem.visible()},
+                vendor ${this.vendorLineItem.visible()}
+            `)
+            if (!this.bartenderLineItem.visible() &&
+                !this.doorpersonLineItem.visible() &&
+                !this.openBarLineItem.visible() &&
+                !this.entertainerLineItem.visible() &&
+                !this.vendorLineItem.visible()) {
+                if (!addOnTitle.classList.contains('hidden')) {
+                    addOnTitle.classList.add('hidden');
+                }
+            }
+            else if (addOnTitle.classList.contains('hidden')) {
+                addOnTitle.classList.remove('hidden');
+            }
+        }
         this.calculateEstimatePrice = function () {
             return (this.basePrice() +
                 this.bartenderPrice() +
@@ -427,6 +449,7 @@ class PriceTool {
 
 
         this.setEstimatedPrice = function (newPrice) {
+            this.toggleAddOnTitle();
             close = ""
             if ((this.vendorPrice()) > 0) {
                 close = "+"

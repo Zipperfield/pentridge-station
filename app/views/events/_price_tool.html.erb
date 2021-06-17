@@ -1,12 +1,12 @@
 <div class="m-4 mb-4 md:mb-0">
   <div class="md:sticky md:top-10 md:mt-40 self-start border border-gray-300 w-full p-4 md:p-8 ">
-    <h3 class="text-lg lg:text-xl font-medium mb-2">Base Price</h3>
+    <p class="text-lg lg:text-xl font-medium mb-2">Base Cost</p>
     <%= render 'line_item', 
           id: 'base',
-          readable_name: 'Base Cost',
+          readable_name: 'Six Hour Event',
           values: "",
           visible: true,
-          details: ""
+          details: "All events include an hour to set up and an hour to clean up."
       %>
     <%= render 'line_item', 
           id: 'business_operation',
@@ -15,7 +15,7 @@
           visible: false,
           details: "The base cost increased because we would have to close the bar during business hours. You can avoid this added cost by cleaning and vaquating the space by 5 PM firm."
       %>
-    <h3 class="text-lg lg:text-xl font-medium my-2">Optional Add Ons</h3>
+    <p id="optional_add_ons" class="text-lg lg:text-xl font-medium my-2">Optional Add Ons</p>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
@@ -42,7 +42,7 @@
           readable_name: 'Entertainer Booking',
           values: "hourly= 100",
           visible: true,
-          details: "Entertainers have a two hour booking minimum."
+          details: "Entertainers have a two hour booking minimum with exact prices determined upon request."
       %>
     <%= render 'line_item', 
           id: 'food_vendor_cost',
