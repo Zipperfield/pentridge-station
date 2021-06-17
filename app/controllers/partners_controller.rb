@@ -1,14 +1,14 @@
 class PartnersController < ApplicationController
-  before_action :set_newsletter_form, only: %i[index musicians vendors]
+  before_action :set_newsletter_form, only: %i[index entertainers vendors]
 
   def index
     @cms = Comfy::Cms::Page.find_by_full_path('/partners')
     @partners = Partner.all
   end
 
-  def musicians
+  def entertainers
     @cms = Comfy::Cms::Page.find_by_full_path('/partners')
-    @partners = Partner.musician
+    @partners = Partner.entertainer
   end
 
   def vendors

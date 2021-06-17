@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.build_contact
     @event.preferences.build(preference_type: 'vendor')
-    @event.preferences.build(preference_type: 'musician')
+    @event.preferences.build(preference_type: 'entertainer')
     @excluded_dates = Schedule.pluck(:date).map { |d| d.strftime('%F') }.join(',')
     # @event.preferences.build
     get_event_types
@@ -50,6 +50,6 @@ class EventsController < ApplicationController
 
   def set_choices
     @vendor_choices = Partner.vendor.collect { |p| [p.name, p.id] }
-    @musician_choices = Partner.musician.collect { |p| [p.name, p.id] }
+    @entertainer_choices = Partner.entertainer.collect { |p| [p.name, p.id] }
   end
 end

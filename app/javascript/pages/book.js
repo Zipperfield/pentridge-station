@@ -399,7 +399,7 @@ class PriceTool {
         this.doorpersonLineItem = new LineItem('doorperson', "event_doorperson");
         this.openBarLineItem = new LineItem('open_bar', "event_open_bar", "event_byob");
         this.businessLineItem = new LineItem('business_operation',);
-        this.musicianLineItem = new LineItem('musician_cost', "event_musician_partnership");
+        this.entertainerLineItem = new LineItem('entertainer_cost', "event_entertainer_partnership");
         this.vendorLineItem = new LineItem('food_vendor_cost', "event_vendor_partnership");
         this.estimatedPrice = document.getElementById('estimated_price');
         this.userPriceInput = new UserPriceInput();
@@ -410,7 +410,7 @@ class PriceTool {
                 this.bartenderPrice() +
                 this.doorpersonPrice() +
                 this.openBarPrice() +
-                this.musicianPrice() +
+                this.entertainerPrice() +
                 this.vendorPrice());
         }
 
@@ -494,8 +494,8 @@ class PriceTool {
 
         }
 
-        this.musicianPrice = function () {
-            return (this.musicianLineItem.setPrice(this.musicianLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*"));
+        this.entertainerPrice = function () {
+            return (this.entertainerLineItem.setPrice(this.entertainerLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*"));
 
         }
 
@@ -527,7 +527,7 @@ class PriceTool {
             this.addLineItemListener(this.bartenderLineItem, this.setPrices);
             this.addLineItemListener(this.doorpersonLineItem, this.setPrices, this.doorpersonSpecificAfterClick);
             this.addLineItemListener(this.openBarLineItem, this.setPrices);
-            this.addLineItemListener(this.musicianLineItem, this.setPrices);
+            this.addLineItemListener(this.entertainerLineItem, this.setPrices);
             this.addLineItemListener(this.vendorLineItem, this.setPrices);
             document.getElementById('event_alcohol').addEventListener('click', this.alcoholSpecificAfterClick);
         }
@@ -597,21 +597,21 @@ function validatePreferences() {
         'event_preferences_attributes_0_first_choice_id',
         'event_preferences_attributes_0_second_choice_id',
         'event_preferences_attributes_0_third_choice_id')
-    const musicianPreference = new Preference('event_musician_partnership',
+    const entertainerPreference = new Preference('event_entertainer_partnership',
         'event_preferences_attributes_1_first_choice_id',
         'event_preferences_attributes_1_second_choice_id',
         'event_preferences_attributes_1_third_choice_id')
 
     document.getElementById('event_form').addEventListener('submit', (event) => {
         vendorPreference.validate();
-        musicianPreference.validate();
+        entertainerPreference.validate();
 
-        if (musicianPreference.isValid && vendorPreference.isValid) {
+        if (entertainerPreference.isValid && vendorPreference.isValid) {
             return true;
         } else {
             event.preventDefault();
             vendorPreference.reset();
-            musicianPreference.reset();
+            entertainerPreference.reset();
         }
 
     });
@@ -658,7 +658,7 @@ document.addEventListener('turbolinks:load', () => {
     const eventFormContainer = document.getElementById('event_form_container');
     const vendorPartnershipButton = document.getElementById('event_vendor_partnership');
 
-    const musicianPartnershipButton = document.getElementById('event_musician_partnership');
+    const entertainerPartnershipButton = document.getElementById('event_entertainer_partnership');
 
     validateTime();
     validatePreferences();
@@ -672,15 +672,15 @@ document.addEventListener('turbolinks:load', () => {
     });
 
 
-    musicianPartnershipButton.addEventListener('click', (event) => {
+    entertainerPartnershipButton.addEventListener('click', (event) => {
         // event.preventDefault();
-        toggleVisibility(document.getElementById('musician_partnership_form'));
-        toggleText(document.getElementById('musician_partnership_text'),
-            "I am requesting to book one of these three musicians:",
-            "I will bring my own music.")
+        toggleVisibility(document.getElementById('entertainer_partnership_form'));
+        toggleText(document.getElementById('entertainer_partnership_text'),
+            "I am requesting to book one of these three entertainers:",
+            "I will bring my own entertainment.")
     });
-    if (musicianPartnershipButton.getAttribute('click_again') == 'true') {
-        musicianPartnershipButton.click();
+    if (entertainerPartnershipButton.getAttribute('click_again') == 'true') {
+        entertainerPartnershipButton.click();
     }
     if (vendorPartnershipButton.getAttribute('click_again') == 'true') {
         vendorPartnershipButton.click();

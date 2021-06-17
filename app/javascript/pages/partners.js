@@ -81,7 +81,7 @@ function transferPartnerContent(panel) {
 
 document.addEventListener('turbolinks:load', () => {
     const page = document.getElementById('navbar').getAttribute('page');
-    if (!((page == 'musicians') || (page == "vendors"))) {
+    if (!((page == 'entertainers') || (page == "vendors"))) {
         return
     }
     const panels = [...document.getElementsByClassName('partner-panel')];

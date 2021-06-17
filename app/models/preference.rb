@@ -3,7 +3,7 @@ class Preference < ApplicationRecord
   belongs_to :second_choice, class_name: 'Partner', optional: true
   belongs_to :third_choice, class_name: 'Partner', optional: true
   belongs_to :event
-  enum preference_type: { vendor: 0, musician: 1 }
+  enum preference_type: { vendor: 0, entertainer: 1 }
   validate :different_preferences
 
   def check_nil

@@ -1,6 +1,6 @@
 <div class="relative">
   <p class="mt-1 lg:w-3/4 font-semibold">
-    Do you want to request to book a food vendor and/or musican from the Pentridge Station community?
+    Do you want to request to book a food vendor and/or entertainment for the event?
   </p>
   <div class="absolute -left-7 top-2">
     <%= link_to community_path, target: :_blank do %>
@@ -8,8 +8,8 @@
         <%= inline_svg_tag "question-mark.svg",
                       class: 'question-mark',
                       id: 'question_mark' %>
-        <p class="question-mark-info hidden bg-popup-gray py-3 px-4 w-44 shadow-md absolute top-6">
-          Click to learn more.
+        <p class="question-mark-info hidden bg-popup-gray py-3 px-4 w-44 shadow-md absolute top-6 z-50">
+          Click to learn more about our community collaborator network.
         </p>
       </div>
     <% end %>
@@ -23,8 +23,8 @@
         <% choices = @vendor_choices%>
         <% partner_type = 'vendor'%>
       <% else%>
-        <% choices = @musician_choices%>
-        <% partner_type = 'musician'%>
+        <% choices = @entertainer_choices%>
+        <% partner_type = 'entertainer'%>
       <%end%>
       <div class="w-48 flex " >
         <%= render 'shared/toggle_button',

@@ -1,4 +1,4 @@
-= form.select :category, options_for_select(Partner.categories, (!@partner.category.nil? && @partner.category == "musician") ? 1 : 0)
+= form.select :category, options_for_select(Partner.categories, (!@partner.category.nil? && @partner.category == "entertainer") ? 1 : 0)
 = form.text_field :name
 = form.text_field :tagline
 = form.text_field :bio

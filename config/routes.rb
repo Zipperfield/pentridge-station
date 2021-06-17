@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :messages, only: %i[create]
 
   get '/community', to: 'partners#index', as: :community
-  get '/community/musicians', to: 'partners#musicians', as: :musicians
+  get '/community/entertainers', to: 'partners#entertainers', as: :entertainers
   get '/community/vendors', to: 'partners#vendors', as: :vendors
 
   get '/home', to: 'pages#home'
