@@ -1,7 +1,6 @@
 <div class="m-4 mb-4 md:mb-0">
   <div class="md:sticky md:top-10 md:mt-40 self-start border border-gray-300 w-full p-4 md:p-8 ">
-    <h3 class="text-2xl lg:text-3xl font-light md:font-semibold ">Total Estimated Cost</h3>
-    <h3 class="text-xl sm:text-2xl my-3">$<span id="estimated_price"></span></h3>
+    <h3 class="text-lg lg:text-xl font-medium mb-2">Base Price</h3>
     <%= render 'line_item', 
           id: 'base',
           readable_name: 'Base Cost',
@@ -16,6 +15,7 @@
           visible: false,
           details: "The base cost increased because we would have to close the bar during business hours. You can avoid this added cost by cleaning and vaquating the space by 5 PM firm."
       %>
+    <h3 class="text-lg lg:text-xl font-medium my-2">Optional Add Ons</h3>
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
@@ -51,9 +51,11 @@
           visible: true,
           details: "Food vendor pricing is based on your requested menu. Options range from $10 per person for a simpler dish to $200 per person for a full course meal."
       %>
+    <h3 class="text-xl lg:text-2xl font-semibold mt-5">Total Estimated Cost</h3>
+    <h3 class="text-xl sm:text-2xl mb-3 text-right">$<span id="estimated_price"></span></h3>
     <input type="submit" name="commit" value="REQUEST TO BOOK" 
             id="event_submit" 
-            class="md:hidden w-full mt-8 text-white bg-teal-lightest py-3 mb-3 transition-colors duration-200 hover:bg-teal-lighter cursor-pointer"
+            class="md:hidden w-full mt-4 text-white bg-teal-lightest py-3 mb-3 transition-colors duration-200 hover:bg-teal-lighter cursor-pointer"
             form="event_form">
   </div>
 </div>
