@@ -1,26 +1,25 @@
 <%= render 'shared/navbar', page: "calendar"%>
-<div class="mx-6 sm:mx-12">
-  <div class="mt-12 mb-6 sm:mb-10">
-    calendar here
-  </div>
-  <div class="sm:w-2/3">
+<div class="mx-6 sm:mx-12 ">
+  <div class="mt-12 mb-6 sm:mb-10 max-w-5xl">
+    <iframe class="w-full " src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=ZG1qZWtqMXE4Z2c0ZGFlaHZzNXI2Mm8wNGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23AD1457&amp;showTitle=0&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>  </div>
+  <div class="sm:w-2/3 max-w-md">
     <div class="flex flex-col sm:flex-row justify-between">
       <div>
-        <p class="semibold text-xl">Hours</p>
+        <p class="font-semibold text-xl">Hours</p>
         <p>5 PM to 10 PM</p>
         <p> Fri. Sat. Sun.</p>
       </div>
       <div>
-        <p class="semibold text-xl mt-2 sm:mt-0">Location</p>
+        <p class="font-semibold text-xl mt-2 sm:mt-0">Location</p>
         <p>5116 Pentridge Street</p>
         <p>Philadelphia, PA</p>
       </div>
     </div>
-    <p class="mt-4">
+    <p class="mt-7">
       Are you a food vendor or entertainer who wants to be added to our calendar?
       <%= link_to 'Please reach out!', root_path(anchor: 'connect'), class: "underline"  %>
     </p>
-    <p class="mt-4">
+    <p class="mt-7">
       <a href="https://www.facebook.com/PentridgeStation/" target="_blank">
       </a>
       For live updates please follow us on 
