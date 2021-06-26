@@ -14,9 +14,14 @@
     <%= get_text_content :about, 
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa, volutpat sed nunc ac, sagittis hendrerit tellus. Vestibulum molestie purus vel justo fermentum sollicitudin. Duis blandit sed arcu non iaculis.'
   %>
-    <p class="mt-4">
-      Are you a food vendor or entertainer who wants to be added to our community page?
-      <%= link_to 'Please reach out!', root_path(anchor: 'connect'), class: "underline"  %>
-    </p>
+    <div class="max-w-lg">
+      <p class="mt-7">
+        Are you a food vendor or entertainer who wants to be added to our community page?
+        <%= link_to 'Please reach out!', root_path(anchor: 'connect'), class: "underline"  %>
+      </p>
+      <p class="mt-7">
+        <%= link_to 'View upcoming events on our calendar.', calendar_path, class: "underline"  %>
+      </p>
+    </div>
   </div>
 </div>
