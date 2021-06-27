@@ -1,9 +1,5 @@
 <div class="flex flex-col md:flex-row mx-4 md:mx-12">
-  <div class="md:order-2 flex w-full justify-center">
-    <div class="my-6 md:mt-40 bg-teal-lighter w-full sm:w-5/6 h-60 sm:h-96 lg:w-96 bg-cover bg-center"
-       style="background-image: url(<%= get_photo_url(:photo)%>)" >
-    </div>
-  </div>
+  <%= render 'pages/about/photo' %>
   <div class="md:order-1 flex flex-col justify-center items-center">
     <%= render 'pages/about/date_section', date: get_text_content(:firstDate, '2015'),
                             title: get_text_content(:firstEvent, 'The First Event'), 
