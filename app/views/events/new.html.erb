@@ -1,3 +1,13 @@
+<% content_for :meta_tags do %>
+  <title>Rent the Space</title>
+  <meta name="description" content="<%= truncate(get_text_content(:aboutBlurb,
+  "This is the about blurb, consectetur 
+  adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+  et dolore magna aliqua. Pellentesque id nibh tortor id aliquet.
+  Felis eget nunc lobortis mattis aliquam faucibus. Feugiat nibh
+  sed pulvinar proin. Justo nec ultrices dui sapien eget mi"),length: 160)
+      %>">
+<% end %>
 <%= render 'shared/alternate_header',
     page: 'book',
     titleMainText: 'Plan your next',
