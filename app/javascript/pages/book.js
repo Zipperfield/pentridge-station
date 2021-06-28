@@ -26,7 +26,7 @@ function embedMap() {
     }
 
     var marker = L.marker([39.946, -75.2244], markerOptions);
-    marker.bindPopup("<b>Pentridge Station</b><br>5110-5120 Pentridge St.<br>Philadelphia, PA 19143").openPopup();
+    marker.bindPopup("<b>Pentridge Station</b><br>5116 Pentridge St.<br>Philadelphia, PA 19143").openPopup();
     marker.addTo(map);
 
 }
