@@ -1,7 +1,7 @@
 <% content_for :meta_tags do %>
   <title>About Us</title>
   <meta name="description" content="<%= truncate(get_text_content(:blurb, 
-    'Here is a blurb. It is a long-established fact that a reader will be distracted by the content of a sites text while looking at its design. The point of using Lorem Ipsum is that it has a more or less normal distribution of the letters, as opposed to using texts such as "Content here, content here". These texts make it look like Spanish that can be read. Many desktop publishing packages and web page editors use Lorem Ipsum as their default text, and doing a search for "Lorem Ipsum" will return many websites that use this text if they are under development.'),length: 160)
+    'Here is a blurb. It is a long-established fact that a reader will be distracted by the content of a sites text while looking at its design. The point of using Lorem Ipsum is that it has a more or less normal distribution of the letters, as opposed to using texts such as "Content here, content here". These texts make it look like Spanish that can be read. Many desktop publishing packages and web page editors use Lorem Ipsum as their default text, and doing a search for "Lorem Ipsum" will return many websites that use this text if they are under development.')[3..-1],length: 150)
       %>">
 <% end %>
 <%= render 'shared/alternate_header',
