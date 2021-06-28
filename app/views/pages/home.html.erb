@@ -1,7 +1,7 @@
 <% content_for :meta_tags do %>
   <title>Home</title>
-  <meta name="description" content="<%= truncate(get_text_content(:headerSubtitle, 
-      'Header Subtitle. Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.'), length: 160)
+  <meta name="description" content="<%= truncate(get_text_content(:gridOneDescription, 
+      'gridOneDescription. Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et aliqua.'), length: 160)
       %>">
 <% end %>
 <%= render 'shared/header', page: 'home' %>
