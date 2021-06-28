@@ -1,5 +1,6 @@
 function hideOnClickOutside(parent, child) {
     const outsideClickListener = event => {
+
         if (!(event.defaultPrevented) && !child.contains(event.target) && isVisible(child)) {
             removeClickListener();
         }
@@ -10,9 +11,12 @@ function hideOnClickOutside(parent, child) {
         document.getElementById('up-arrow').classList.add('md:flex');
 
         document.removeEventListener('click', outsideClickListener);
+        document.getElementById('left_chevron').removeEventListener('click', removeClickListener);
+
 
     }
     document.addEventListener('click', outsideClickListener);
+    document.getElementById('left_chevron').addEventListener('click', removeClickListener);
 
 }
 const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight);
