@@ -9,10 +9,12 @@
   <div class="flex flex-col sm:flex-row justify-between w-full max-h-96 mt-12 sm:mb-10">
     <%= render 'index_panel',
       destination: entertainers_path,
+      photo: :entertainersPhoto,
       title: 'Entertainers',
       backgroundColor: 'bg-red-300' %>
     <%= render 'index_panel',
       destination: vendors_path,
+      photo: :vendorsPhoto,
       title: 'Food Vendors',
       backgroundColor: 'bg-blue-300' %>
   </div>

@@ -1,5 +1,7 @@
 <a href="<%= destination %>" class=" 
-    <%=class_names(backgroundColor, "partners-index-panel")%>">
+    <%=class_names(backgroundColor, "partners-index-panel")%>" >
+  <div class="absolute w-full h-full bg-cover bg-center"
+        style="background-image: url(<%= get_photo_url(photo)%>)"></div>
   <div class="absolute w-full top-0 opacity-90 h-full bg-gradient-to-b from-transparent to-teal-darkest"></div>
   <div class="z-20 self-end text-white ml-10 mb-8">
     <h3 class="text-3xl mb-4"><%= title %> </h3>
