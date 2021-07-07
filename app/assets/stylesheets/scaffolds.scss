@@ -35,3 +35,11 @@ div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+#carousel-1:checked ~ .control-1,
+#carousel-2:checked ~ .control-2,
+#carousel-3:checked ~ .control-3,
+#carousel-4:checked ~ .control-4,
+#carousel-5:checked ~ .control-5 {
+  display: block;
+}
