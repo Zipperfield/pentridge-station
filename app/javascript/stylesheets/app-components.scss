@@ -183,10 +183,10 @@
     .carousel-bullet {
     color: #00b7c4; /*Set to match the Tailwind colour you want the active one to be */
   }
-  .prev {
+  .to-the-left-arrow {
     @apply w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-teal-figma leading-tight text-center z-10 inset-y-0 left-0 my-auto;
   }
-  .next {
+  .to-the-right-arrow {
     @apply w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-teal-figma leading-tight text-center z-10 inset-y-0 right-0 my-auto;
   }
   .press-medium-container {
