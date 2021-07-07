@@ -1,6 +1,6 @@
 <input class="carousel-open hidden" type="radio" id="carousel-<%=currSlide%>" name="carousel" aria-hidden="true" hidden="" <%='checked' if currSlide==1%>>
-	<div class="carousel-item absolute opacity-0 h-72">
-	  <a <%=get_article_href(link) %>>
+	<div class="carousel-item absolute hidden h-72">
+		<a <%=get_article_href(link) %>>
 		<div class="block h-full w-full bg-teal-darkest bg-cover bg-center"
 			 style= "background-image: url(<%= get_photo_url(photo)%>">
 		  <div class="press-screen group">
@@ -15,8 +15,8 @@
 			</div>
 		  </div>
 		</div>
+		</a>
 		</div>
-	  </a>
 
 	</div>
 	<label for="carousel-<%=prevSlide%>"class= "<%=class_names("prev", "control-#{currSlide}")%>" >‹</label>

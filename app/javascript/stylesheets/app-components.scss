@@ -131,7 +131,7 @@
 
   .carousel-open:checked + .carousel-item {
     position: static;
-    opacity: 100;
+    display: flex;
   }
   .carousel-item {
     -webkit-transition: opacity 0.6s ease-out;
