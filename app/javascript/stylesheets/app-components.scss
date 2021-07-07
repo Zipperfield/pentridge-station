@@ -131,10 +131,11 @@
 
   .carousel-open:checked + .carousel-item {
     position: static;
-    display: flex;
+    display: block;
   }
   .carousel-item {
     -webkit-transition: opacity 0.6s ease-out;
+    z-index: 0;
     transition: opacity 0.6s ease-out;
   }
   #carousel-1:checked ~ .control-1,

@@ -1,24 +1,22 @@
 <input class="carousel-open hidden" type="radio" id="carousel-<%=currSlide%>" name="carousel" aria-hidden="true" hidden="" <%='checked' if currSlide==1%>>
-	<div class="carousel-item absolute hidden h-72">
-		<a <%=get_article_href(link) %>>
+<div class="carousel-item absolute hidden h-72">
+	<a <%=get_article_href(link) %>>
 		<div class="block h-full w-full bg-teal-darkest bg-cover bg-center"
 			 style= "background-image: url(<%= get_photo_url(photo)%>">
-		  <div class="press-screen group">
-			<div class="press-text-container">
-		  	 	<div class="press-header">
-		    		<%=get_text_content(publisher, "Article #{currSlide} Publisher")%>
+		  	<div class="press-screen group">
+				<div class="press-text-container">
+		  	 		<div class="press-header">
+		    			<%=get_text_content(publisher, "Article #{currSlide} Publisher")%>
 					</div>
-			<div class="press-line"></div>
-
-			<div class="italic text-lg self-center text-center w-32 md:w-2/3 ">
-				<%=truncate(get_text_content(headline, "A headline or quote from article #{currSlide} to build social proof."), length: 60)%>
+					<div class="press-line"></div>
+					<div class="italic text-lg self-center text-center w-32 md:w-2/3 ">
+						<%=truncate(get_text_content(headline, "A headline or quote from article #{currSlide} to build social proof."), length: 60)%>
+					</div>
+				</div>
 			</div>
-		  </div>
 		</div>
-		</a>
-		</div>
-
-	</div>
-	<label for="carousel-<%=prevSlide%>"class= "<%=class_names("prev", "control-#{currSlide}")%>" >‹</label>
-	<label for="carousel-<%=nextSlide%>"class="<%=class_names("next", "control-#{currSlide}")%>">›</label>
+	</a>
+</div>
+<label for="carousel-<%=prevSlide%>"class= "<%=class_names("prev", "control-#{currSlide}")%>" >‹</label>
+<label for="carousel-<%=nextSlide%>"class="<%=class_names("next", "control-#{currSlide}")%>">›</label>
 		
