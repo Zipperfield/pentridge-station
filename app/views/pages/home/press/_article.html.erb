@@ -1,0 +1,17 @@
+<div id=<%="article-#{articleNum}"%> 
+    class="<%=class_names(columnSize, "press-medium-container")%>"
+      style=  "background-image: url(<%= get_photo_url(photo)%>)">
+  <a <%=get_article_href(link) %>>
+    <div class="press-screen group">
+      <div class="press-text-container">
+        <h5 class="press-header">
+          <%=get_text_content(publisher, "Article #{articleNum} Publisher")%>
+        </h5>
+        <div class="press-line"></div>
+        <p class="<%=class_names(quoteWidth, "press-quote")%>">
+          <%=get_text_content(headline, "A headline or quote from article #{articleNum} to build social proof.")%>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
