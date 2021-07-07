@@ -139,7 +139,9 @@
   }
   #carousel-1:checked ~ .control-1,
   #carousel-2:checked ~ .control-2,
-  #carousel-3:checked ~ .control-3 {
+  #carousel-3:checked ~ .control-3,
+  #carousel-4:checked ~ .control-4,
+  #carousel-5:checked ~ .control-5 {
     display: block;
   }
   .carousel-indicators {
@@ -167,8 +169,24 @@
     ~ .control-3
     ~ .carousel-indicators
     li:nth-child(3)
+    .carousel-bullet,
+  #carousel-4:checked
+    ~ .control-4
+    ~ .carousel-indicators
+    li:nth-child(4)
+    .carousel-bullet,
+  #carousel-5:checked
+    ~ .control-5
+    ~ .carousel-indicators
+    li:nth-child(5)
     .carousel-bullet {
-    color: #2b6cb0; /*Set to match the Tailwind colour you want the active one to be */
+    color: #00b7c4; /*Set to match the Tailwind colour you want the active one to be */
+  }
+  .prev {
+    @apply w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-teal-figma leading-tight text-center z-10 inset-y-0 left-0 my-auto;
+  }
+  .next {
+    @apply w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-teal-figma leading-tight text-center z-10 inset-y-0 right-0 my-auto;
   }
   .press-medium-container {
     @apply bg-teal-darkest h-72 hidden md:inline bg-center bg-cover cursor-pointer;

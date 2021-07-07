@@ -1,0 +1,7 @@
+<input class="carousel-open hidden" type="radio" id="carousel-<%=currSlide%>" name="carousel" aria-hidden="true" hidden="" <%='checked' if currSlide==1%>>
+	<div class="carousel-item absolute opacity-0" style="height:50vh;">
+		<div class="block h-full w-full bg-teal-darkest text-white text-5xl text-center">Slide <%=currSlide%></div>
+	</div>
+	<label for="carousel-<%=prevSlide%>"class= "<%=class_names("prev", "control-#{currSlide}")%>" >‹</label>
+	<label for="carousel-<%=nextSlide%>"class="<%=class_names("next", "control-#{currSlide}")%>">›</label>
+		
