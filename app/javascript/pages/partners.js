@@ -59,13 +59,13 @@ function setLink(attr, panel) {
     let val = panel.getAttribute(attr);
     if (val === null) {
         console.log('attr is null')
-        if (!link.classList.contains("pointer-events-none")) {
-            link.classList.add("pointer-events-none");
+        if (!link.classList.contains("hidden")) {
+            link.classList.add("hidden");
         }
         link.setAttribute('href', "javascript:void(0)");
     } else {
-        if (link.classList.contains("pointer-events-none")) {
-            link.classList.remove("pointer-events-none");
+        if (link.classList.contains("hidden")) {
+            link.classList.remove("hidden");
         }
         console.log('attr is there')
         link.setAttribute('href', val);
