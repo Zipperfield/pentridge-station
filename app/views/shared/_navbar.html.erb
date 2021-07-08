@@ -1,6 +1,6 @@
 <div 
 id ='navbar'
-class=" flex flex-row justify-between pt-6 mx-2 sm:mx-10"
+class="relative flex flex-row justify-between pt-6 mx-2 sm:mx-10 z-50"
 page=<%=page%>
 >
   <div></div>
@@ -18,7 +18,7 @@ page=<%=page%>
           </div>
         </div>
       </summary>
-      <nav class="z-50 shadow-2xl bg-white text-teal-lighter flex flex-col absolute right-0 text-5xl pl-10 pr-6 py-12 mt-1 text-right rounded-l-full ">
+      <nav class=" z-40 shadow-2xl bg-white text-teal-lighter flex flex-col fixed right-0 text-5xl pl-10 pr-6 py-12 mt-2 text-right rounded-l-full ">
         <%= link_to 'Home.', root_path, class: "navbar-hover" %>
         <%= link_to 'Calendar', calendar_path, class: "navbar-hover" %>
         <div class="flex justify-end">
