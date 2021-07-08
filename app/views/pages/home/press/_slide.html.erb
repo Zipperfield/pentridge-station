@@ -3,8 +3,8 @@
 	<a <%=get_article_href(link) %>>
 		<div class="block h-full w-full bg-teal-darkest bg-cover bg-center"
 			 style= "background-image: url(<%= get_photo_url(photo)%>">
-		  	<div class="press-screen group">
-				<div class="press-text-container">
+		  	<div class="w-full h-full bg-teal-darkest bg-opacity-70 transition duration-1000 hover:bg-opacity-0 flex justify-center">
+				<div class="opacity-100 text-white flex flex-col justify-center">
 		  	 		<div class="press-header">
 		    			<%=get_text_content(publisher, "Article #{currSlide} Publisher")%>
 					</div>
