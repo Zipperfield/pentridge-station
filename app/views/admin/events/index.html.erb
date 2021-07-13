@@ -12,14 +12,14 @@
         <div class="col-md-2 item">
           <div class="item-content">
             <div class="item-title">
-              <%= event.date.strftime("%B %d, %Y") %>
+              <%= event.date.strftime("%B %d, %Y") unless event.date.nil? %>
             </div>
           </div>
         </div>
         <div class="col-md-2 item">
           <div class="item-content">
             <div class="item-title">
-              <%= event.start_time.strftime("%T") %>
+              <%= event.start_time.strftime("%T") unless event.start_time.nil? %>
             </div>
           </div>
         </div>
