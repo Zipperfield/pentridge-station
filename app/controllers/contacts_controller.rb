@@ -1,4 +1,10 @@
 class ContactsController < ApplicationController
+  invisible_captcha only: [:create], on_spam: :pretend_not_spam
+
+  def pretend_not_spam
+    redirect_to root_path, notice: 'We added your contact to our mailing list!'
+  end
+
   def create
     @contact = Contact.new(allowed_params)
     if @contact.save

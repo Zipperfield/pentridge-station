@@ -89,3 +89,6 @@ gem 'letter_opener', group: :development
 
 # for email in production
 gem 'sendgrid-ruby'
+
+# to prevent spam 
+gem 'invisible_captcha'

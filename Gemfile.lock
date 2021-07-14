@@ -153,6 +153,8 @@ GEM
     inline_svg (1.7.2)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
+    invisible_captcha (2.0.0)
+      rails (>= 5.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
@@ -331,6 +333,7 @@ DEPENDENCIES
   comfortable_mexican_sofa (~> 2.0.0)
   figaro
   inline_svg
+  invisible_captcha
   jbuilder (~> 2.7)
   kaminari
   letter_opener

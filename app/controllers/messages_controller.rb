@@ -1,4 +1,10 @@
 class MessagesController < ApplicationController
+  invisible_captcha only: [:create], on_spam: :pretend_not_spam
+
+  def pretend_not_spam
+    redirect_to root_path, notice: 'Your message has been registered and we will respond shortly.'
+  end
+
   def create
     @message = Message.new(allowed_params)
     if @message.save
