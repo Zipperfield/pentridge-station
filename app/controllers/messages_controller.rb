@@ -8,6 +8,8 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(allowed_params)
     if @message.save
+      EventMailer.with(message: @message).new_message_email.deliver_later
+
       redirect_to root_path, notice: 'Your message has been registered and we will respond shortly.'
     else
       @contact = Contact.new
