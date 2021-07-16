@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     if @event.save
       EventMailer.with(event: @event).event_request_email.deliver_later
 
-      redirect_to '/book', notice: 'Event was successfully created.'
+      redirect_to '/book', notice: 'We received your request and will respond as soon as possible.'
     else
       @cms = Comfy::Cms::Page.find_by_full_path('/book')
       set_choices

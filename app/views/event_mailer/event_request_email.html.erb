@@ -5,10 +5,54 @@
   </head>
   <body>
     <p>A new event request was created.</p>
-    <div>Date   : <%= @event.date.strftime("%B %d, %Y") unless @event.date.nil? %></div>
-    <div>Start  : <%= @event.start_time.strftime("%T") unless @evemt.start_time.nil? %></div>
-    <div>Guests : <%= @event.num_attendees %></div>
-    <div>Type   : <%= @event.event_type %></div>
-    <%= link_to 'View more details', @url %>
+    <div> <b>Date</b>   : <%= @event.date.strftime("%B %d, %Y") unless @event.date.nil? %></div>
+    <div><b>Start </b> : <%= @event.start_time.strftime("%T") unless @event.start_time.nil? %></div>
+    <div><b>Guests </b>: <%= @event.num_attendees %></div>
+    <div><b>Type </b>  : <%= @event.event_type %></div>
+    <div><br></div>
+    <div><b>Contact</b></div>    
+    <div><%= @event.contact.first_name %> <%= @event.contact.last_name %></div>
+    <div><%= @event.contact.email %></div>
+    <div><%= @event.contact.phone_number %></div>
+    <div><br></div>
+    <div><b>Add Ons</b></div>    
+    <ul>
+      <% if @event.doorperson%>
+        <li>Doorperson Requested</li>
+      <% end %>
+      <% if @event.alcohol%>
+        <li>Bartender(s) Requested (Alcohol Requested)</li>
+      <% end %>
+       <% if @event.open_bar%>
+        <li>Open Bar Requested</li>
+      <% end %>
+        <% if @event.preferences.first.requested%>
+        <li>
+          Food Vendor Requested
+          <ol>
+          <li> <%= @event.preferences.first.first_choice.name%></li>
+          <li> <%= @event.preferences.first.second_choice.name%></li>
+          <li> <%= @event.preferences.first.third_choice.name%></li>
+          </ol>        
+        </li>
+      <% end %>
+      <% if @event.preferences.second.requested%>
+        <li>
+          Entertainer Requested
+          <ol>
+          <li> <%= @event.preferences.second.first_choice.name%></li>
+          <li> <%= @event.preferences.second.second_choice.name%></li>
+          <li> <%= @event.preferences.second.third_choice.name%></li>
+          </ol>        
+        </li>
+        
+      <% end %>
+    
+    
+    </ul>
+    
+
+
+    <%= link_to 'View event request page', @url %>
   </body>
 </html>
