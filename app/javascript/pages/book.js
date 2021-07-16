@@ -379,7 +379,7 @@ class UserPriceInput {
         }
 
         this.businessHours = function () {
-            return (getDateFromHours(this.endHour.value).getHours() > 17);
+            return (getDateFromHours(this.endHour.value).getHours() > 18);
         }
 
         this.dateIsBusinessDay = function () {
