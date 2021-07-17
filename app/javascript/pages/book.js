@@ -338,9 +338,8 @@ class LineItem {
 
         this.hide = function () {
             if (this.visible()) {
-                return;
+                this.section.classList.add('hidden');
             }
-            this.section.classList.add('hidden');
         }
 
         this.show = function () {
