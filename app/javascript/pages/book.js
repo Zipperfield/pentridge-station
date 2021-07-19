@@ -465,9 +465,9 @@ class PriceTool {
         }
         this.pluralizeBartenderText = function () {
             if (this.userPriceInput.isLarge()) {
-                this.bartenderLineItem.setReadableName('BART Certified Bartenders');
+                this.bartenderLineItem.setReadableName('RAMP Certified Bartenders');
             } else {
-                this.bartenderLineItem.setReadableName('BART Certified Bartender');
+                this.bartenderLineItem.setReadableName('RAMP Certified Bartender');
             }
         }
 
