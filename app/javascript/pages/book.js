@@ -374,11 +374,20 @@ class UserPriceInput {
             return ((getDateFromHours(this.endHour.value) - getDateFromHours(this.startHour.value)) / 3600000)
         }
         this.addedBusinessCost = function () {
-            return this.businessHours() && this.dateIsBusinessDay();
+            return this.businessHours() && this.dateIsBusinessDay() && this.dateDuringSummer();
         }
 
         this.businessHours = function () {
             return (getDateFromHours(this.endHour.value).getHours() > 18);
+        }
+
+        this.dateDuringSummer = function () {
+            let m = changeValueToDate(this.date).getMonth();
+            if ((m > 4) && (m < 9)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         this.dateIsBusinessDay = function () {
@@ -414,13 +423,13 @@ class PriceTool {
 
         this.toggleAddOnTitle = function () {
             let addOnTitle = document.getElementById('optional_add_ons');
-            console.log(`
-            bartender ${this.bartenderLineItem.visible()},
-                doorperson ${this.doorpersonLineItem.visible()},
-               openbar ${this.openBarLineItem.visible()},
-                entertainer ${this.entertainerLineItem.visible()},
-                vendor ${this.vendorLineItem.visible()}
-            `)
+            // console.log(`
+            // bartender ${this.bartenderLineItem.visible()},
+            //     doorperson ${this.doorpersonLineItem.visible()},
+            //    openbar ${this.openBarLineItem.visible()},
+            //     entertainer ${this.entertainerLineItem.visible()},
+            //     vendor ${this.vendorLineItem.visible()}
+            // `)
             if (!this.bartenderLineItem.visible() &&
                 !this.doorpersonLineItem.visible() &&
                 !this.openBarLineItem.visible() &&
@@ -731,7 +740,6 @@ document.addEventListener('turbolinks:load', () => {
             toggleVisibility(eventFormScreen);
             tempSubmit.classList.add('hidden');
             document.getElementById('up-arrow').classList.remove('md:flex');
-
             priceTool.setPrices();
 
             hideOnClickOutside(eventFormScreen, eventFormContainer, calendar);
