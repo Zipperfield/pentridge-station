@@ -1,6 +1,7 @@
 class Popup < ActiveRecord::Base
 
   # -- Relationships -----------------------------------------------------------
+  has_one_attached :photo, dependent: :destroy
 
 
   # -- Callbacks ---------------------------------------------------------------
