@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :popups
+  end
+
+  namespace :admin do
     resources :schedules
     resources :events
     resources :partners

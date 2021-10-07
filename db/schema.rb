@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_162454) do
+ActiveRecord::Schema.define(version: 2021_10_07_010040) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -205,6 +205,14 @@ ActiveRecord::Schema.define(version: 2021_05_22_162454) do
     t.string "instagram"
     t.string "twitter"
     t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "popups", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
