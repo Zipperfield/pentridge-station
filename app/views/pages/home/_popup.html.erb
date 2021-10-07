@@ -4,11 +4,12 @@
       <%= inline_svg_tag "left-chevron.svg",
                       class:'w-5 pr-3 cursor-pointer bg-popup-gray mt-1',
                       id: 'left_chevron' %>
-      <h3 id="popup_partner_name" class="text-xl font-semibold mb-2">Artist Name</h3>
+      <h3 id="popup_partner_name" class="text-xl font-semibold mb-2">
+      <%= popup.title %>
+      </h3>
     </div>
     <p id="popup_partner_bio" class="font-light mb-6">
-    
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis justo nisl. Sed risus massa.
+        <%= popup.body %>
     </p>
 
   </div>

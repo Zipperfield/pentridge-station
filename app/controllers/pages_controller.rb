@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   before_action :set_newsletter_form, only: %i[home about calendar]
   def home
     @message = Message.new
+    @popup = Popup.first
     @message.build_contact
     @cms = Comfy::Cms::Page.find_by_full_path('/home')
   end
