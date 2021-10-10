@@ -16,6 +16,7 @@ import "stylesheets/app-utilities"
 import "pages/header-footer"
 import "pages/book"
 import "pages/partners"
+import "pages/home"
 
 
 Rails.start()
