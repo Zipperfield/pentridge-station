@@ -1,16 +1,24 @@
-<div id="popup_partner_screen" class="z-50 w-screen h-screen fixed top-0 left-0 bg-gray-500 opacity-95  justify-center">
-  <div id="popup_partner_container" class="bg-white sm:w-96 self-center p-8 ">
-    <div class="flex relative">
-      <%= inline_svg_tag "left-chevron.svg",
-                      class:'w-5 pr-3 cursor-pointer bg-popup-gray mt-1',
-                      id: 'left_chevron' %>
-      <h3 id="popup_partner_name" class="text-xl font-semibold mb-2">
+<div id="popup_home_screen" class="flex z-50 w-screen h-screen fixed top-0 left-0 bg-gray-500 bg-opacity-70  justify-center">
+  <div id="popup_home_container" class="bg-white shadow-2xl w-11/12 sm:w-96 self-center p-8 ">
+
+    <h3 class="text-2xl sm:text-3xl font-semibold mb-2 text-center ">
       <%= popup.title %>
-      </h3>
-    </div>
-    <p id="popup_partner_bio" class="font-light mb-6">
+    </h3>
+
+    <div class="flex justify-center">
+    <%= image_tag (popup.photo.attached? ? url_for(popup.photo) : ""), class: " self-center "%>
+
+      </div>
+    <p class="font-light my-4 text-center leading-relaxed">
         <%= popup.body %>
     </p>
-
+    <div id="popup_home_exit" class="flex relative justify-center cursor-pointer">
+      <%= inline_svg_tag "left-chevron.svg",
+                      class:'w-5 pr-3 cursor-pointer  mt-1',
+                      id: 'left_chevron' %>
+      <p  class="text-center ">
+      Return to site
+      </p>
+    </div>
   </div>
 </div>
