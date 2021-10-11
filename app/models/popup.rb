@@ -5,7 +5,9 @@ class Popup < ActiveRecord::Base
 
 
   # -- Callbacks ---------------------------------------------------------------
-
+  before_save do
+    self.cookie = "onetimepopup-#{('a'..'z').to_a.sample(8).join}"
+  end
 
   # -- Validations -------------------------------------------------------------
 

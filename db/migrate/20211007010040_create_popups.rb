@@ -5,6 +5,7 @@ class CreatePopups < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :body
       t.boolean :status
+      t.string :cookie
       t.timestamps
     end
   end

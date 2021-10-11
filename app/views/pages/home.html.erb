@@ -10,6 +10,6 @@
 <%= render 'pages/home/schoolbus' %>
 <%= render 'pages/home/press' %>
 <%= render 'pages/home/connect' %>
-<% if @popup.status %>
+<% if !@popup.nil? and @popup.status %>
 <%= render 'pages/home/popup', popup: @popup %>
 <% end %>

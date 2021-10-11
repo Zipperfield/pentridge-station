@@ -57,6 +57,6 @@ protected
   end
 
   def popup_params
-    params.fetch(:popup, {}).permit(:title, :body, :status, :photo)
+    params.fetch(:popup, {}).permit(:title, :body, :status, :photo, :cookie)
   end
 end

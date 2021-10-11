@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_010040) do
     t.string "title"
     t.text "body"
     t.boolean "status"
+    t.string "cookie"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
