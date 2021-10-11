@@ -58,16 +58,11 @@ function getCookie(cname) {
 document.addEventListener('turbolinks:load', () => {
     const page = document.getElementById('navbar').getAttribute('page');
     const homePopup = document.getElementById('popup_home_screen');
-    console.log(page);
-    console.log(homePopup);
-
     if ((page != 'home') || (homePopup == null) ) {
         return;
     }
     const popupCookieValue = homePopup.getAttribute('cookie');
-    console.log(popupCookieValue);
     let popupCookie = getCookie(popupCookieValue);
-    console.log(popupCookie);
     if (popupCookie == "" || popupCookie == null) {
     
       toggleVisibility(homePopup);
