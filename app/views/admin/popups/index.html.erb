@@ -1,0 +1,34 @@
+<div class="page-header">
+  <% unless @popups.any? %>
+    <%= link_to 'New Popup', new_admin_popup_path, class: 'btn btn-secondary float-right' %>
+  <% end %>
+  <h2>
+    <%= 'Popups' %>
+  </h2>
+</div>
+<%= paginate @popups, theme: 'comfy' %>
+<ul class="list">
+  <% @popups.each do |popup| %>
+    <li>
+      <div class="row">
+        <div class="col-md-8 item">
+          <div class="item-content">
+            <div class="item-title">
+              <%= popup.title %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-md-end">
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_admin_popup_path(popup), class: 'btn btn-outline-secondary' %>
+            <% unless @popups.any? %>
+              <%= link_to 'Delete', admin_popup_path(popup), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%= paginate @popups, theme: 'comfy' %>
