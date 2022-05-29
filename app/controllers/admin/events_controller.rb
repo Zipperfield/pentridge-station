@@ -13,6 +13,8 @@ class Admin::EventsController < Comfy::Admin::BaseController
 
   def new
     @event.build_contact
+    @event.preferences.build(preference_type: 'vendor')
+    @event.preferences.build(preference_type: 'entertainer')
     render
   end
 
