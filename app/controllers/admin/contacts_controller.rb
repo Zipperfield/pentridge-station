@@ -4,6 +4,13 @@ class Admin::ContactsController < Comfy::Admin::BaseController
 
   def index
     @contacts = Contact.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.csv do
+        @contacts = Contact.all
+        send_data to_csv(@contacts), filename: "Contacts-#{DateTime.current}.csv"
+      end
+    end
   end
 
   def show
@@ -57,5 +64,17 @@ class Admin::ContactsController < Comfy::Admin::BaseController
 
   def contact_params
     params.fetch(:contact, {}).permit(:first_name, :last_name, :email, :entry_process, :phone_number)
+  end
+
+  def to_csv(contacts)
+    attributes = Contact.column_names
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      contacts.each do |contact|
+        csv << attributes.map {|attr| contact.send(attr)}
+      end
+    end
   end
 end
