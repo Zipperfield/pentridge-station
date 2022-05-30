@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-gradient-to-r from-white via-gray-200 to-white " >
   <head>
     <%= yield :meta_tags %>
     <meta name="keywords" content="beer garden, West Philly, Dahlak, private event">
@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script defer data-domain="pentridgestation.com" src="https://plausible.io/js/plausible.js"></script>
   </head>
-  <body>
+  <body class="max-w-screen-2xl mx-auto bg-white">
     <% if flash[:notice] %>
       <div class="">
         <p class=""><%= notice %></p>
