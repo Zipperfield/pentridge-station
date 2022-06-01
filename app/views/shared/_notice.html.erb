@@ -1,3 +1,7 @@
-<div class="border flex flex-col sm:flex-row justify-center py-2 w-full italic font-semibold text-red-500 text-center"> 
-<p> Season Premiere Friday June 4th! </p>
-</div>
+
+<% content = cms_fragment_render(:notice, @cms) %>
+<% unless content.empty? %>
+    <div class="border flex flex-col sm:flex-row justify-center py-2 w-full italic font-semibold text-red-500 text-center"> 
+        <p> <%= content %> </p>
+    </div>
+<% end %>
