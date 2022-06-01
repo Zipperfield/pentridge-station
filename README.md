@@ -81,6 +81,7 @@ A content management system allows the client to change the copy and photos of t
 {{ cms:text articleFiveHeadline, namespace: press}}
 {{ cms:file articleFivePhoto, namespace: press}}
 {{ cms:text articleFiveLink, namespace: press}}
+{{ cms:text notice, namespace: notice}}
 
 #### Layout Name: about
 > {{ cms:file headerPhoto, namespace: top}}
