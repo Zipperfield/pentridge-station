@@ -1,5 +1,5 @@
 
-<% content = cms_fragment_render(:notice, @cms) %>
+<% content =  cms_snippet_content(:notice) %>
 <% unless content.empty? %>
     <div class="border flex flex-col sm:flex-row justify-center py-2 w-full italic font-semibold text-red-500 text-center"> 
         <p> <%= content %> </p>
