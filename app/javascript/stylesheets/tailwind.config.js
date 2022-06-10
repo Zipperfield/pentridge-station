@@ -32,6 +32,9 @@ module.exports = {
       },
       gridTemplateRows: {
         '12': 'repeat(12, minmax(0, 1fr))',
+      },
+      maxWidth: {
+        'screen-6xl': '1800px'
       }
     },
   },
