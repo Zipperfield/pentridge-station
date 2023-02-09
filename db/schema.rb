@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_010040) do
     t.index ["boolean"], name: "index_comfy_cms_fragments_on_boolean"
     t.index ["datetime"], name: "index_comfy_cms_fragments_on_datetime"
     t.index ["identifier"], name: "index_comfy_cms_fragments_on_identifier"
-    t.index ["record_type", "record_id"], name: "index_comfy_cms_fragments_on_record"
+    t.index ["record_type", "record_id"], name: "index_comfy_cms_fragments_on_record_type_and_record_id"
   end
 
   create_table "comfy_cms_layouts", force: :cascade do |t|
