@@ -4,7 +4,11 @@
     <%= render 'line_item', 
           id: 'base',
           readable_name: 'Six Hour Event',
-          values: "",
+          values: "data-base = #{get_number(:basePrice, 500)}
+                  data-weekend = #{get_number(:weekendPrice, 250)}
+                  data-business-hours = #{get_number(:businessHourPrice, 2000)}
+                  data-wedding = #{get_number(:weddingPrice, 1500)}
+                  data-large = #{get_number(:largePartyPrice, 250)}",
           visible: true,
           details: "All events include an hour to set up and an hour to clean up."
       %>
@@ -19,28 +23,31 @@
     <%= render 'line_item', 
           id: 'doorperson',
           readable_name: 'Doorperson',
-          values: "hourly= 30 ",
+          values: "hourly= #{get_number(:doorpersonHourly, 30)}
+                  hours= #{get_number(:doorpersonHours, 4)}",
           visible: true,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'bartender',
           readable_name: 'RAMP Certified Bartender',
-          values: "hourly= 30 ",
+          values: "hourly= #{get_number(:bartenderHourly, 30)}
+                  hours= #{get_number(:bartenderHours, 5)}",
           visible: false,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'open_bar',
           readable_name: 'Open Bar ',
-          values: "per_person= 15 ",
+          values: "per_person= #{get_number(:openBarPricePerPerson, 15)}",
           visible: false,
           details: ""
       %>
     <%= render 'line_item', 
           id: 'entertainer_cost',
           readable_name: 'Entertainer Booking',
-          values: "hourly= 100",
+          values: "hourly= #{get_number(:entertainerHourly, 100)}
+                  hours= #{get_number(:entertainerHours, 2)}",
           visible: true,
           details: "Entertainers have a two hour booking minimum with exact prices determined upon request."
       %>

@@ -121,21 +121,30 @@ A content management system allows the client to change the copy and photos of t
 {{ cms:text testimonialOneName, namespace: reviews}}
 {{ cms:text testimonialOneDescription, namespace: reviews}}
 {{ cms:text testimonialOneQuote, namespace: reviews}}
-location}}
 {{ cms:file testimonialTwoPhoto, namespace: reviews}}
 {{ cms:text testimonialTwoName, namespace: reviews}}
 {{ cms:text testimonialTwoDescription, namespace: reviews}}
 {{ cms:text testimonialTwoQuote, namespace: reviews}}
-location}}
 {{ cms:file testimonialThreePhoto, namespace: reviews}}
 {{ cms:text testimonialThreeName, namespace: reviews}}
 {{ cms:text testimonialThreeDescription, namespace: reviews}}
 {{ cms:text testimonialThreeQuote, namespace: reviews}}
-location}}
 {{ cms:file testimonialFourPhoto, namespace: reviews}}
 {{ cms:text testimonialFourName, namespace: reviews}}
 {{ cms:text testimonialFourDescription, namespace: reviews}}
 {{ cms:text testimonialFourQuote, namespace: reviews}}
+{{ cms:number basePrice, namespace: basePricing }}
+{{ cms:number weekendPrice, namespace: basePricing }}
+{{ cms:number businessHourPrice, namespace: basePricing }}
+{{ cms:number weddingPrice, namespace: basePricing }}
+{{ cms:number largePartyPrice, namespace: basePricing }}
+{{ cms:number bartenderHourly, namespace: bar  }}
+{{ cms:number bartenderHours, namespace: bar }}
+{{ cms:number openBarPricePerPerson, namespace: bar }}
+{{ cms:number doorpersonHourly, namespace: doorperson }}
+{{ cms:number doorpersonHours, namespace: doorperson }}
+{{ cms:number entertainerHourly, namespace: entertainer }}
+{{ cms:number entertainerHours, namespace: entertainer }}
 
 For questions and help reach out to Julian on Twitter [@jdegrootlutzner](https://twitter.com/jdegrootlutzner)
 The project is released under the MIT license. 

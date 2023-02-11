@@ -19,4 +19,12 @@ module CmsHelper
     link = cms_fragment_render(name, @cms)
     link.empty? ? 'href=javascript:void(0)' : "href=#{link} target= _blank"
   end
+  
+  def get_number(name, backup)
+    return backup if @cms.nil?
+
+    number = cms_fragment_render(name, @cms)
+    (number.empty? or number.to_i == 0 ) ? backup : number.to_i
+  end
+
 end

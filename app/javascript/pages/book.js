@@ -282,10 +282,20 @@ class LineItem {
         this.readableName = document.getElementById(id + "_name");
         this.price = document.getElementById(id + '_price');
         this.hourly = Number(this.section.getAttribute('hourly'));
+        this.hoursWorked = Number(this.section.getAttribute('hours'));
         this.perPerson = Number(this.section.getAttribute('per_person'));
         this.controllingButton = document.getElementById(controller);
 
         this.altControllingButton = document.getElementById(altController);
+
+        if (id == "base") {
+            this.basePrice = Number(this.section.getAttribute('data-base'));
+            this.weekendPrice = Number(this.section.getAttribute('data-weekend'));
+            this.businessHoursPrice = Number(this.section.getAttribute('data-business-hours'));
+            this.weddingPrice = Number(this.section.getAttribute('data-wedding'));
+            this.largePartyPrice = Number(this.section.getAttribute('data-large'));
+
+        }
 
 
         this.visible = function () {
@@ -304,24 +314,24 @@ class LineItem {
 
         this.calculateBasePrice = function (userInput) {
             return (
-                (500 +
-                    250 * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
-                    500 * userInput.isWedding() * !userInput.addedBusinessCost() +
-                    1000 * userInput.addedBusinessCost() +
-                    250 * !userInput.addedBusinessCost() * userInput.isLarge() * !userInput.isWedding()));
+                (this.basePrice +
+                    this.weekendPrice * userInput.dateIsBusinessDay() * !userInput.businessHours() * !userInput.isWedding() +
+                    this.weddingPrice * userInput.isWedding() * !userInput.addedBusinessCost() +
+                    this.businessHoursPrice * userInput.addedBusinessCost() +
+                    this.largePartyPrice * !userInput.addedBusinessCost() * userInput.isLarge() * !userInput.isWedding()));
         }
 
-        this.calculateHourlyPrice = function (userInput, hoursReduced = 2) {
+        this.calculateHourlyPrice = () => {
             return (this.visible() *
-                (userInput.numHours() - hoursReduced) * this.hourly);
+                (this.hoursWorked) * this.hourly);
         }
 
         this.largeMultiplier = function (userInput, limit) {
             return ((userInput.numAttendees() > 25) + 1);
         }
 
-        this.calculateBartenderPrice = function (userInput, hoursReduced = 2) {
-            return (this.calculateHourlyPrice(userInput, hoursReduced) * this.largeMultiplier(userInput, 25));
+        this.calculateBartenderPrice = function (userInput) {
+            return (this.calculateHourlyPrice() * this.largeMultiplier(userInput, 25));
         }
 
         this.calculatePerPersonPrice = function (userInput) {
@@ -523,7 +533,7 @@ class PriceTool {
         }
 
         this.doorpersonPrice = function () {
-            return (this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice(this.userPriceInput)));
+            return (this.doorpersonLineItem.setPrice(this.doorpersonLineItem.calculateHourlyPrice()));
         }
         this.openBarPrice = function () {
             return (this.openBarLineItem.setPrice(this.openBarLineItem.calculatePerPersonPrice(this.userPriceInput)));
@@ -535,7 +545,7 @@ class PriceTool {
         }
 
         this.entertainerPrice = function () {
-            return (this.entertainerLineItem.setPrice(this.entertainerLineItem.calculateHourlyPrice(this.userPriceInput, 4), "$", "+*"));
+            return (this.entertainerLineItem.setPrice(this.entertainerLineItem.calculateHourlyPrice(), "$", "+*"));
 
         }
 
